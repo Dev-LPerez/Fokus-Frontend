@@ -4,6 +4,8 @@ import React, { useActionState, useState } from 'react';
 import Link from 'next/link';
 import { Bot, Mail, Lock, AlertCircle, CheckCircle2, Loader2, ArrowRight, Sparkles } from 'lucide-react';
 import { AuthActionResult } from '@/app/auth/actions';
+import { createClient } from '@/lib/supabase/client';
+import { GoogleIcon } from '@/components/auth/AuthSplitView';
 
 interface AuthFormProps {
   mode: 'login' | 'register';
@@ -13,8 +15,38 @@ interface AuthFormProps {
 export function AuthForm({ mode, action }: AuthFormProps) {
   const [state, formAction, isPending] = useActionState(action, null);
   const [showPassword, setShowPassword] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const [googleError, setGoogleError] = useState<string | null>(null);
 
   const isLogin = mode === 'login';
+
+  const handleGoogleSignIn = async () => {
+    try {
+      setIsGoogleLoading(true);
+      setGoogleError(null);
+      const supabase = createClient();
+      const redirectTo = `${window.location.origin}/auth/callback?next=/chat`;
+
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+        },
+      });
+
+      if (error) {
+        setGoogleError(error.message);
+        setIsGoogleLoading(false);
+      }
+    } catch {
+      setGoogleError('Error de conexión con Google.');
+      setIsGoogleLoading(false);
+    }
+  };
 
   return (
     <div className="w-full max-w-sm p-7 bg-zinc-950 border border-zinc-800/90 rounded-2xl shadow-2xl backdrop-blur-xl animate-fade-in">
@@ -32,6 +64,16 @@ export function AuthForm({ mode, action }: AuthFormProps) {
             : 'Crea tu cuenta para comenzar a chatear'}
         </p>
       </div>
+
+      {googleError && (
+        <div className="mb-5 p-3 rounded-xl bg-red-950/40 border border-red-800/40 text-red-300 text-xs flex items-start gap-2.5 animate-fade-in">
+          <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5 text-red-400" />
+          <div>
+            <p className="font-semibold">Google OAuth</p>
+            <p className="text-red-300/80 mt-0.5">{googleError}</p>
+          </div>
+        </div>
+      )}
 
       {state?.error && (
         <div className="mb-5 p-3 rounded-xl bg-red-950/40 border border-red-800/40 text-red-300 text-xs flex items-start gap-2.5 animate-fade-in">
@@ -52,6 +94,37 @@ export function AuthForm({ mode, action }: AuthFormProps) {
           </div>
         </div>
       )}
+
+      {/* Google OAuth Button */}
+      <div className="mb-4">
+        <button
+          type="button"
+          onClick={handleGoogleSignIn}
+          disabled={isGoogleLoading}
+          className="w-full py-2.5 px-4 bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 hover:border-zinc-700 text-zinc-200 text-xs font-semibold rounded-xl shadow-sm flex items-center justify-center gap-2.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+        >
+          {isGoogleLoading ? (
+            <>
+              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              <span>Conectando...</span>
+            </>
+          ) : (
+            <>
+              <GoogleIcon className="w-3.5 h-3.5 flex-shrink-0" />
+              <span>{isLogin ? 'Continuar con Google' : 'Registrarse con Google'}</span>
+            </>
+          )}
+        </button>
+      </div>
+
+      <div className="relative my-4 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-zinc-800" />
+        </div>
+        <div className="relative bg-zinc-950 px-2 text-[10px] uppercase tracking-wider text-zinc-500 font-mono">
+          o con correo
+        </div>
+      </div>
 
       <form action={formAction} className="space-y-3.5">
         <div>

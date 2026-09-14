@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useActionState, useState } from 'react';
+import React, { useActionState, useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Mail,
@@ -19,6 +19,30 @@ import {
 } from 'lucide-react';
 import { signIn, signUp, AuthActionResult } from '@/app/auth/actions';
 import { FokusIcon } from '@/components/brand/FokusLogo';
+import { createClient } from '@/lib/supabase/client';
+
+export function GoogleIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24">
+      <path
+        fill="#4285F4"
+        d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.98 0 12s.45 3.84 1.25 5.42l4.03-3.15z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
+      />
+    </svg>
+  );
+}
 
 interface AuthSplitViewProps {
   initialMode?: 'login' | 'register';
@@ -27,6 +51,8 @@ interface AuthSplitViewProps {
 export function AuthSplitView({ initialMode = 'login' }: AuthSplitViewProps) {
   const [mode, setMode] = useState<'login' | 'register'>(initialMode);
   const [showPassword, setShowPassword] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const [googleError, setGoogleError] = useState<string | null>(null);
 
   const isLogin = mode === 'login';
 
@@ -36,6 +62,43 @@ export function AuthSplitView({ initialMode = 'login' }: AuthSplitViewProps) {
   const activeState = isLogin ? loginState : registerState;
   const activeFormAction = isLogin ? loginFormAction : registerFormAction;
   const isPending = isLogin ? isLoginPending : isRegisterPending;
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('error') === 'oauth_failed') {
+        setGoogleError('No se pudo completar el inicio de sesión con Google. Inténtalo de nuevo.');
+      }
+    }
+  }, []);
+
+  const handleGoogleSignIn = async () => {
+    try {
+      setIsGoogleLoading(true);
+      setGoogleError(null);
+      const supabase = createClient();
+      const redirectTo = `${window.location.origin}/auth/callback?next=/chat`;
+
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+        },
+      });
+
+      if (error) {
+        setGoogleError(error.message);
+        setIsGoogleLoading(false);
+      }
+    } catch {
+      setGoogleError('Error de conexión al iniciar sesión con Google.');
+      setIsGoogleLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen w-full flex flex-col justify-between bg-[#f8fafc] text-slate-800 relative overflow-hidden selection:bg-indigo-500/20 selection:text-indigo-900 font-sans">
@@ -204,6 +267,16 @@ export function AuthSplitView({ initialMode = 'login' }: AuthSplitViewProps) {
               </div>
 
               {/* Alerts: Error */}
+              {googleError && (
+                <div className="mb-5 p-3.5 rounded-2xl bg-rose-50 border border-rose-200/80 text-rose-800 text-xs flex items-start gap-2.5 animate-in fade-in duration-200 shadow-2xs">
+                  <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5 text-rose-600" />
+                  <div>
+                    <p className="font-semibold text-rose-900">Google OAuth</p>
+                    <p className="text-rose-700 mt-0.5 leading-relaxed">{googleError}</p>
+                  </div>
+                </div>
+              )}
+
               {activeState?.error && (
                 <div className="mb-5 p-3.5 rounded-2xl bg-rose-50 border border-rose-200/80 text-rose-800 text-xs flex items-start gap-2.5 animate-in fade-in duration-200 shadow-2xs">
                   <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5 text-rose-600" />
@@ -224,6 +297,38 @@ export function AuthSplitView({ initialMode = 'login' }: AuthSplitViewProps) {
                   </div>
                 </div>
               )}
+
+              {/* Google OAuth Button */}
+              <div className="mb-5">
+                <button
+                  type="button"
+                  onClick={handleGoogleSignIn}
+                  disabled={isGoogleLoading}
+                  className="w-full min-h-[44px] py-2.5 px-4 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-700 text-xs sm:text-sm font-semibold rounded-2xl shadow-2xs flex items-center justify-center gap-3 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30"
+                >
+                  {isGoogleLoading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-slate-500" />
+                      <span className="text-slate-500">Conectando con Google...</span>
+                    </>
+                  ) : (
+                    <>
+                      <GoogleIcon className="w-4 h-4 flex-shrink-0" />
+                      <span>{isLogin ? 'Continuar con Google' : 'Registrarse con Google'}</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Elegant Divider */}
+              <div className="relative my-5 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-slate-200/80" />
+                </div>
+                <div className="relative bg-white/95 px-3 text-[11px] font-medium uppercase tracking-wider text-slate-400">
+                  o con correo
+                </div>
+              </div>
 
               {/* Form Element with iOS 16px font-size protection to avoid Safari zoom */}
               <form key={mode} action={activeFormAction} className="space-y-4">
@@ -343,10 +448,20 @@ export function AuthSplitView({ initialMode = 'login' }: AuthSplitViewProps) {
       </main>
 
       {/* Bottom Legal / Navigation Bar */}
-      <footer className="py-4 px-6 text-center text-xs text-slate-500 border-t border-slate-200/60 bg-white/40 backdrop-blur-xs relative z-10">
-        <Link href="/" className="hover:text-slate-800 transition-colors">
-          ← Volver a la página de bienvenida de Fokus
-        </Link>
+      <footer className="py-4 px-6 text-xs text-slate-500 border-t border-slate-200/60 bg-white/40 backdrop-blur-xs relative z-10">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <Link href="/" className="hover:text-slate-800 transition-colors">
+            ← Volver a la página de bienvenida de Fokus
+          </Link>
+          <div className="flex items-center gap-4 text-[11px]">
+            <Link href="/privacy" className="hover:text-slate-800 transition-colors underline">
+              Política de Privacidad
+            </Link>
+            <Link href="/terms" className="hover:text-slate-800 transition-colors underline">
+              Condiciones del Servicio
+            </Link>
+          </div>
+        </div>
       </footer>
     </div>
   );
