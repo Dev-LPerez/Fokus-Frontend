@@ -1,0 +1,71 @@
+﻿{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-05T18:30:00Z",
+  "title": "Design System: Fokus",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Deep Sanctuary Teal", "canonical": "#0F766E", "tonalRamp": ["#042F2E", "#115E59", "#0F766E", "#14B8A6", "#2DD4BF", "#5EEAD4", "#99F6E4", "#CCFBF1"] },
+      "accent-amber": { "role": "secondary", "displayName": "Amber Focus Dot", "canonical": "#F59E0B", "tonalRamp": ["#78350F", "#B45309", "#D97706", "#F59E0B", "#FBBF24", "#FCD34D", "#FDE68A", "#FEF3C7"] },
+      "accent-iris": { "role": "secondary", "displayName": "Iris Concentration", "canonical": "#6366F1", "tonalRamp": ["#312E81", "#3730A3", "#4338CA", "#4F46E5", "#6366F1", "#818CF8", "#A5B4FC", "#C7D2FE"] },
+      "neutral-canvas": { "role": "neutral", "displayName": "Canvas Base", "canonical": "#F8FAFC", "tonalRamp": ["#020617", "#0F172A", "#1E293B", "#334155", "#475569", "#94A3B8", "#E2E8F0", "#F8FAFC"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display Space Grotesk", "purpose": "Títulos principales y preguntas de apertura." },
+      "body": { "displayName": "Body DM Sans", "purpose": "Lectura continua, tarjetas y respuestas del copiloto." }
+    },
+    "shadows": [
+      { "name": "glass-card-rest", "value": "0 10px 30px -10px rgba(79, 70, 229, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9)", "purpose": "Elevación de tarjetas Liquid Glass en reposo." },
+      { "name": "glass-card-lifted", "value": "0 15px 35px -5px rgba(15, 23, 42, 0.08), inset 0 1.5px 2px rgba(255, 255, 255, 1)", "purpose": "Elevación en hover o foco." }
+    ],
+    "motion": [
+      { "name": "ease-liquid", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Transición suave de elevación y desenfoque." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Botón principal de acción con gradiente Teal esmeralda.",
+      "html": "<button class=\"ds-btn-primary\">Iniciar Sesión</button>",
+      "css": ".ds-btn-primary { background: linear-gradient(to right, #0F766E, #0d9488, #059669); color: #ffffff; padding: 12px 24px; font-weight: 600; font-size: 14px; border: none; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.3); transition: filter 0.2s, transform 0.2s; cursor: pointer; } .ds-btn-primary:hover { filter: brightness(1.05); transform: translateY(-1px); }"
+    },
+    {
+      "name": "Liquid Glass Card",
+      "kind": "card",
+      "refersTo": "card-glass",
+      "description": "Contenedor translúcido con desenfoque de fondo y borde reflectivo.",
+      "html": "<div class=\"ds-card-glass\"><h4>Bloque de Enfoque Profundo</h4><p>90 min reservados en Google Calendar</p></div>",
+      "css": ".ds-card-glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 16px; padding: 16px; box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.05); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Luminous Sanctuary",
+    "overview": "Fokus está concebido como un santuario digital de claridad, calma mental y alto rendimiento personal y profesional.",
+    "keyCharacteristics": [
+      "Luminosidad diáfana con fondos suaves en slate (#f8fafc).",
+      "Translucidez matérica Liquid Glass con desenfoque suave.",
+      "Acento intencional en Teal profundo (#0F766E) y punto focal ámbar (#F59E0B)."
+    ],
+    "rules": [
+      { "name": "The Rarity of Focus Rule", "body": "El punto ámbar y el Teal primario nunca se emplean como fondos continuos; su función es actuar como baliza de atención.", "section": "colors" },
+      { "name": "The Light Through Glass Rule", "body": "Ninguna tarjeta opaca debe colocarse sobre un fondo sin incorporar al menos 15% de translucidez y desenfoque.", "section": "elevation" }
+    ],
+    "dos": [
+      "Priorizar canvas claros y luminosos con sombras difusas suaves.",
+      "Utilizar el isotipo oficial FokusIcon con el punto ámbar intacto.",
+      "Preservar los atajos de teclado globales en todas las vistas."
+    ],
+    "donts": [
+      "No aplicar fondos negros o temas oscuros agresivos que rompan la coherencia.",
+      "No usar sombras duras sin desenfoque.",
+      "No saturar los componentes con gradientes multicolores innecesarios."
+    ]
+  }
+}

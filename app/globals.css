@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Luminous Liquid Glass Canvas */
+  --desktop-bg: #eaeff5;
+  --window-bg: #f9fbfe;
+  --sidebar-bg: rgba(255, 255, 255, 0.75);
+  --surface-glass: rgba(255, 255, 255, 0.85);
+  --surface-card: #ffffff;
+  
+  /* Executive Iris & Electric Cobalt Accents */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --accent-iris: #6366f1;
+  --accent-cyan: #06b6d4;
+  --accent-pearl: #e0e7ff;
+  
+  /* Precise Crisp Borders & Neutral Typographies */
+  --border-glass: rgba(255, 255, 255, 0.8);
+  --border-subtle: rgba(203, 213, 225, 0.5);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --muted: #64748b;
+  --muted-foreground: #94a3b8;
+  --radius-window: 2rem;
+  --radius-card: 1.5rem;
+  --radius-pill: 9999px;
+
+  --font-display: var(--font-space-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background-color: #fafbfc;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Custom Smooth Glass Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* Liquid Glass Primitives */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 10px 30px -10px rgba(79, 70, 229, 0.05),
+    0 20px 40px -15px rgba(0, 0, 0, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.liquid-glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 15px 35px -5px rgba(15, 23, 42, 0.05),
+    0 0 0 1px rgba(226, 232, 240, 0.6),
+    inset 0 1.5px 2px rgba(255, 255, 255, 1);
+}
+
+.liquid-glass-subtle {
+  background: rgba(248, 250, 252, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.liquid-glass-interactive {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-interactive:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 12px 28px -5px rgba(79, 70, 229, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+}
+
+/* Floating 3D Liquid Orb */
+.liquid-orb {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #c7d2fe 35%, #818cf8 65%, #38bdf8 100%);
+  box-shadow: 
+    0 12px 35px -5px rgba(99, 102, 241, 0.45),
+    inset -4px -4px 10px rgba(79, 70, 229, 0.6),
+    inset 4px 4px 10px rgba(255, 255, 255, 0.9);
+  animation: orbFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat {
+  0% {
+    transform: translateY(0px) scale(1);
+    box-shadow: 0 12px 35px -5px rgba(99, 102, 241, 0.45);
+  }
+  100% {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 45px -5px rgba(99, 102, 241, 0.55);
+  }
+}
+
+/* Caret indicator */
+@keyframes caretPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.caret-pulse {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background-color: var(--primary);
+  animation: caretPulse 1s ease-in-out infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+/* ==========================================================================
+   Liquid Glass Motion System (Impeccable Animate)
+   ========================================================================== */
+
+/* 1. Confident arrival: Fast deceleration cubic-bezier(0.16, 1, 0.3, 1) */
+@keyframes liquidEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-liquid-entrance {
+  animation: liquidEntrance 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. Subtly authored aura glow for high-priority cards */
+@keyframes auraPulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.04);
+  }
+}
+
+.animate-aura-pulse {
+  animation: auraPulse 4s ease-in-out infinite;
+}
+
+/* 3. Smooth Shimmer for streaming & pending sync */
+@keyframes liquidShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.liquid-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(99, 102, 241, 0.08) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: liquidShimmer 2.5s infinite;
+}
+
+/* 4. Drawer & Accordion Smooth Height Transition */
+.drawer-content-enter {
+  animation: liquidEntrance 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 5. Accessibility: Respect prefers-reduced-motion strictly */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .liquid-orb {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .animate-aura-pulse,
+  .liquid-shimmer,
+  .animate-liquid-entrance {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
