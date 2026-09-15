@@ -1,24 +1,70 @@
-﻿{
+{
   "schemaVersion": 2,
-  "generatedAt": "2026-09-05T18:30:00Z",
+  "generatedAt": "2026-09-14T21:56:00Z",
   "title": "Design System: Fokus",
   "extensions": {
     "colorMeta": {
-      "primary": { "role": "primary", "displayName": "Deep Sanctuary Teal", "canonical": "#0F766E", "tonalRamp": ["#042F2E", "#115E59", "#0F766E", "#14B8A6", "#2DD4BF", "#5EEAD4", "#99F6E4", "#CCFBF1"] },
-      "accent-amber": { "role": "secondary", "displayName": "Amber Focus Dot", "canonical": "#F59E0B", "tonalRamp": ["#78350F", "#B45309", "#D97706", "#F59E0B", "#FBBF24", "#FCD34D", "#FDE68A", "#FEF3C7"] },
-      "accent-iris": { "role": "secondary", "displayName": "Iris Concentration", "canonical": "#6366F1", "tonalRamp": ["#312E81", "#3730A3", "#4338CA", "#4F46E5", "#6366F1", "#818CF8", "#A5B4FC", "#C7D2FE"] },
-      "neutral-canvas": { "role": "neutral", "displayName": "Canvas Base", "canonical": "#F8FAFC", "tonalRamp": ["#020617", "#0F172A", "#1E293B", "#334155", "#475569", "#94A3B8", "#E2E8F0", "#F8FAFC"] }
+      "primary": {
+        "role": "primary",
+        "displayName": "Deep Sanctuary Teal",
+        "canonical": "#0F766E",
+        "tonalRamp": ["#042F2E", "#115E59", "#0F766E", "#14B8A6", "#2DD4BF", "#5EEAD4", "#99F6E4", "#CCFBF1"]
+      },
+      "accent-amber": {
+        "role": "secondary",
+        "displayName": "Amber Focus Dot",
+        "canonical": "#F59E0B",
+        "tonalRamp": ["#78350F", "#B45309", "#D97706", "#F59E0B", "#FBBF24", "#FCD34D", "#FDE68A", "#FEF3C7"]
+      },
+      "accent-iris": {
+        "role": "secondary",
+        "displayName": "Iris Concentration",
+        "canonical": "#6366F1",
+        "tonalRamp": ["#312E81", "#3730A3", "#4338CA", "#4F46E5", "#6366F1", "#818CF8", "#A5B4FC", "#C7D2FE"]
+      },
+      "accent-cyan": {
+        "role": "tertiary",
+        "displayName": "Cyan Horizon",
+        "canonical": "#06B6D4",
+        "tonalRamp": ["#164E63", "#155E75", "#0E7490", "#0891B2", "#06B6D4", "#22D3EE", "#67E8F9", "#CFFAFE"]
+      },
+      "neutral-canvas": {
+        "role": "neutral",
+        "displayName": "Canvas Base",
+        "canonical": "#F8FAFC",
+        "tonalRamp": ["#020617", "#0F172A", "#1E293B", "#334155", "#475569", "#94A3B8", "#E2E8F0", "#F8FAFC"]
+      }
     },
     "typographyMeta": {
       "display": { "displayName": "Display Space Grotesk", "purpose": "Títulos principales y preguntas de apertura." },
-      "body": { "displayName": "Body DM Sans", "purpose": "Lectura continua, tarjetas y respuestas del copiloto." }
+      "headline": { "displayName": "Headline Space Grotesk", "purpose": "Títulos de secciones principales y módulos." },
+      "title": { "displayName": "Title DM Sans", "purpose": "Tarjetas interactivas y cuadrantes de Eisenhower." },
+      "body": { "displayName": "Body DM Sans", "purpose": "Lectura continua, descripciones y respuestas del copiloto." },
+      "label": { "displayName": "Label JetBrains Mono", "purpose": "Badges de calendario, estados y métricas." }
     },
     "shadows": [
-      { "name": "glass-card-rest", "value": "0 10px 30px -10px rgba(79, 70, 229, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9)", "purpose": "Elevación de tarjetas Liquid Glass en reposo." },
-      { "name": "glass-card-lifted", "value": "0 15px 35px -5px rgba(15, 23, 42, 0.08), inset 0 1.5px 2px rgba(255, 255, 255, 1)", "purpose": "Elevación en hover o foco." }
+      {
+        "name": "glass-card-rest",
+        "value": "0 10px 30px -10px rgba(79, 70, 229, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9)",
+        "purpose": "Elevación de tarjetas Liquid Glass en reposo."
+      },
+      {
+        "name": "glass-card-lifted",
+        "value": "0 15px 35px -5px rgba(15, 23, 42, 0.08), inset 0 1.5px 2px rgba(255, 255, 255, 1)",
+        "purpose": "Elevación en hover o foco interactivo."
+      },
+      {
+        "name": "subtle-surface",
+        "value": "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
+        "purpose": "Sombras de anclaje para controles y píldoras."
+      }
     ],
     "motion": [
-      { "name": "ease-liquid", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Transición suave de elevación y desenfoque." }
+      {
+        "name": "ease-liquid",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Transición suave de elevación y desenfoque óptico."
+      }
     ],
     "breakpoints": [
       { "name": "sm", "value": "640px" },
@@ -32,35 +78,60 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Botón principal de acción con gradiente Teal esmeralda.",
-      "html": "<button class=\"ds-btn-primary\">Iniciar Sesión</button>",
-      "css": ".ds-btn-primary { background: linear-gradient(to right, #0F766E, #0d9488, #059669); color: #ffffff; padding: 12px 24px; font-weight: 600; font-size: 14px; border: none; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.3); transition: filter 0.2s, transform 0.2s; cursor: pointer; } .ds-btn-primary:hover { filter: brightness(1.05); transform: translateY(-1px); }"
+      "description": "Botón principal de acción con gradiente Teal esmeralda y feedback táctil.",
+      "html": "<button class=\"ds-btn-primary\">Comenzar gratis</button>",
+      "css": ".ds-btn-primary { background: linear-gradient(to right, #0F766E, #0d9488, #059669); color: #ffffff; padding: 12px 24px; font-weight: 600; font-size: 14px; border: none; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.3); transition: filter 0.2s, transform 0.2s; cursor: pointer; } .ds-btn-primary:hover { filter: brightness(1.05); transform: translateY(-1px); } .ds-btn-primary:active { transform: scale(0.98); }"
+    },
+    {
+      "name": "Google OAuth Button",
+      "kind": "button",
+      "refersTo": "button-google",
+      "description": "Botón secundario de acceso rápido con Google OAuth.",
+      "html": "<button class=\"ds-btn-google\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\"><path fill=\"#4285F4\" d=\"M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z\"/><path fill=\"#34A853\" d=\"M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z\"/><path fill=\"#FBBC05\" d=\"M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.98 0 12s.45 3.84 1.25 5.42l4.03-3.15z\"/><path fill=\"#EA4335\" d=\"M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z\"/></svg>Continuar con Google</button>",
+      "css": ".ds-btn-google { background: #ffffff; color: #334155; padding: 10px 20px; font-weight: 600; font-size: 14px; border: 1px solid rgba(226, 232, 240, 0.9); border-radius: 16px; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); transition: background 0.15s, border-color 0.15s; cursor: pointer; } .ds-btn-google:hover { background: #f8fafc; border-color: #cbd5e1; } .ds-btn-google:active { transform: scale(0.98); }"
     },
     {
       "name": "Liquid Glass Card",
       "kind": "card",
       "refersTo": "card-glass",
       "description": "Contenedor translúcido con desenfoque de fondo y borde reflectivo.",
-      "html": "<div class=\"ds-card-glass\"><h4>Bloque de Enfoque Profundo</h4><p>90 min reservados en Google Calendar</p></div>",
-      "css": ".ds-card-glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 16px; padding: 16px; box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.05); }"
+      "html": "<div class=\"ds-card-glass\"><h4>Sesión de Deep Work</h4><p>90 min blindados en Google Calendar</p></div>",
+      "css": ".ds-card-glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.05); }"
+    },
+    {
+      "name": "Mobile Sticky Pill",
+      "kind": "custom",
+      "refersTo": "bar-mobile",
+      "description": "Barra de conversión flotante inferior optimizada para pantallas táctiles.",
+      "html": "<div class=\"ds-bar-mobile\"><span>Tu agenda con intención</span><button>Empezar</button></div>",
+      "css": ".ds-bar-mobile { background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(20px); color: #ffffff; padding: 8px 16px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); } .ds-bar-mobile button { background: linear-gradient(to right, #0F766E, #14b8a6); color: #fff; border: none; padding: 8px 14px; border-radius: 10px; font-weight: 700; font-size: 12px; cursor: pointer; }"
     }
   ],
   "narrative": {
     "northStar": "Luminous Sanctuary",
-    "overview": "Fokus está concebido como un santuario digital de claridad, calma mental y alto rendimiento personal y profesional.",
+    "overview": "Fokus está concebido como un santuario digital de claridad, calma mental y alto rendimiento personal y profesional. Su estética huye deliberadamente de la oscuridad clínica y la frialdad corporativa, apostando por un lienzo luminoso y cálido donde cada bloque de concentración (Deep Work) y cada hábito personal se perciben tangibles, protegidos y serenos.",
     "keyCharacteristics": [
       "Luminosidad diáfana con fondos suaves en slate (#f8fafc).",
       "Translucidez matérica Liquid Glass con desenfoque suave.",
       "Acento intencional en Teal profundo (#0F766E) y punto focal ámbar (#F59E0B)."
     ],
     "rules": [
-      { "name": "The Rarity of Focus Rule", "body": "El punto ámbar y el Teal primario nunca se emplean como fondos continuos; su función es actuar como baliza de atención.", "section": "colors" },
-      { "name": "The Light Through Glass Rule", "body": "Ninguna tarjeta opaca debe colocarse sobre un fondo sin incorporar al menos 15% de translucidez y desenfoque.", "section": "elevation" }
+      {
+        "name": "The Rarity of Focus Rule",
+        "body": "El punto ámbar y el Teal primario nunca se emplean como fondos continuos; su función es actuar como baliza de atención.",
+        "section": "colors"
+      },
+      {
+        "name": "The Light Through Glass Rule",
+        "body": "Ninguna tarjeta opaca debe colocarse sobre un fondo sin incorporar al menos 15% de translucidez y desenfoque.",
+        "section": "elevation"
+      }
     ],
     "dos": [
-      "Priorizar canvas claros y luminosos con sombras difusas suaves.",
+      "Priorizar canvas claros y luminosos (#f8fafc) con sombras difusas suaves.",
       "Utilizar el isotipo oficial FokusIcon con el punto ámbar intacto.",
-      "Preservar los atajos de teclado globales en todas las vistas."
+      "Garantizar objetivos táctiles de al menos 44 x 44 px en controles móviles.",
+      "Preservar los atajos de teclado globales en todas las vistas de gestión."
     ],
     "donts": [
       "No aplicar fondos negros o temas oscuros agresivos que rompan la coherencia.",
