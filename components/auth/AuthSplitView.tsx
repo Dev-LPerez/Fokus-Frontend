@@ -124,13 +124,12 @@ export function AuthSplitView({ initialMode = 'login' }: AuthSplitViewProps) {
         </Link>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <span className="text-xs text-slate-500 hidden md:inline">¿Quieres explorar antes de entrar?</span>
           <Link
-            href="/chat"
-            className="min-h-[38px] text-xs font-semibold px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-white border border-slate-200/90 text-indigo-600 hover:text-indigo-700 shadow-2xs transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40"
+            href="/"
+            className="min-h-[38px] text-xs font-semibold px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-white border border-slate-200/90 text-slate-700 hover:text-slate-900 shadow-2xs transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
-            <span>Demo interactiva</span>
+            <span>Conoce Fokus</span>
+            <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
           </Link>
         </div>
       </header>
@@ -430,22 +429,23 @@ export function AuthSplitView({ initialMode = 'login' }: AuthSplitViewProps) {
                 </button>
               </form>
 
-              {/* Bottom Card Footer */}
-              <div className="mt-6 pt-4 border-t border-slate-200/80 text-center">
-                <Link
-                  href="/chat"
-                  className="inline-flex items-center gap-1.5 text-xs text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                  <span>Probar el Copiloto sin registrarte</span>
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
+                <div className="text-center pt-2">
+                  <span className="text-[11px] text-slate-400">
+                    Al continuar, aceptas nuestras{' '}
+                    <Link href="/terms" className="text-slate-600 hover:text-slate-900 underline">
+                      Condiciones
+                    </Link>{' '}
+                    y{' '}
+                    <Link href="/privacy" className="text-slate-600 hover:text-slate-900 underline">
+                      Privacidad
+                    </Link>.
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
 
-        </div>
-      </main>
+          </div>
+        </main>
 
       {/* Bottom Legal / Navigation Bar */}
       <footer className="py-4 px-6 text-xs text-slate-500 border-t border-slate-200/60 bg-white/40 backdrop-blur-xs relative z-10">

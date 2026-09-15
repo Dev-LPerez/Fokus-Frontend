@@ -49,7 +49,9 @@ export async function middleware(request: NextRequest) {
   const isProtectedPath =
     pathname.startsWith('/chat') ||
     pathname.startsWith('/conversations') ||
-    pathname === '/';
+    pathname.startsWith('/calendar') ||
+    pathname.startsWith('/projects') ||
+    pathname.startsWith('/settings');
 
   const isAuthPath =
     pathname.startsWith('/login') ||
@@ -59,14 +61,12 @@ export async function middleware(request: NextRequest) {
   if (!user && isProtectedPath) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';
-    if (pathname !== '/') {
-      url.searchParams.set('redirectTo', pathname);
-    }
+    url.searchParams.set('redirectTo', pathname);
     return NextResponse.redirect(url);
   }
 
-  // If user is already authenticated and visits login, register, or root
-  if (user && (isAuthPath || pathname === '/')) {
+  // If user is already authenticated and visits login or register
+  if (user && isAuthPath) {
     const url = request.nextUrl.clone();
     url.pathname = '/chat';
     url.searchParams.delete('redirectTo');
