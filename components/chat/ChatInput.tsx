@@ -21,6 +21,7 @@ interface ChatInputProps {
   agentState?: 'idle' | 'thinking' | 'tool' | 'streaming';
   toolName?: string;
   userName?: string | null;
+  prefilledPrompt?: string;
 }
 
 export function ChatInput({
@@ -31,9 +32,20 @@ export function ChatInput({
   agentState = 'idle',
   toolName,
   userName,
+  prefilledPrompt,
 }: ChatInputProps) {
   const [input, setInput] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (prefilledPrompt) {
+      setInput(prefilledPrompt);
+      if (textareaRef.current) {
+        textareaRef.current.focus();
+        textareaRef.current.setSelectionRange(prefilledPrompt.length, prefilledPrompt.length);
+      }
+    }
+  }, [prefilledPrompt]);
 
   useEffect(() => {
     if (!disabled && !isLoading && textareaRef.current) {
@@ -166,7 +178,7 @@ export function ChatInput({
                 onClick={handleSubmit}
                 disabled={!input.trim() || disabled}
                 aria-label="Enviar instrucción"
-                className="w-9 h-9 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 hover:brightness-110 text-white disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center justify-center cursor-pointer shadow-md shadow-indigo-500/25 active:scale-95"
+                className="w-9 h-9 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-r from-[#0F766E] via-teal-600 to-emerald-600 hover:brightness-105 text-white disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center justify-center cursor-pointer shadow-md shadow-teal-700/20 active:scale-95"
                 title="Enviar (Enter)"
               >
                 <ArrowUp className="w-4 h-4 stroke-[2.5]" />

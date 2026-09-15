@@ -20,8 +20,12 @@ import {
   ExternalLink,
   Flame,
   MapPin,
+  Video,
+  AlertOctagon,
+  HelpCircle,
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import { LocationPermissionNotice } from './LocationPermissionNotice';
 
 export interface CalendarEvent {
   id?: string;
@@ -29,6 +33,15 @@ export interface CalendarEvent {
   start: string;
   end: string;
   description?: string | null;
+  is_key_meeting?: boolean;
+}
+
+export interface CalendarConflict {
+  event_1: string;
+  event_2: string;
+  start: string;
+  end: string;
+  overlap_minutes: number;
 }
 
 export interface CriticalTask {
@@ -48,19 +61,39 @@ export interface BriefingData {
     temp?: number | null;
     description?: string | null;
     is_default_location?: boolean;
+    location_required?: boolean;
+    message?: string;
   };
   calendar_connected: boolean;
   events_today: CalendarEvent[];
   critical_tasks: CriticalTask[];
   pending_tasks_count: number;
   free_slots_summary: string;
+  conflicts?: CalendarConflict[];
+  has_conflicts?: boolean;
+  overdue_tasks?: CriticalTask[];
+  total_overdue_tasks?: number;
 }
 
 interface DailyBriefingCardProps {
   onQuickAction?: (prompt: string) => void;
+  location?: {
+    latitude: number | null;
+    longitude: number | null;
+    denied?: boolean;
+  };
+  onRequestLocation?: () => void;
+  showLocationBanner?: boolean;
+  onDismissLocationBanner?: () => void;
 }
 
-export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
+export function DailyBriefingCard({
+  onQuickAction,
+  location,
+  onRequestLocation,
+  showLocationBanner = false,
+  onDismissLocationBanner,
+}: DailyBriefingCardProps) {
   const [data, setData] = useState<BriefingData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -69,65 +102,71 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
 
   const supabase = createClient();
 
-  const fetchBriefing = useCallback(async (silent = false) => {
-    if (!silent) setLoading(true);
-    setError(null);
+  const fetchBriefing = useCallback(
+    async (silent = false) => {
+      if (!silent) setLoading(true);
+      setError(null);
 
-    try {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
 
-      if (!session) {
-        setLoading(false);
-        return;
-      }
-
-      // Try to acquire browser geolocation if available
-      let queryParams = '';
-      if (typeof window !== 'undefined' && 'geolocation' in navigator) {
-        try {
-          const coords = await new Promise<{ latitude: number; longitude: number } | null>(
-            (resolve) => {
-              navigator.geolocation.getCurrentPosition(
-                (pos) => resolve({ latitude: pos.coords.latitude, longitude: pos.coords.longitude }),
-                () => resolve(null),
-                { timeout: 4000, maximumAge: 300000 }
-              );
-            }
-          );
-          if (coords) {
-            queryParams = `?lat=${coords.latitude}&lon=${coords.longitude}`;
-          }
-        } catch {
-          // Geolocation unavailable or denied, proceed with default
+        if (!session) {
+          setLoading(false);
+          return;
         }
+
+        // Determine coordinates query params
+        let queryParams = '';
+        if (location?.latitude !== null && location?.latitude !== undefined && location?.longitude !== null && location?.longitude !== undefined) {
+          queryParams = `?lat=${location.latitude}&lon=${location.longitude}`;
+        } else if (typeof window !== 'undefined' && 'geolocation' in navigator) {
+          // Fallback check if location prop not provided
+          try {
+            const coords = await new Promise<{ latitude: number; longitude: number } | null>(
+              (resolve) => {
+                navigator.geolocation.getCurrentPosition(
+                  (pos) => resolve({ latitude: pos.coords.latitude, longitude: pos.coords.longitude }),
+                  () => resolve(null),
+                  { timeout: 3500, maximumAge: 300000 }
+                );
+              }
+            );
+            if (coords) {
+              queryParams = `?lat=${coords.latitude}&lon=${coords.longitude}`;
+            }
+          } catch {
+            // Geolocation unavailable or denied
+          }
+        }
+
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+        const res = await fetch(`${apiUrl}/briefing${queryParams}`, {
+          headers: {
+            Authorization: `Bearer ${session.access_token}`,
+          },
+        });
+
+        if (!res.ok) {
+          throw new Error(`Error al obtener briefing (${res.status})`);
+        }
+
+        const json = await res.json();
+        setData(json);
+      } catch (err: unknown) {
+        setError(err instanceof Error ? err.message : 'Error al cargar resumen ejecutivo');
+      } finally {
+        if (!silent) setLoading(false);
       }
-
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-      const res = await fetch(`${apiUrl}/briefing${queryParams}`, {
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
-      });
-
-      if (!res.ok) {
-        throw new Error(`Error al obtener briefing (${res.status})`);
-      }
-
-      const json = await res.json();
-      setData(json);
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Error al cargar resumen ejecutivo');
-    } finally {
-      if (!silent) setLoading(false);
-    }
-  }, [supabase.auth]);
+    },
+    [location?.latitude, location?.longitude, supabase.auth]
+  );
 
   useEffect(() => {
     fetchBriefing();
 
-    // Listen to updates from chat when tasks or events change
+    // Listen to updates from chat when tasks, location, or calendar events change
     const handleUpdate = () => fetchBriefing(true);
     window.addEventListener('conversation_updated', handleUpdate);
     return () => window.removeEventListener('conversation_updated', handleUpdate);
@@ -149,8 +188,10 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
     if (!data) return;
 
     // Generate natural executive spoken speech
-    const weatherText = data.weather?.temp
-      ? `El clima de hoy marca ${Math.round(data.weather.temp)} grados centígrados con ${data.weather.description || 'cielo despejado'}.`
+    const weatherText = data.weather?.temp !== undefined && data.weather?.temp !== null
+      ? `El clima de hoy en ${data.weather.city || 'tu ciudad'} marca ${Math.round(data.weather.temp)} grados centígrados con ${data.weather.description || 'cielo despejado'}.`
+      : data.weather?.location_required
+      ? 'El clima no está configurado aún.'
       : 'Clima no disponible en este momento.';
 
     const meetingsCount = data.events_today.length;
@@ -160,12 +201,20 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
       ? 'Tienes tu agenda libre de reuniones hoy, un escenario perfecto para trabajo profundo.'
       : `Tienes ${meetingsCount} compromiso${meetingsCount === 1 ? '' : 's'} agendados para hoy. Primer evento: ${data.events_today[0].summary} a las ${data.events_today[0].start.split(' ')[1] || 'las primeras horas'}.`;
 
+    const conflictText = data.has_conflicts && data.conflicts && data.conflicts.length > 0
+      ? ` Atención: se detectaron ${data.conflicts.length} conflictos de horario o reuniones solapadas en tu calendario.`
+      : '';
+
+    const overdueText = (data.total_overdue_tasks || 0) > 0
+      ? ` Tienes ${data.total_overdue_tasks} tareas que vencieron previamente pendientes de resolución.`
+      : '';
+
     const tasksCount = data.critical_tasks.length;
     const tasksText = tasksCount > 0
-      ? `Tienes ${tasksCount} tarea${tasksCount === 1 ? '' : 's'} de alta prioridad pendientes. ${data.free_slots_summary}`
+      ? `Tienes ${tasksCount} tarea${tasksCount === 1 ? '' : 's'} de alta prioridad pendientes para hoy. ${data.free_slots_summary}`
       : `No tienes tareas críticas pendientes urgentes para hoy. ${data.free_slots_summary}`;
 
-    const speechText = `Buenos días. Este es tu resumen ejecutivo del día. ${weatherText} ${meetingsText} ${tasksText}`;
+    const speechText = `Buenos días. Este es tu resumen ejecutivo del día. ${weatherText} ${meetingsText}${conflictText}${overdueText} ${tasksText}`;
 
     const utterance = new SpeechSynthesisUtterance(speechText);
     utterance.lang = 'es-ES';
@@ -208,6 +257,10 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
     }
   };
 
+  const isLocationRequired = Boolean(data?.weather?.location_required);
+  const hasConflicts = Boolean(data?.has_conflicts && data?.conflicts && data.conflicts.length > 0);
+  const totalOverdue = data?.total_overdue_tasks || (data?.overdue_tasks?.length || 0);
+
   return (
     <div className="w-full bg-white/80 border-b border-slate-200/80 backdrop-blur-md transition-all shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
@@ -234,7 +287,16 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
               {/* Quick Badges in Header */}
               {data && (
                 <div className="hidden md:flex items-center gap-2">
-                  {data.weather?.temp !== undefined && data.weather?.temp !== null && (
+                  {/* Weather Badge */}
+                  {isLocationRequired ? (
+                    <span
+                      title="Haz clic para ver cómo configurar tu ciudad o ubicación"
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 border border-amber-300 text-[11px] text-amber-800 font-mono shadow-2xs animate-pulse"
+                    >
+                      <MapPin className="w-3 h-3 text-amber-600" />
+                      <span>Ubicación requerida</span>
+                    </span>
+                  ) : data.weather?.temp !== undefined && data.weather?.temp !== null ? (
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white border border-slate-200 text-[11px] text-amber-700 font-mono shadow-2xs">
                       <CloudSun className="w-3 h-3 text-amber-500" />
                       <span>
@@ -242,8 +304,9 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
                         {Math.round(data.weather.temp)}°C
                       </span>
                     </span>
-                  )}
+                  ) : null}
 
+                  {/* Calendar Meetings Badge */}
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white border border-slate-200 text-[11px] text-cyan-700 font-mono shadow-2xs">
                     <Calendar className="w-3 h-3 text-cyan-600" />
                     <span>
@@ -253,6 +316,23 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
                     </span>
                   </span>
 
+                  {/* Calendar Conflicts Warning Badge */}
+                  {hasConflicts && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 border border-rose-300 text-[11px] text-rose-700 font-mono shadow-2xs">
+                      <AlertOctagon className="w-3 h-3 text-rose-600" />
+                      <span>{data.conflicts?.length} solapamiento(s)</span>
+                    </span>
+                  )}
+
+                  {/* Overdue Tasks Badge */}
+                  {totalOverdue > 0 && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 border border-rose-300 text-[11px] text-rose-700 font-mono">
+                      <AlertTriangle className="w-3 h-3 text-rose-600" />
+                      <span>{totalOverdue} vencida{totalOverdue === 1 ? '' : 's'}</span>
+                    </span>
+                  )}
+
+                  {/* Critical Tasks Badge */}
                   {data.critical_tasks.length > 0 && (
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 border border-rose-200 text-[11px] text-rose-700 font-mono">
                       <Flame className="w-3 h-3 text-rose-500" />
@@ -266,7 +346,7 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
 
           {/* Action Buttons */}
           <div className="flex items-center gap-1.5 flex-shrink-0">
-            {/* Audio narration button (Fase ECS-F4) */}
+            {/* Audio narration button */}
             <button
               type="button"
               onClick={handleToggleAudio}
@@ -332,13 +412,64 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
               </div>
             )}
 
+            {/* Location Permission / Configuration Notice Banner */}
+            {(showLocationBanner || isLocationRequired) && (
+              <LocationPermissionNotice
+                onClose={() => {
+                  if (onDismissLocationBanner) onDismissLocationBanner();
+                }}
+                onRequestLocation={onRequestLocation}
+                onSetCityPrompt={(prompt) => {
+                  if (onQuickAction) onQuickAction(prompt);
+                }}
+              />
+            )}
+
+            {/* Calendar Meeting Conflicts Alert Banner */}
+            {hasConflicts && data?.conflicts && (
+              <div className="p-3 bg-rose-50 border border-rose-300 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-rose-900 shadow-2xs animate-fade-in">
+                <div className="flex items-start gap-2.5 min-w-0">
+                  <div className="p-1.5 bg-rose-100 border border-rose-300 rounded-lg text-rose-700 flex-shrink-0 mt-0.5">
+                    <AlertOctagon className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-rose-950 font-display">
+                      Solapamiento de Horario Detectado en tu Agenda ({data.conflicts.length})
+                    </h4>
+                    <div className="mt-1 space-y-1">
+                      {data.conflicts.map((c, i) => (
+                        <p key={i} className="text-rose-800 text-[11px] leading-relaxed">
+                          • <strong>&ldquo;{c.event_1}&rdquo;</strong> se cruza con <strong>&ldquo;{c.event_2}&rdquo;</strong> ({formatEventTime(c.start)} - {formatEventTime(c.end)}) — <span className="font-mono text-rose-900 font-bold">{c.overlap_minutes} min de conflicto</span>.
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {onQuickAction && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      onQuickAction(
+                        'Revisa los solapamientos de horario en mi Google Calendar de hoy y propón alternativas para reprogramar o resolver el conflicto.'
+                      )
+                    }
+                    className="self-start sm:self-center px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold whitespace-nowrap transition-colors flex items-center gap-1.5 shadow-2xs cursor-pointer flex-shrink-0"
+                  >
+                    <span>Resolver con Fokus</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </button>
+                )}
+              </div>
+            )}
+
             {/* Google Calendar Warning Banner if not connected */}
             {data && !data.calendar_connected && (
               <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-between gap-3 text-xs text-amber-800">
                 <div className="flex items-center gap-2.5 min-w-0">
                   <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0" />
                   <span className="truncate">
-                    Google Calendar no está conectado. Conéctalo para auditar reuniones y reservar bloques de Deep Work.
+                    Google Calendar no está conectado. Conéctalo para auditar reuniones, detectar solapamientos y reservar bloques de Deep Work.
                   </span>
                 </div>
                 <Link
@@ -362,38 +493,66 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
                         <CloudSun className="w-4 h-4 text-amber-500" />
                         <span>Clima & Jornada</span>
                       </span>
-                      <span className="text-[10px] font-mono text-emerald-700">
-                        {data.weather?.city ? `${data.weather.city}` : 'Tiempo real'}
+                      <span className="text-[11px] font-mono text-emerald-700">
+                        {data.weather?.city ? `${data.weather.city}` : isLocationRequired ? 'Por configurar' : 'Tiempo real'}
                       </span>
                     </div>
 
-                    <div className="mt-2 flex flex-col gap-0.5">
-                      <div className="flex items-baseline gap-2 flex-wrap">
-                        <span className="text-2xl font-bold text-slate-900 font-mono">
-                          {data.weather?.temp !== undefined && data.weather?.temp !== null
-                            ? `${Math.round(data.weather.temp)}°C`
-                            : 'N/D'}
-                        </span>
-                        <span className="text-xs text-slate-700 capitalize font-medium">
-                          {data.weather?.description || 'Sin datos meteorológicos'}
-                        </span>
-                      </div>
-                      {data.weather?.city && (
-                        <div className="mt-1 text-[11px] text-slate-500 font-mono flex items-center gap-1.5">
-                          <MapPin className="w-3 h-3 text-amber-500 flex-shrink-0" />
-                          <span>{data.weather.city}{data.weather.country ? `, ${data.weather.country}` : ''}</span>
-                          {data.weather.is_default_location && (
-                            <span className="text-slate-400 text-[10px]">(predeterminado)</span>
-                          )}
+                    {isLocationRequired ? (
+                      <div className="mt-2.5 p-2.5 rounded-xl bg-amber-50/70 border border-amber-200 text-amber-900 space-y-1.5">
+                        <div className="flex items-center gap-1.5 font-semibold text-xs text-amber-950">
+                          <MapPin className="w-3.5 h-3.5 text-amber-600" />
+                          <span>Ubicación requerida</span>
                         </div>
-                      )}
-                    </div>
+                        <p className="text-[11px] text-amber-800 leading-snug">
+                          {data.weather.message ||
+                            'Para ver el clima, permite el acceso a tu ubicación o escribe tu ciudad en el chat.'}
+                        </p>
+                        {onQuickAction && (
+                          <button
+                            type="button"
+                            onClick={() => onQuickAction('Vivo en ')}
+                            className="text-[11px] font-semibold text-amber-900 hover:text-amber-950 underline inline-flex items-center gap-1 pt-0.5"
+                          >
+                            <span>Escribir mi ciudad en chat</span>
+                            <ArrowRight className="w-3 h-3" />
+                          </button>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="mt-2 flex flex-col gap-0.5">
+                        <div className="flex items-baseline gap-2 flex-wrap">
+                          <span className="text-2xl font-bold text-slate-900 font-mono">
+                            {data.weather?.temp !== undefined && data.weather?.temp !== null
+                              ? `${Math.round(data.weather.temp)}°C`
+                              : 'N/D'}
+                          </span>
+                          <span className="text-xs text-slate-700 capitalize font-medium">
+                            {data.weather?.description || 'Sin datos meteorológicos'}
+                          </span>
+                        </div>
+                        {data.weather?.city && (
+                          <div className="mt-1 text-[11px] text-slate-500 font-mono flex items-center gap-1.5">
+                            <MapPin className="w-3 h-3 text-amber-500 flex-shrink-0" />
+                            <span>
+                              {data.weather.city}
+                              {data.weather.country ? `, ${data.weather.country}` : ''}
+                            </span>
+                            {data.weather.is_default_location && (
+                              <span className="text-slate-400 text-[11px] font-mono">(predeterminado)</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   <div className="text-[11px] text-slate-600 leading-relaxed bg-amber-50/70 p-2.5 rounded-xl border border-amber-200/80 flex items-start gap-2">
                     <Sparkles className="w-3.5 h-3.5 text-amber-600 flex-shrink-0 mt-0.5" />
                     <span>
-                      {data.events_today.length > 0
+                      {isLocationRequired
+                        ? 'Dile a Fokus en qué ciudad vives para obtener recomendaciones climatológicas personalizadas.'
+                        : data.events_today.length > 0
                         ? 'Tienes traslados o reuniones hoy; considera el clima al salir.'
                         : 'Condiciones óptimas para permanecer enfocado en tu centro de trabajo.'}
                     </span>
@@ -407,8 +566,8 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
                       <Calendar className="w-4 h-4 text-cyan-600" />
                       <span>Agenda de Hoy</span>
                     </span>
-                    <span className="text-[10px] font-mono text-slate-500">
-                      {data.events_today.length} evento{data.events_today.length === 1 ? '' : 's'}
+                    <span className="text-[11px] font-mono text-slate-500">
+                      {data.events_today.length} evento{data.events_today.length === 1 ? '' : 'es'}
                     </span>
                   </div>
 
@@ -426,7 +585,11 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
                       data.events_today.map((ev, idx) => (
                         <div
                           key={ev.id || idx}
-                          className="flex items-start gap-2 text-xs bg-slate-50 p-2 rounded-xl border border-slate-200/80"
+                          className={`flex items-start gap-2 text-xs p-2 rounded-xl border transition-colors ${
+                            ev.is_key_meeting
+                              ? 'bg-indigo-50/80 border-indigo-200 text-indigo-950'
+                              : 'bg-slate-50 border-slate-200/80 text-slate-800'
+                          }`}
                         >
                           <div className="flex items-center gap-1 text-[11px] font-mono text-cyan-700 min-w-[90px] flex-shrink-0">
                             <Clock className="w-3 h-3 text-cyan-600" />
@@ -434,9 +597,19 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
                               {formatEventTime(ev.start)} - {formatEventTime(ev.end)}
                             </span>
                           </div>
-                          <span className="text-slate-800 font-medium truncate flex-1" title={ev.summary}>
-                            {ev.summary}
-                          </span>
+                          <div className="flex-1 min-w-0 flex items-center gap-1.5">
+                            {ev.is_key_meeting && (
+                              <span
+                                title="Reunión clave prioritaria (Videollamada o Cliente)"
+                                className="inline-flex items-center px-1.5 py-0.5 rounded bg-indigo-200/70 text-indigo-800 text-[11px] font-mono font-medium flex-shrink-0"
+                              >
+                                <Video className="w-2.5 h-2.5 mr-0.5" /> Clave
+                              </span>
+                            )}
+                            <span className="truncate font-medium" title={ev.summary}>
+                              {ev.summary}
+                            </span>
+                          </div>
                         </div>
                       ))
                     )}
@@ -447,7 +620,7 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
                       href="https://calendar.google.com"
                       target="_blank"
                       rel="noreferrer"
-                      className="text-[10px] font-mono text-cyan-700 hover:text-cyan-800 inline-flex items-center gap-1 pt-1 justify-end font-medium"
+                      className="text-[11px] font-mono text-cyan-700 hover:text-cyan-800 inline-flex items-center gap-1 pt-1 justify-end font-medium"
                     >
                       <span>Abrir Google Calendar</span>
                       <ExternalLink className="w-3 h-3" />
@@ -464,7 +637,7 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
                     </span>
                     <Link
                       href="/projects"
-                      className="text-[10px] font-mono text-emerald-700 hover:underline inline-flex items-center gap-0.5 font-medium"
+                      className="text-[11px] font-mono text-emerald-700 hover:underline inline-flex items-center gap-0.5 font-medium"
                     >
                       <span>Ver tablero</span>
                       <ArrowRight className="w-2.5 h-2.5" />
@@ -477,7 +650,34 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
                     <p className="text-[11px] leading-snug">{data.free_slots_summary}</p>
                   </div>
 
-                  {/* List of critical tasks */}
+                  {/* Overdue Tasks Alert (if any) */}
+                  {totalOverdue > 0 && data.overdue_tasks && (
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between text-[11px] font-bold text-rose-800 font-mono">
+                        <span className="flex items-center gap-1">
+                          <AlertTriangle className="w-3 h-3 text-rose-600" />
+                          <span>Tareas Vencidas ({totalOverdue}):</span>
+                        </span>
+                      </div>
+                      <div className="space-y-1 max-h-16 overflow-y-auto pr-1">
+                        {data.overdue_tasks.map((task) => (
+                          <div
+                            key={task.id}
+                            className="flex items-center justify-between gap-1.5 p-1 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-950"
+                          >
+                            <span className="truncate flex-1 font-medium text-[11px]">
+                              {task.description}
+                            </span>
+                            <span className="text-[11px] font-mono px-1 rounded bg-rose-200 text-rose-900 font-bold flex-shrink-0">
+                              Vencida
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* List of critical tasks for today */}
                   <div className="space-y-1.5 max-h-24 overflow-y-auto pr-1">
                     {data.critical_tasks.length === 0 ? (
                       <p className="text-xs text-slate-500 py-1">
@@ -493,7 +693,7 @@ export function DailyBriefingCard({ onQuickAction }: DailyBriefingCardProps) {
                             {task.description}
                           </span>
                           {task.project && (
-                            <span className="text-[9.5px] font-mono px-1.5 py-0.5 rounded bg-indigo-50 border border-indigo-200 text-indigo-700 flex-shrink-0">
+                            <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-indigo-50 border border-indigo-200 text-indigo-700 flex-shrink-0">
                               {task.project}
                             </span>
                           )}

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import {
   Settings,
@@ -17,6 +18,9 @@ import {
   User,
   Info,
   LogOut,
+  MapPin,
+  MessageSquareQuote,
+  ArrowRight,
 } from 'lucide-react';
 import { signOut } from '@/app/auth/actions';
 
@@ -434,7 +438,7 @@ export default function SettingsPage() {
                 <button
                   onClick={handleConnect}
                   disabled={connecting}
-                  className="flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:brightness-105 rounded-xl shadow-md shadow-indigo-500/20 transition-all cursor-pointer disabled:opacity-50"
+                  className="flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-white bg-gradient-to-r from-[#0F766E] via-teal-600 to-emerald-600 hover:brightness-105 rounded-xl shadow-md shadow-teal-700/20 transition-all cursor-pointer disabled:opacity-50"
                 >
                   {connecting ? (
                     <>
@@ -451,6 +455,42 @@ export default function SettingsPage() {
               )}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Location & Personalization Section */}
+      <div className="bg-white/80 backdrop-blur-md border border-slate-200/90 rounded-2xl p-5 space-y-4 shadow-xs">
+        <div className="flex items-center justify-between border-b border-slate-200/80 pb-3">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 font-mono">
+            <MapPin className="w-4 h-4 text-amber-500" />
+            <span>Ubicación y Daily Briefing</span>
+          </div>
+          <span className="text-[11px] text-slate-500 font-mono">
+            Personalización
+          </span>
+        </div>
+
+        <div className="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1.5 max-w-xl">
+            <h3 className="text-sm font-bold text-slate-900 font-display flex items-center gap-2">
+              <span>Ciudad y Clima Local</span>
+            </h3>
+            <p className="text-xs text-slate-600 leading-relaxed font-sans">
+              Fokus no asume una ciudad fija por defecto. Para mostrar tu clima local en el Daily Briefing matutino, puedes otorgar permiso de ubicación al navegador o simplemente decirle a Fokus en el chat dónde vives (ej. <em>&quot;Vivo en Medellín&quot;</em> o <em>&quot;Guarda mi ciudad: Cali&quot;</em>).
+            </p>
+            <p className="text-[11px] text-slate-500 font-mono pt-1">
+              Fokus memorizará tu ciudad permanentemente en tu perfil para todos tus briefings matutinos.
+            </p>
+          </div>
+
+          <Link
+            href="/chat?prompt=Vivo%20en%20"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-semibold shadow-2xs transition-all cursor-pointer whitespace-nowrap self-start sm:self-center"
+          >
+            <MessageSquareQuote className="w-3.5 h-3.5 text-indigo-600" />
+            <span>Configurar en Chat</span>
+            <ArrowRight className="w-3 h-3 text-slate-400" />
+          </Link>
         </div>
       </div>
     </div>

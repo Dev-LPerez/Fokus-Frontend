@@ -8,6 +8,7 @@ import { ChatInput } from '@/components/chat/ChatInput';
 import { ChatMessage, ToolCallItem } from '@/components/chat/MessageBubble';
 import { DailyBriefingCard } from '@/components/briefing/DailyBriefingCard';
 import { OnboardingModal } from '@/components/onboarding/OnboardingModal';
+import { useUserLocation } from '@/lib/hooks/useUserLocation';
 import { AlertCircle, Loader2 } from 'lucide-react';
 
 export default function ChatPage() {
@@ -30,6 +31,15 @@ export default function ChatPage() {
   // Agent State tracking
   const [agentState, setAgentState] = useState<'idle' | 'thinking' | 'tool' | 'streaming'>('idle');
   const [activeToolName, setActiveToolName] = useState<string | undefined>(undefined);
+  const [prefilledPrompt, setPrefilledPrompt] = useState<string>('');
+
+  // Geolocation & Location Notice Hook
+  const {
+    location,
+    showLocationBanner,
+    dismissBanner,
+    requestLocation,
+  } = useUserLocation();
 
   const abortControllerRef = useRef<AbortController | null>(null);
   const activeConversationIdRef = useRef<string | null>(conversationIdParam);
@@ -267,16 +277,22 @@ export default function ChatPage() {
 
         const currentConvId = activeConversationIdRef.current;
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+        const requestPayload: Record<string, unknown> = {
+          message: messageText,
+          conversation_id: currentConvId,
+        };
+        if (location.latitude !== null && location.longitude !== null) {
+          requestPayload.latitude = location.latitude;
+          requestPayload.longitude = location.longitude;
+        }
+
         const response = await fetch(`${apiUrl}/chat`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${session.access_token}`,
           },
-          body: JSON.stringify({
-            message: messageText,
-            conversation_id: currentConvId,
-          }),
+          body: JSON.stringify(requestPayload),
           signal: controller.signal,
         });
 
@@ -446,7 +462,7 @@ export default function ChatPage() {
         abortControllerRef.current = null;
       }
     },
-    [isLoading, router, supabase.auth]
+    [isLoading, location.latitude, location.longitude, router, supabase.auth]
   );
 
   // Auto-send starter prompt if passed via query param (e.g. from onboarding or external link)
@@ -461,7 +477,19 @@ export default function ChatPage() {
   return (
     <div className="flex-1 flex flex-col h-full min-h-0 overflow-hidden bg-transparent">
       {/* Daily Executive Briefing Collapsible Bar */}
-      <DailyBriefingCard onQuickAction={(prompt) => handleSendMessage(prompt)} />
+      <DailyBriefingCard
+        location={location}
+        onRequestLocation={requestLocation}
+        showLocationBanner={showLocationBanner}
+        onDismissLocationBanner={dismissBanner}
+        onQuickAction={(prompt) => {
+          if (prompt === 'Vivo en ' || prompt.startsWith('Vivo en')) {
+            setPrefilledPrompt(prompt);
+          } else {
+            handleSendMessage(prompt);
+          }
+        }}
+      />
 
       {/* Error alert */}
       {errorMessage && (
@@ -506,13 +534,17 @@ export default function ChatPage() {
       {/* Chat input area */}
       <div className="flex-shrink-0 bg-white/40 backdrop-blur-md border-t border-slate-200/60">
         <ChatInput
-          onSendMessage={handleSendMessage}
+          onSendMessage={(msg) => {
+            setPrefilledPrompt('');
+            handleSendMessage(msg);
+          }}
           onStop={handleStop}
           disabled={isLoading || loadingHistory}
           isLoading={isLoading}
           agentState={agentState}
           toolName={activeToolName}
           userName={userName}
+          prefilledPrompt={prefilledPrompt}
         />
       </div>
 
