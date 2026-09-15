@@ -54,8 +54,10 @@ export default function PrivacyPage() {
               <a href="https://fokus.lgperez.dev" className="text-[#0F766E] underline">
                 https://fokus.lgperez.dev
               </a>
-              ), un copiloto inteligente de crecimiento personal y gestión del tiempo desarrollado por LPerez Dev.
-              Esta Política de Privacidad describe de manera transparente cómo tratamos la información que recopilamos
+              ), un copiloto inteligente de crecimiento personal y gestión del tiempo desarrollado por <a href="https://lgperez.dev" className="text-[#0F766E] underline">
+                Dev-LPerez
+              </a>
+              . Esta Política de Privacidad describe de manera transparente cómo tratamos la información que recopilamos
               cuando utilizas nuestra plataforma web y nuestras integraciones oficiales.
             </p>
           </section>
