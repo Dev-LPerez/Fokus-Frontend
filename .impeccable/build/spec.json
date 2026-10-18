@@ -1,0 +1,908 @@
+{
+  "tool": "comp-spec",
+  "version": 1,
+  "createdAt": "2026-10-18T06:13:03.013Z",
+  "comp": ".impeccable/mocks/comp-3.png",
+  "warnings": [],
+  "uncoveredInkCells": [
+    "H8"
+  ],
+  "compSize": {
+    "width": 1376,
+    "height": 768
+  },
+  "aspect": 1.7917,
+  "orientation": "landscape",
+  "palette": [
+    {
+      "hex": "#edece9",
+      "coverage": 0.9382
+    },
+    {
+      "hex": "#f4e0ba",
+      "coverage": 0.0225
+    },
+    {
+      "hex": "#0e0f11",
+      "coverage": 0.0187
+    },
+    {
+      "hex": "#1c6662",
+      "coverage": 0.0164
+    },
+    {
+      "hex": "#606060",
+      "coverage": 0.0042
+    }
+  ],
+  "bands": [
+    {
+      "y": 0.1127,
+      "strength": 0.256
+    },
+    {
+      "y": 0.338,
+      "strength": 0.3553
+    },
+    {
+      "y": 0.3803,
+      "strength": 0.4465
+    },
+    {
+      "y": 0.4225,
+      "strength": 0.3057
+    },
+    {
+      "y": 0.4648,
+      "strength": 0.2654
+    },
+    {
+      "y": 0.6056,
+      "strength": 0.3336
+    },
+    {
+      "y": 0.7042,
+      "strength": 0.4109
+    },
+    {
+      "y": 0.7324,
+      "strength": 0.2008
+    },
+    {
+      "y": 0.7746,
+      "strength": 0.4268
+    }
+  ],
+  "regions": [
+    {
+      "id": "nav-header",
+      "kind": "chrome",
+      "note": "frosted glass navigation bar container",
+      "grid": "B1:I1",
+      "box": {
+        "x": 0.1,
+        "y": 0.1,
+        "w": 0.8,
+        "h": 0.1
+      },
+      "px": {
+        "x": 138,
+        "y": 77,
+        "w": 1101,
+        "h": 77
+      },
+      "aspect": 14.2987,
+      "palette": [
+        {
+          "hex": "#e5eae5",
+          "coverage": 0.9787
+        },
+        {
+          "hex": "#0f0f0f",
+          "coverage": 0.0112
+        },
+        {
+          "hex": "#a1a1a1",
+          "coverage": 0.0054
+        },
+        {
+          "hex": "#505050",
+          "coverage": 0.0039
+        },
+        {
+          "hex": "#787878",
+          "coverage": 0.0007
+        }
+      ],
+      "detail": {
+        "energy": 15.6021
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": true,
+        "rules": false
+      }
+    },
+    {
+      "id": "nav-logo",
+      "kind": "control",
+      "note": "Fokus brand logo with focus mark",
+      "grid": "B1:C1",
+      "box": {
+        "x": 0.1,
+        "y": 0.1,
+        "w": 0.2,
+        "h": 0.1
+      },
+      "px": {
+        "x": 138,
+        "y": 77,
+        "w": 275,
+        "h": 77
+      },
+      "aspect": 3.5714,
+      "palette": [
+        {
+          "hex": "#f0efe6",
+          "coverage": 0.9679
+        },
+        {
+          "hex": "#0a0a0a",
+          "coverage": 0.0182
+        },
+        {
+          "hex": "#c1d8da",
+          "coverage": 0.0055
+        },
+        {
+          "hex": "#125555",
+          "coverage": 0.0047
+        },
+        {
+          "hex": "#768484",
+          "coverage": 0.0038
+        }
+      ],
+      "detail": {
+        "energy": 14.017
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "nav-menu",
+      "kind": "control",
+      "note": "navigation links for method, ecosystem and pricing",
+      "grid": "E1:G1",
+      "box": {
+        "x": 0.4,
+        "y": 0.1,
+        "w": 0.3,
+        "h": 0.1
+      },
+      "px": {
+        "x": 550,
+        "y": 77,
+        "w": 413,
+        "h": 77
+      },
+      "aspect": 5.3636,
+      "palette": [
+        {
+          "hex": "#e0e7e5",
+          "coverage": 0.9678
+        },
+        {
+          "hex": "#999c9d",
+          "coverage": 0.0112
+        },
+        {
+          "hex": "#101010",
+          "coverage": 0.0109
+        },
+        {
+          "hex": "#5e5f5f",
+          "coverage": 0.0067
+        },
+        {
+          "hex": "#2c3737",
+          "coverage": 0.0034
+        }
+      ],
+      "detail": {
+        "energy": 16.7353
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "nav-signin",
+      "kind": "control",
+      "note": "Sign in button pill",
+      "grid": "I1:I1",
+      "coverBox": {
+        "x": 0.8,
+        "y": 0.1,
+        "w": 0.1,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.8219,
+        "y": 0.1003,
+        "w": 0.0523,
+        "h": 0.0469
+      },
+      "px": {
+        "x": 1131,
+        "y": 77,
+        "w": 72,
+        "h": 36
+      },
+      "aspect": 2,
+      "palette": [
+        {
+          "hex": "#e2ebeb",
+          "coverage": 0.8715
+        },
+        {
+          "hex": "#101112",
+          "coverage": 0.059
+        },
+        {
+          "hex": "#9fa1a1",
+          "coverage": 0.0417
+        },
+        {
+          "hex": "#34343c",
+          "coverage": 0.0139
+        },
+        {
+          "hex": "#60686c",
+          "coverage": 0.0139
+        }
+      ],
+      "detail": {
+        "energy": 16.2624
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "eyebrow-badge",
+      "kind": "control",
+      "note": "SISTEMA DE HÁBITOS & FOCO pill badge",
+      "grid": "B2:C2",
+      "coverBox": {
+        "x": 0.1,
+        "y": 0.2,
+        "w": 0.2,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.1177,
+        "y": 0.263,
+        "w": 0.1701,
+        "h": 0.0378
+      },
+      "px": {
+        "x": 162,
+        "y": 202,
+        "w": 234,
+        "h": 29
+      },
+      "aspect": 8.069,
+      "palette": [
+        {
+          "hex": "#e9eceb",
+          "coverage": 0.8402
+        },
+        {
+          "hex": "#0b0d0d",
+          "coverage": 0.049
+        },
+        {
+          "hex": "#9fa2a4",
+          "coverage": 0.0464
+        },
+        {
+          "hex": "#616565",
+          "coverage": 0.0374
+        },
+        {
+          "hex": "#3a3d3d",
+          "coverage": 0.0271
+        }
+      ],
+      "detail": {
+        "energy": 62.4568
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "hero-headline",
+      "kind": "text",
+      "note": "lead headline Tu jornada blindada, de la mañana a la noche",
+      "grid": "B3:E4",
+      "coverBox": {
+        "x": 0.1,
+        "y": 0.3,
+        "w": 0.4,
+        "h": 0.2
+      },
+      "box": {
+        "x": 0.1047,
+        "y": 0.3307,
+        "w": 0.3619,
+        "h": 0.1693
+      },
+      "px": {
+        "x": 144,
+        "y": 254,
+        "w": 498,
+        "h": 130
+      },
+      "aspect": 3.8308,
+      "palette": [
+        {
+          "hex": "#f6efe9",
+          "coverage": 0.7841
+        },
+        {
+          "hex": "#0f1014",
+          "coverage": 0.1718
+        },
+        {
+          "hex": "#adadac",
+          "coverage": 0.0182
+        },
+        {
+          "hex": "#494949",
+          "coverage": 0.0132
+        },
+        {
+          "hex": "#777777",
+          "coverage": 0.0127
+        }
+      ],
+      "detail": {
+        "energy": 67.221
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 30,
+          "capHeightPx": 36.2,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.7123,
+          "advTall": 0.6575,
+          "advX": 0.7123,
+          "gap": 0.137,
+          "xRatio": 0.7151,
+          "stemW": 0.1842,
+          "contrast": 1.1909,
+          "serif": 0.8509,
+          "densTall": 0.5455,
+          "densX": 0.6038,
+          "weight": 0.5455
+        },
+        "widthClass": "normal",
+        "weightClass": "medium",
+        "chosen": {
+          "family": "Wix Madefor Display",
+          "weight": 700,
+          "fontSizePx": 49,
+          "source": "index",
+          "fp": {
+            "lines": 1,
+            "glyphs": 17,
+            "capHeightPx": 35.6,
+            "inkIsDark": true,
+            "allCaps": false,
+            "advance": 0.6748,
+            "advTall": 0.731,
+            "advX": 0.6748,
+            "gap": 0.1406,
+            "xRatio": 0.7126,
+            "stemW": 0.1874,
+            "contrast": 1.2353,
+            "serif": null,
+            "densTall": 0.5159,
+            "densX": 0.6064,
+            "weight": 0.5159
+          },
+          "stamp": "1e94a272ee7b"
+        }
+      }
+    },
+    {
+      "id": "hero-subhead",
+      "kind": "text",
+      "note": "subheading Avanza cada día con claridad. Consolida hábitos sostenibles y protege tus bloques de enfoque sin agotamiento",
+      "grid": "B5:E6",
+      "box": {
+        "x": 0.1,
+        "y": 0.5,
+        "w": 0.4,
+        "h": 0.2
+      },
+      "px": {
+        "x": 138,
+        "y": 384,
+        "w": 550,
+        "h": 154
+      },
+      "aspect": 3.5714,
+      "palette": [
+        {
+          "hex": "#f7f3e8",
+          "coverage": 0.9185
+        },
+        {
+          "hex": "#0d0d0e",
+          "coverage": 0.0357
+        },
+        {
+          "hex": "#b3b3b0",
+          "coverage": 0.0201
+        },
+        {
+          "hex": "#727270",
+          "coverage": 0.0158
+        },
+        {
+          "hex": "#3a3a39",
+          "coverage": 0.0099
+        }
+      ],
+      "detail": {
+        "energy": 34.6013
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 81,
+          "capHeightPx": 15.2,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.5851,
+          "advTall": 0.3972,
+          "advX": 0.5958,
+          "gap": 0.1324,
+          "xRatio": 0.7532,
+          "stemW": 0.1413,
+          "contrast": 1.0494,
+          "serif": 0.3379,
+          "densTall": 0.4681,
+          "densX": 0.513,
+          "weight": 0.4681
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "cta-google",
+      "kind": "control",
+      "note": "Empezar gratis con Google primary teal CTA button",
+      "grid": "B7:D7",
+      "coverBox": {
+        "x": 0.1,
+        "y": 0.7,
+        "w": 0.3,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.1047,
+        "y": 0.7005,
+        "w": 0.266,
+        "h": 0.0859
+      },
+      "px": {
+        "x": 144,
+        "y": 538,
+        "w": 366,
+        "h": 66
+      },
+      "aspect": 5.5455,
+      "palette": [
+        {
+          "hex": "#1d6662",
+          "coverage": 0.6883
+        },
+        {
+          "hex": "#f2e7cf",
+          "coverage": 0.1276
+        },
+        {
+          "hex": "#efc991",
+          "coverage": 0.0936
+        },
+        {
+          "hex": "#d4f4f3",
+          "coverage": 0.0506
+        },
+        {
+          "hex": "#849878",
+          "coverage": 0.0399
+        }
+      ],
+      "detail": {
+        "energy": 37.6265
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "stepper-briefing",
+      "kind": "control",
+      "note": "08:00 AM Daily Briefing & Clima tab",
+      "grid": "F3:F3",
+      "coverBox": {
+        "x": 0.5,
+        "y": 0.3,
+        "w": 0.1,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.5262,
+        "y": 0.2995,
+        "w": 0.0741,
+        "h": 0.0938
+      },
+      "px": {
+        "x": 724,
+        "y": 230,
+        "w": 102,
+        "h": 72
+      },
+      "aspect": 1.4167,
+      "palette": [
+        {
+          "hex": "#e8e9ea",
+          "coverage": 0.7715
+        },
+        {
+          "hex": "#0b0b0c",
+          "coverage": 0.0799
+        },
+        {
+          "hex": "#555759",
+          "coverage": 0.0676
+        },
+        {
+          "hex": "#b9bbbc",
+          "coverage": 0.0491
+        },
+        {
+          "hex": "#86888a",
+          "coverage": 0.0319
+        }
+      ],
+      "detail": {
+        "energy": 31.5474
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "stepper-deepwork",
+      "kind": "control",
+      "note": "10:30 AM Bloque Deep Work 90 min Blindados active amber glowing tab",
+      "grid": "G3:H3",
+      "box": {
+        "x": 0.6,
+        "y": 0.3,
+        "w": 0.2,
+        "h": 0.1
+      },
+      "px": {
+        "x": 826,
+        "y": 230,
+        "w": 275,
+        "h": 77
+      },
+      "aspect": 3.5714,
+      "palette": [
+        {
+          "hex": "#f6e3bd",
+          "coverage": 0.5649
+        },
+        {
+          "hex": "#efe9df",
+          "coverage": 0.3361
+        },
+        {
+          "hex": "#130c09",
+          "coverage": 0.0534
+        },
+        {
+          "hex": "#7a6e57",
+          "coverage": 0.0256
+        },
+        {
+          "hex": "#c9bba5",
+          "coverage": 0.02
+        }
+      ],
+      "detail": {
+        "energy": 45.9906
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "stepper-eisenhower",
+      "kind": "control",
+      "note": "04:00 PM Matriz Eisenhower tab",
+      "grid": "I3:I3",
+      "coverBox": {
+        "x": 0.8,
+        "y": 0.3,
+        "w": 0.1,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.8045,
+        "y": 0.2995,
+        "w": 0.0872,
+        "h": 0.0938
+      },
+      "px": {
+        "x": 1107,
+        "y": 230,
+        "w": 120,
+        "h": 72
+      },
+      "aspect": 1.6667,
+      "palette": [
+        {
+          "hex": "#e7e8e6",
+          "coverage": 0.8099
+        },
+        {
+          "hex": "#101010",
+          "coverage": 0.0549
+        },
+        {
+          "hex": "#494d4f",
+          "coverage": 0.0475
+        },
+        {
+          "hex": "#acadb1",
+          "coverage": 0.0475
+        },
+        {
+          "hex": "#767879",
+          "coverage": 0.0401
+        }
+      ],
+      "detail": {
+        "energy": 30.8113
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "deepwork-card",
+      "kind": "chrome",
+      "note": "frosted liquid glass card container for active deep work session",
+      "grid": "G4:I7",
+      "box": {
+        "x": 0.6,
+        "y": 0.4,
+        "w": 0.3,
+        "h": 0.4
+      },
+      "px": {
+        "x": 826,
+        "y": 307,
+        "w": 413,
+        "h": 307
+      },
+      "aspect": 1.3453,
+      "palette": [
+        {
+          "hex": "#e0e9e9",
+          "coverage": 0.9265
+        },
+        {
+          "hex": "#e9d1a7",
+          "coverage": 0.0358
+        },
+        {
+          "hex": "#226666",
+          "coverage": 0.016
+        },
+        {
+          "hex": "#090a0a",
+          "coverage": 0.0145
+        },
+        {
+          "hex": "#6b7272",
+          "coverage": 0.0071
+        }
+      ],
+      "detail": {
+        "energy": 17.765
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "countdown-timer",
+      "kind": "control",
+      "note": "circular progress ring with 01:14:20 timer display",
+      "grid": "G5:I6",
+      "coverBox": {
+        "x": 0.6,
+        "y": 0.5,
+        "w": 0.3,
+        "h": 0.2
+      },
+      "box": {
+        "x": 0.6221,
+        "y": 0.5,
+        "w": 0.1919,
+        "h": 0.2005
+      },
+      "px": {
+        "x": 856,
+        "y": 384,
+        "w": 264,
+        "h": 154
+      },
+      "aspect": 1.7143,
+      "palette": [
+        {
+          "hex": "#d8eaea",
+          "coverage": 0.8954
+        },
+        {
+          "hex": "#276a6a",
+          "coverage": 0.0456
+        },
+        {
+          "hex": "#0b0c0d",
+          "coverage": 0.0362
+        },
+        {
+          "hex": "#99adad",
+          "coverage": 0.013
+        },
+        {
+          "hex": "#4c5757",
+          "coverage": 0.0098
+        }
+      ],
+      "detail": {
+        "energy": 29.6144
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "card-status-badge",
+      "kind": "control",
+      "note": "Google Calendar Sincronizado status pill",
+      "grid": "G7:I7",
+      "box": {
+        "x": 0.6,
+        "y": 0.7,
+        "w": 0.3,
+        "h": 0.1
+      },
+      "px": {
+        "x": 826,
+        "y": 538,
+        "w": 413,
+        "h": 77
+      },
+      "aspect": 5.3636,
+      "palette": [
+        {
+          "hex": "#dee8e8",
+          "coverage": 0.9597
+        },
+        {
+          "hex": "#090a0a",
+          "coverage": 0.0169
+        },
+        {
+          "hex": "#a4adaf",
+          "coverage": 0.0101
+        },
+        {
+          "hex": "#6b6f6f",
+          "coverage": 0.0068
+        },
+        {
+          "hex": "#303639",
+          "coverage": 0.0065
+        }
+      ],
+      "detail": {
+        "energy": 18.9895
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    }
+  ],
+  "compSha256": "aabfd8c1fe8291dee184a0d1a69717f0133fcbeb2cb628da5f07710334554de3",
+  "regionsSource": {
+    "path": "regions.json",
+    "sha256": "147f04de973c477ec0de9ec52bf1f5ca63ae66187b0c5efee315c4b1e227f24a"
+  }
+}

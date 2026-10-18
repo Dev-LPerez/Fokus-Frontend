@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "stage": "hero",
+  "id": "hero",
+  "title": "First viewport",
+  "comp": {
+    "path": ".impeccable/mocks/comp-3.png",
+    "width": 1376,
+    "height": 768
+  },
+  "components": [
+    {
+      "id": "first-viewport",
+      "name": "First viewport",
+      "medium": "HTML / CSS",
+      "note": "Assembled first viewport",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "preview": {
+        "kind": "page",
+        "path": "index.html"
+      },
+      "dependencies": [
+        "_next/static/chunks/3466f3f1-c96f853f58dc03ee.js",
+        "_next/static/chunks/706-669b7b2d1b550351.js",
+        "_next/static/chunks/72c99693-9d485d2ca2299361.js",
+        "_next/static/chunks/770-79a70cf616a6062d.js",
+        "_next/static/chunks/853-c613998430c32111.js",
+        "_next/static/chunks/906-6002a6ed89bc42fa.js",
+        "_next/static/chunks/app/page-fd16c824b7ad5e95.js",
+        "_next/static/chunks/main-app-1eb974d2fed2b597.js",
+        "_next/static/chunks/polyfills-42372ed130431b0a.js",
+        "_next/static/chunks/webpack-645d0e46d8234403.js",
+        "_next/static/css/271538d296fc1560.css",
+        "_next/static/css/4264823167428305.css",
+        "_next/static/media/07a25e30db343ec8-s.woff2",
+        "_next/static/media/13971731025ec697-s.p.woff2",
+        "_next/static/media/36966cca54120369-s.p.woff2",
+        "_next/static/media/70355d4fbd533ab2-s.p.woff2",
+        "_next/static/media/7ab938503e4547a1-s.woff2",
+        "_next/static/media/9e9e39dde12050de-s.woff2",
+        "_next/static/media/b7387a63dd068245-s.woff2",
+        "_next/static/media/e1aab0933260df4d-s.woff2",
+        "_next/static/media/e9f6ad5d8bd501c6-s.woff2",
+        "_next/static/media/f4032a6bd71ff4eb-s.woff2"
+      ]
+    }
+  ]
+}

@@ -31,3 +31,7 @@ pnpm-debug.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Impeccable review diffs
+.impeccable/review/diff/
+.impeccable/review/*.png

@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 3,
+  "stage": "components",
+  "id": "components",
+  "title": "Plan and asset review · app/page.tsx",
+  "comp": {
+    "path": ".impeccable/mocks/comp-3.png",
+    "width": 1376,
+    "height": 768
+  },
+  "specSha256": "9c8fa1ef7c8dde6596566b4848aafd626537d8ffd1a6a2f44f13e8853a3f7675",
+  "components": [
+    {
+      "id": "deepwork-card",
+      "name": "Deepwork card",
+      "kind": "chrome",
+      "role": "plan",
+      "box": {
+        "x": 0.6,
+        "y": 0.4,
+        "w": 0.3,
+        "h": 0.4
+      },
+      "note": "frosted liquid glass card container for active deep work session",
+      "medium": "code",
+      "preview": {
+        "kind": "comp-crop"
+      },
+      "codeDrawn": false,
+      "dependencies": []
+    }
+  ],
+  "codeRegions": [
+    {
+      "id": "nav-header",
+      "name": "Nav header",
+      "kind": "chrome",
+      "box": {
+        "x": 0.1,
+        "y": 0.1,
+        "w": 0.8,
+        "h": 0.1
+      },
+      "note": "frosted glass navigation bar container"
+    },
+    {
+      "id": "nav-logo",
+      "name": "Nav logo",
+      "kind": "control",
+      "box": {
+        "x": 0.1,
+        "y": 0.1,
+        "w": 0.2,
+        "h": 0.1
+      },
+      "note": "Fokus brand logo with focus mark"
+    },
+    {
+      "id": "nav-menu",
+      "name": "Nav menu",
+      "kind": "control",
+      "box": {
+        "x": 0.4,
+        "y": 0.1,
+        "w": 0.3,
+        "h": 0.1
+      },
+      "note": "navigation links for method, ecosystem and pricing"
+    },
+    {
+      "id": "nav-signin",
+      "name": "Nav signin",
+      "kind": "control",
+      "box": {
+        "x": 0.8219,
+        "y": 0.1003,
+        "w": 0.0523,
+        "h": 0.0469
+      },
+      "note": "Sign in button pill"
+    },
+    {
+      "id": "eyebrow-badge",
+      "name": "Eyebrow badge",
+      "kind": "control",
+      "box": {
+        "x": 0.1177,
+        "y": 0.263,
+        "w": 0.1701,
+        "h": 0.0378
+      },
+      "note": "SISTEMA DE HÁBITOS & FOCO pill badge"
+    },
+    {
+      "id": "hero-headline",
+      "name": "Hero headline",
+      "kind": "text",
+      "box": {
+        "x": 0.1047,
+        "y": 0.3307,
+        "w": 0.3619,
+        "h": 0.1693
+      },
+      "note": "lead headline Tu jornada blindada, de la mañana a la noche"
+    },
+    {
+      "id": "hero-subhead",
+      "name": "Hero subhead",
+      "kind": "text",
+      "box": {
+        "x": 0.1,
+        "y": 0.5,
+        "w": 0.4,
+        "h": 0.2
+      },
+      "note": "subheading Avanza cada día con claridad. Consolida hábitos sostenibles y protege tus bloques de enfoque sin agotamiento"
+    },
+    {
+      "id": "cta-google",
+      "name": "Cta google",
+      "kind": "control",
+      "box": {
+        "x": 0.1047,
+        "y": 0.7005,
+        "w": 0.266,
+        "h": 0.0859
+      },
+      "note": "Empezar gratis con Google primary teal CTA button"
+    },
+    {
+      "id": "stepper-briefing",
+      "name": "Stepper briefing",
+      "kind": "control",
+      "box": {
+        "x": 0.5262,
+        "y": 0.2995,
+        "w": 0.0741,
+        "h": 0.0938
+      },
+      "note": "08:00 AM Daily Briefing & Clima tab"
+    },
+    {
+      "id": "stepper-deepwork",
+      "name": "Stepper deepwork",
+      "kind": "control",
+      "box": {
+        "x": 0.6,
+        "y": 0.3,
+        "w": 0.2,
+        "h": 0.1
+      },
+      "note": "10:30 AM Bloque Deep Work 90 min Blindados active amber glowing tab"
+    },
+    {
+      "id": "stepper-eisenhower",
+      "name": "Stepper eisenhower",
+      "kind": "control",
+      "box": {
+        "x": 0.8045,
+        "y": 0.2995,
+        "w": 0.0872,
+        "h": 0.0938
+      },
+      "note": "04:00 PM Matriz Eisenhower tab"
+    },
+    {
+      "id": "countdown-timer",
+      "name": "Countdown timer",
+      "kind": "control",
+      "box": {
+        "x": 0.6221,
+        "y": 0.5,
+        "w": 0.1919,
+        "h": 0.2005
+      },
+      "note": "circular progress ring with 01:14:20 timer display"
+    },
+    {
+      "id": "card-status-badge",
+      "name": "Card status badge",
+      "kind": "control",
+      "box": {
+        "x": 0.6,
+        "y": 0.7,
+        "w": 0.3,
+        "h": 0.1
+      },
+      "note": "Google Calendar Sincronizado status pill"
+    }
+  ]
+}
