@@ -2,49 +2,54 @@
 name: Fokus
 description: Tu agenda. Tu tiempo. Tu enfoque. Crecimiento personal y profesional.
 colors:
-  primary: "#0F766E"
-  primary-hover: "#0D655E"
-  accent-amber: "#F59E0B"
-  accent-iris: "#6366F1"
+  primary: "#1c6662"
+  primary-hover: "#15524f"
+  accent-amber: "#f4e0ba"
+  accent-amber-focus: "#F59E0B"
+  accent-indigo: "#6366F1"
   accent-cyan: "#06B6D4"
-  neutral-canvas: "#F8FAFC"
+  accent-rose: "#f43f5e"
+  neutral-ground: "#edece9"
   neutral-card: "#FFFFFF"
-  neutral-text: "#0F172A"
-  neutral-muted: "#64748B"
-  border-glass: "rgba(255, 255, 255, 0.85)"
-  border-subtle: "rgba(226, 232, 240, 0.8)"
+  neutral-ink: "#0f1014"
+  neutral-muted: "#475569"
+  border-glass: "rgba(255, 255, 255, 0.75)"
+  border-subtle: "rgba(226, 232, 240, 0.7)"
 typography:
   display:
-    fontFamily: "Space Grotesk, -apple-system, sans-serif"
-    fontSize: "clamp(1.75rem, 4vw, 2.75rem)"
+    fontFamily: "var(--font-wix-madefor), 'Wix Madefor Display', sans-serif"
+    fontSize: "clamp(2rem, 5vw, 3.125rem)"
     fontWeight: 700
-    lineHeight: 1.15
-    letterSpacing: "-0.02em"
+    lineHeight: 1.08
+    letterSpacing: "-0.025em"
   headline:
-    fontFamily: "Space Grotesk, -apple-system, sans-serif"
-    fontSize: "1.5rem"
+    fontFamily: "var(--font-wix-madefor), var(--font-space-grotesk), sans-serif"
+    fontSize: "1.75rem"
     fontWeight: 700
     lineHeight: 1.2
+    letterSpacing: "-0.02em"
   title:
-    fontFamily: "DM Sans, -apple-system, sans-serif"
+    fontFamily: "var(--font-space-grotesk), sans-serif"
     fontSize: "1.125rem"
     fontWeight: 600
     lineHeight: 1.3
   body:
-    fontFamily: "DM Sans, -apple-system, sans-serif"
-    fontSize: "0.875rem"
+    fontFamily: "var(--font-dm-sans), sans-serif"
+    fontSize: "1rem"
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.6
   label:
     fontFamily: "JetBrains Mono, monospace"
     fontSize: "0.6875rem"
-    fontWeight: 600
-    letterSpacing: "0.05em"
+    fontWeight: 700
+    letterSpacing: "0.06em"
 rounded:
   sm: "8px"
   md: "12px"
   lg: "16px"
-  xl: "24px"
+  xl: "20px"
+  2xl: "24px"
+  3xl: "32px"
   pill: "9999px"
 spacing:
   xs: "4px"
@@ -52,130 +57,219 @@ spacing:
   md: "16px"
   lg: "24px"
   xl: "32px"
+  2xl: "48px"
 components:
   button-primary:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.neutral-card}"
-    rounded: "{rounded.xl}"
-    padding: "12px 24px"
+    rounded: "{rounded.pill}"
+    padding: "16px 32px"
   button-primary-hover:
     backgroundColor: "{colors.primary-hover}"
+  card-glass:
+    backgroundColor: "rgba(255, 255, 255, 0.85)"
+    rounded: "{rounded.2xl}"
+    padding: "24px 28px"
 ---
 
-# Design System: Fokus
+# Design System: Fokus (Luminous Liquid Glass & Focus Shield)
 
 ## Overview
 
-**Creative North Star: "Luminous Sanctuary"**
+**Creative North Star: "Luminous Liquid Glass & Focus Shield" (Comp 3 Refined)**
 
-Fokus está concebido como un santuario digital de claridad, calma mental y alto rendimiento personal y profesional. Su estética huye deliberadamente de la oscuridad clínica y la frialdad corporativa, apostando por un lienzo luminoso y cálido donde cada bloque de concentración (*Deep Work*) y cada hábito personal se perciben tangibles, protegidos y serenos.
+Fokus está concebido como un santuario digital de claridad, calma mental y blindaje cognitivo para el alto rendimiento personal y profesional. Su estética huye de la frialdad corporativa y de las interfaces oscuras sobrecargadas, ofreciendo un lienzo diáfano y cálido donde el tiempo de trabajo profundo (*Deep Work*) y los hábitos esenciales se perciben protegidos, tangibles y serenos.
 
-La experiencia visual se articula a través del lenguaje **Liquid Glass**: superficies translúcidas de cristal suave (`backdrop-blur-md`), bordes finos de refracción luminosa (`rgba(255, 255, 255, 0.85)`), y una jerarquía tipográfica precisa que equilibra el carácter moderno de **Space Grotesk** con la fluidez y confort de lectura de **DM Sans**.
+La experiencia visual se fundamenta en tres pilares de identidad:
+1. **Lienzo Orgánico Sereno (`#edece9`):** Una base cálida de arena suave con halos ambientales etéreos en ámbar miel (`#f4e0ba`) y esmeralda sutil (`#1c6662`), acompañada de un sutil split visual vertical.
+2. **Cristal Líquido Refractivo (Liquid Glass):** Superficies translúcidas con transmitancia de luz real (`bg-white/40` a `bg-white/60`), desenfoque óptico profundo (`backdrop-blur-2xl`), sobresaturación cromática (`backdrop-saturate-[180%]`) y micro-biseles interiores reflectivos (`inset 0 1px 1px rgba(255, 255, 255, 0.9)`).
+3. **Jerarquía Tipográfica Esculpida:** Contraste armónico entre la contundencia geométrica y moderna de **Wix Madefor Display**, la precisión estructural de **Space Grotesk**, el confort de lectura continua de **DM Sans**, y la fidelidad técnica de **JetBrains Mono**.
 
-**Key Characteristics:**
-- **Luminosidad diáfana:** Fondos suaves en slate (`#f8fafc`) con gradientes ambientales sutiles en índigo, cian y ámbar difuminados.
-- **Translucidez matérica:** Tarjetas y contenedores de cristal reflectivo con sombras difusas multicapa.
-- **Acento intencional:** Contraste focal guiado por el Teal profundo (`#0F766E`) de la marca y el punto focal ámbar (`#F59E0B`).
+---
 
 ## Colors
 
-La paleta cromática combina la solidez reflexiva del Teal esmeralda con acentos funcionales que comunican estado y propósito sin saturar la atención.
+### Primary & Accent Roles
+- **Sanctuary Teal Primario (`#1c6662`):** El ancla de confianza y autoridad serena de la marca. Utilizado en los botones principales de llamada a la acción, indicadores clave de progreso y el contenedor oficial del isotipo.
+  - Hover: `#15524f` | Suave: `rgba(28, 102, 98, 0.08)`
+- **Amber Miel (`#f4e0ba`):** El color del estado activo, energía matutina y solidez de hábitos. Utilizado como resplandor de fondo en tarjetas activas, pestañas seleccionadas y reflejos ambientales.
+- **Amber Focus Dot (`#F59E0B`):** El punto cardinal del isotipo y baliza de alerta viva en badges de foco ("SISTEMA DE HÁBITOS & FOCO").
+- **Índigo Concentración (`#6366f1`):** Empleado en cuadrantes estratégicos de la Matriz Eisenhower ("2. Agendar / Planificar") y tags analíticos.
+- **Rosa Urgente (`#f43f5e`):** Distintivo exclusivo del cuadrante de atención inmediata ("1. Hacer Ya").
+- **Cian / Esmeralda Claro (`#06b6d4` / `teal-600`):** Indicadores de sincronización con Google Calendar y estados exitosos.
 
-### Primary
-- **Deep Sanctuary Teal** (`#0F766E`): Color de identidad primordial. Se emplea en llamadas a la acción clave, estados activos seleccionados y el isotipo oficial.
+### Neutral Grounds & Inks
+- **Ground Cálido (`#edece9`):** Lienzo principal de la aplicación, descansado y de bajo estrés visual.
+- **Surface Pure (`#ffffff`):** Tarjetas elevadas y capas base de cristal.
+- **Deep Ink (`#0f1014`):** Tinta tipográfica principal de máximo contraste y nitidez.
+- **Slate Text (`#334155` / `#475569`):** Subtítulos y textos de lectura secundaria.
+- **Muted Mono (`#64748b`):** Marcas de tiempo, metadatos y micro-etiquetas.
+- **Glass Highlights:** `rgba(255, 255, 255, 0.9)` para biseles superiores e interiores; `rgba(226, 232, 240, 0.6)` para bordes tenues.
 
-### Secondary
-- **Amber Focus Dot** (`#F59E0B`): El punto focal del logotipo y acento de energía matutina, utilizado en el Daily Briefing y metas activas.
-- **Iris Concentration** (`#6366F1`): Identificador de bloques de *Deep Work*, sesiones de enfoque y botones de asistencia inteligente.
-
-### Tertiary
-- **Cyan Horizon** (`#06B6D4`): Tono secundario para la Matriz de Prioridades, disponibilidad de agenda y meteorología.
-
-### Neutral
-- **Canvas Base** (`#F8FAFC`): Lienzo global luminoso y relajante.
-- **Surface Pure** (`#FFFFFF`): Fondo de tarjetas y paneles elevados de cristal.
-- **Slate Text** (`#0F172A`): Tinta tipográfica principal de alto contraste y legibilidad.
-- **Slate Muted** (`#64748B`): Texto secundario, metadatos y etiquetas descriptivas.
-- **Border Glass** (`rgba(255, 255, 255, 0.85)`): Reflejo superior de bisel en tarjetas Liquid Glass.
-- **Border Subtle** (`rgba(226, 232, 240, 0.8)`): Delimitador perimetral de contraste suave.
-
-### Named Rules
-**The Rarity of Focus Rule.** El punto ámbar (`#F59E0B`) y el Teal primario (`#0F766E`) nunca se emplean como fondos continuos en grandes bloques; su función es actuar como baliza de atención inmediata.
+---
 
 ## Typography
 
-**Display Font:** Space Grotesk (con fallbacks `-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `sans-serif`)  
-**Body Font:** DM Sans (con fallbacks `-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `sans-serif`)  
-**Label/Mono Font:** JetBrains Mono (con fallbacks `monospace`)
+| Nivel | Tipografía | Peso | Tamaño / Leading | Uso Principal |
+| :--- | :--- | :--- | :--- | :--- |
+| **Display** | Wix Madefor Display | Bold (700/800) | `text-3xl` a `text-[49px]` (lh: 1.08) | Título principal de la vista y encabezados de gran impacto. |
+| **Headline** | Wix Madefor Display | Bold (700) | `text-2xl` a `text-3xl` (lh: 1.2) | Títulos de secciones principales (Pilares, Método, Ecosistema). |
+| **Title** | Space Grotesk | Semi-bold (600/700) | `text-base` a `text-lg` (lh: 1.3) | Nombres de tarjetas, bloques de Deep Work y cuadrantes. |
+| **Body** | DM Sans | Regular (400) / Medium (500) | `text-sm` a `text-[17px]` (lh: 1.6) | Párrafos explicativos, descripciones de tareas y chats. |
+| **Mono / Tag** | JetBrains Mono / font-mono | Bold (700) | `text-[10px]` a `text-[11px]` (tracking-wide) | Badges, horas de sesión (08:00 AM), cronómetros de cuenta atrás. |
 
-**Character:** La combinación proyecta autoridad contemporánea y calidez humana. Space Grotesk aporta un trazo geométrico y técnico refinado para encabezados de metas, mientras DM Sans ofrece una lectura natural y relajante.
+---
 
-### Hierarchy
-- **Display** (Bold 700, `clamp(1.75rem, 4vw, 2.75rem)`, line-height 1.15): Saludos matutinos y preguntas de apertura ("¿Qué meta impulsamos hoy?").
-- **Headline** (Bold 700, `1.5rem / 24px`, line-height 1.2): Títulos de módulos principales (Kanban, Briefing, Configuración).
-- **Title** (Semi-bold 600, `1.125rem / 18px`, line-height 1.3): Tarjetas de Deep Work y cuadrantes de Eisenhower.
-- **Body** (Regular 400, `0.875rem / 14px`, line-height 1.5): Contenido conversacional, descripciones de tareas y explicaciones del copiloto.
-- **Label** (Semi-bold 600, `0.6875rem / 11px`, letter-spacing `0.05em`, mayúsculas opcionales): Badges de Google Calendar, métricas y etiquetas de estado.
+## Layout & Spatial Geometry
 
-## Layout
+1. **Top Floating / Peel-off Navbar:**
+   - En reposo superior (`scrollY <= 30`), ocupa el ancho completo con borde inferior tenue.
+   - Al hacer scroll (`scrollY > 30`), se desprende con `transition-all duration-500` transformándose en una cápsula flotante centrada (`max-w-[1101px] rounded-full`).
+2. **Cockpit Split 2-Columnas (Hero / Workspace):**
+   - **Columna Izquierda:** Tesis clara de la vista, badge contextual, titular y llamada a la acción primordial.
+   - **Columna Derecha (Cockpit):** Stepper dinámico segmentado en la parte superior y tarjeta de acción central debajo.
+3. **Malla Modular de Tarjetas (Cards Grid):**
+   - Pilares y métricas en cuadrículas de 2 a 4 columnas (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6`).
+   - Fases del método en tríada horizontal con tarjeta central resaltada (`border-2 border-teal-700/50 shadow-md`).
+4. **Límites de Lectura y Contenedores:**
+   - Máximo ancho general: `max-w-6xl` (1152px) a `max-w-[1376px]` para vistas panorámicas.
 
-Fokus utiliza una retícula flexible basada en un ritmo vertical estricto de múltiplos de 4px y 8px.
-- **Spatial Model:** Aplicación estructurada en AppLayout con barra lateral retráctil (`w-64` / `w-68`), cabecera fija de 56px (`h-14`) y canvas central libre de desbordamientos laterales.
-- **Contenedores:** Ancho máximo optimizado de lectura (`max-w-3xl` en flujo de mensajes y `max-w-7xl` en tableros Kanban y cuadrantes).
-- **Breakpoint Behavior:** En pantallas móviles (`< 768px`), la navegación se despliega mediante un cajón retráctil con fondo difuminado (`backdrop-blur-2xl`) y las tarjetas de simulación adoptan pestañas segmentadas táctiles.
+---
 
-## Elevation & Depth
+## Elevation & Depth (Fórmulas Liquid Glass)
 
-La profundidad en Fokus se construye mediante **tonal layering y desenfoque óptico de superficie**, prescindiendo de sombras densas u oscuras de corte artificial.
+La profundidad no utiliza sombras negras artificiales ni drop-shadows saturadas; se genera mediante **estratificación de capas de luz**:
 
-### Shadow Vocabulary
-- **Glass Card Rest** (`box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9)`): Elevación básica para tarjetas interactivas en reposo.
-- **Glass Card Lifted** (`box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.08), inset 0 1.5px 2px rgba(255, 255, 255, 1)`): Estado al interactuar o hacer hover sobre una sesión de Deep Work.
-- **Subtle Surface** (`box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03)`): Sombras de anclaje para píldoras y campos de entrada (`shadow-2xs`).
+1. **Cápsula Flotante (Liquid Glass Navbar):**
+   ```css
+   background: rgba(255, 255, 255, 0.55);
+   backdrop-filter: blur(24px) saturate(180%);
+   -webkit-backdrop-filter: blur(24px) saturate(180%);
+   border: 1px solid rgba(255, 255, 255, 0.75);
+   box-shadow: 0 12px 40px -10px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+   ```
+2. **Tarjeta de Cristal Elevada (Interactive Showcase Card):**
+   ```css
+   background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 60%, rgba(240, 253, 250, 0.5) 100%);
+   backdrop-filter: blur(24px);
+   border: 1px solid rgba(255, 255, 255, 0.9);
+   box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.1);
+   ```
+3. **Pestaña Activa con Brillo Ámbar (Active Stepper Tab):**
+   ```css
+   background-color: #f4e0ba;
+   border: 1px solid rgba(252, 211, 77, 0.9);
+   box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.2);
+   ```
 
-### Named Rules
-**The Light Through Glass Rule.** Ninguna tarjeta opaca debe colocarse sobre un gradiente de fondo sin incorporar al menos un 15% de translucidez (`bg-white/85`) y desenfoque (`backdrop-blur-md`), garantizando la atmósfera de cristal continuo.
+---
 
-## Shapes
+## Shapes & Radii
 
-- **Radio Primario:** Las esquinas siguen una curvatura ergonómica generosa: `rounded-2xl` (16px) para tarjetas y módulos interactivos, y `rounded-3xl` (24px) para paneles principales.
-- **Píldoras continuas:** Los controles de estado, filtros y selectores de modo utilizan curvatura total `rounded-full`.
-- **Bordes de Doble Capa:** Una fina línea semitransparente externa (`border-slate-200/80`) complementada con un resalte interior simulado (`inset 0 1px rgba(255, 255, 255, 0.9)`).
+- **`rounded-full` (Píldora):** Navbar, botones de llamada a la acción primarios, badges de estado y selectores.
+- **`rounded-3xl` (24px a 32px):** Contenedores principales, tarjetas de Deep Work y banner de conversión.
+- **`rounded-2xl` (16px):** Pestañas de stepper, tarjetas de pilares individuales y cuadrantes de tareas.
+- **`rounded-xl` (12px):** Chips de tareas internas, cajas de clima e inputs.
 
-## Components
+---
 
-### Buttons
-- **Shape:** `rounded-2xl` (16px) para botones de formulario y `rounded-xl` / `rounded-full` para acciones rápidas.
-- **Primary:** Fondo en gradiente Teal (`from-[#0F766E] via-teal-600 to-emerald-600`), texto blanco nítido, padding vertical de 12px y horizontal de 24px.
-- **Hover / Focus:** Aumento de brillo (`hover:brightness-105`), elevación de 1px y anillo de foco accesible (`focus:ring-2 focus:ring-teal-500/20`).
+## Components & Code Recipes
 
-### Cards / Containers (Liquid Glass Cards)
-- **Corner Style:** `rounded-2xl` (16px) o `rounded-3xl` (24px).
-- **Background:** `rgba(255, 255, 255, 0.85)` con `backdrop-filter: blur(16px)`.
-- **Border:** 1px solid `rgba(226, 232, 240, 0.8)` con borde superior reflectivo.
+### 1. Botón Principal de Conversión
+```tsx
+<button className="group inline-flex items-center justify-between gap-4 px-8 py-4 rounded-full bg-[#1c6662] hover:bg-[#15524f] hover:scale-[1.03] active:scale-[0.98] text-white font-semibold text-[17px] shadow-xl shadow-amber-500/20 hover:shadow-2xl transition-all duration-300">
+  <span>Acción Principal</span>
+  <span className="w-7 h-7 rounded-full bg-white/95 flex items-center justify-center p-1 shadow-xs group-hover:scale-110 transition-transform text-[#1c6662]">
+    <Icon className="w-4 h-4" />
+  </span>
+</button>
+```
 
-### Inputs / Fields
-- **Style:** Fondo blanco translúcido (`bg-white/90`), radio `rounded-2xl`, borde `border-slate-200` y tipografía `text-sm`.
-- **Focus:** Borde en teal o índigo con resplandor de anillo difuso (`focus:ring-2 focus:ring-indigo-500/15`).
+### 2. Cronómetro Circular de Concentración con Espaciado de Respiración
+Para evitar que los números toquen el trazo del círculo, la relación de aspecto y el radio deben preservar al menos 15px de margen:
+```tsx
+const radius = 48; // Para viewBox="0 0 120 120"
+const circumference = 2 * Math.PI * radius;
 
-### Navigation & Mobile Drawer
-- **Desktop Sidebar:** Anclada a la izquierda con fondo suave (`bg-[#f8fafc]/90`), borde lateral sutil y soporte para búsqueda rápida ⌘K.
-- **Mobile Drawer:** Menú superior flotante de 44px de área táctil mínima con desenfoque suave y bloqueo de scroll durante interacción.
+<div className="relative w-36 h-36 mx-auto flex items-center justify-center">
+  <svg className="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r={radius} stroke="#e2e8f0" strokeWidth="5.5" fill="transparent" />
+    <circle
+      cx="60"
+      cy="60"
+      r={radius}
+      stroke="#1c6662"
+      strokeWidth="5.5"
+      strokeDasharray={circumference}
+      strokeDashoffset={strokeDashoffset}
+      strokeLinecap="round"
+      fill="transparent"
+      className="transition-all duration-1000 ease-linear"
+    />
+  </svg>
+  <div className="absolute inset-0 flex flex-col items-center justify-center">
+    <span className="text-[19px] font-mono font-bold text-slate-950 tracking-normal">
+      {timeFormatted}
+    </span>
+    <span className="text-[10px] font-mono uppercase tracking-wider text-teal-800 font-semibold mt-0.5">
+      En Progreso
+    </span>
+  </div>
+</div>
+```
 
-### Floating Action Bar
-- **Mobile Floating Bar:** Píldora inferior suspendida (`bg-slate-900/90`) con desenfoque `backdrop-blur-xl`, respetando los límites seguros de iOS (`env(safe-area-inset-bottom)`).
+### 3. Matriz de Eisenhower 2×2 Mini
+```tsx
+<div className="grid grid-cols-2 gap-2 text-[11px]">
+  <div className="p-2.5 rounded-xl bg-rose-50/80 border border-rose-200/60">
+    <span className="font-bold text-rose-800 block text-[10px] uppercase font-mono">1. Hacer Ya</span>
+    <span className="text-slate-800 font-semibold truncate block mt-0.5">Tarea Urgente</span>
+  </div>
+  <div className="p-2.5 rounded-xl bg-teal-50/80 border border-teal-200/60">
+    <span className="font-bold text-teal-800 block text-[10px] uppercase font-mono">2. Agendar (Foco)</span>
+    <span className="text-slate-800 font-semibold truncate block mt-0.5">Proyecto Clave</span>
+  </div>
+  <div className="p-2.5 rounded-xl bg-amber-50/80 border border-amber-200/60">
+    <span className="font-bold text-amber-800 block text-[10px] uppercase font-mono">3. Delegar</span>
+    <span className="text-slate-700 font-medium truncate block mt-0.5">Petición Externa</span>
+  </div>
+  <div className="p-2.5 rounded-xl bg-slate-100/80 border border-slate-200/60">
+    <span className="font-bold text-slate-600 block text-[10px] uppercase font-mono">4. Descartar</span>
+    <span className="text-slate-600 font-medium truncate block mt-0.5">Distracción</span>
+  </div>
+</div>
+```
+
+---
+
+## Guía de Replicación en Otras Vistas de Fokus
+
+### En `/projects` (Tablero Kanban & Matriz):
+- Mantener el fondo cálido `#edece9` o `#fafbfc` con sutil resplandor ambiental.
+- Sustituir tarjetas blancas planas por tarjetas Liquid Glass con borde `border-white/80` y micro-sombra interior.
+- Usar **Wix Madefor Display** para los encabezados de columnas ("Por Hacer", "En Curso", "Completado").
+- Incorporar chips de estado en píldoras con tipografía JetBrains Mono a 11px.
+
+### En `/chat` (Copiloto Fokus):
+- La barra de input inferior debe adoptar la fórmula de la navbar flotante (`rounded-full`, `bg-white/60 backdrop-blur-2xl border-white/85 shadow-lg`).
+- Los mensajes del copiloto se presentan en tarjetas de cristal blanco diáfano, mientras las sugerencias de bloques de Deep Work adoptan el anillo y el badge `Google Calendar Sincronizado`.
+
+### En `/briefing` (Resumen Diario):
+- Organizar el timeline con los mismos Stepper Tabs cálidos (`#f4e0ba` para el bloque activo).
+- Presentar el pronóstico meteorológico y el reproductor de audio síntesis con la misma distribución minimalista.
+
+---
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** priorizar canvas claros y luminosos (`#f8fafc`) con sombras difusas suaves.
-- **Do** utilizar el isotipo oficial [FokusIcon](components/brand/FokusLogo.tsx) con el punto ámbar `#F59E0B` intacto.
-- **Do** emplear tarjetas interactivas estructuradas para confirmar reservas de calendario y avances de tareas.
-- **Do** garantizar objetivos táctiles de al menos 44 × 44 px en todos los controles interactivos móviles.
-- **Do** preservar los atajos de teclado (?, N, Esc, ⌘K) en todas las vistas de gestión.
+- **Do** utilizar `backdrop-saturate-[180%]` y `backdrop-blur-2xl` en las barras flotantes para que los colores de fondo sangren con un degradé luminoso en lugar de apagarse.
+- **Do** usar Wix Madefor Display para títulos principales y DM Sans para lectura.
+- **Do** dar al menos 15px de margen libre entre los números y los anillos circulares de progreso.
+- **Do** emplear el Teal `#1c6662` como color de acción prioritario y el Ámbar `#f4e0ba` / `#F59E0B` como calor y enfoque.
 
 ### Don't:
-- **Don't** aplicar fondos negros o temas oscuros agresivos que rompan la coherencia con /chat y el AppLayout.
-- **Don't** usar sombras duras sin desenfoque (`box-shadow: 4px 4px 0`).
-- **Don't** saturar los componentes con gradientes multicolores innecesarios; limitar el énfasis al Teal y al Ámbar.
-- **Don't** ocultar el estado del sistema ni las llamadas a herramientas externas; la transparencia es un principio inviolable.
+- **Don't** aplicar fondos completamente opacos (`bg-white` o `bg-slate-100`) a barras de navegación fijas o flotantes.
+- **Don't** usar sombras negras duras (`shadow-2xl shadow-black`); preferir sombras multicapa coloreadas (`shadow-slate-900/5` o `shadow-amber-500/20`).
+- **Don't** saturar el diseño con más de tres familias tipográficas en un mismo componente.
+- **Don't** permitir que textos dentro de tarjetas no lleven reglas de desborde (`truncate` o `break-words`) en pantallas móviles.
