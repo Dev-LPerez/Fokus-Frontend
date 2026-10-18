@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fokus Chat — Split Command Deck (Option 1)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&family=Wix+Madefor+Display:wght@400..800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1440px; height: 900px; overflow: hidden;
+      background-color: #edece9;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: #0f1014; display: flex; flex-direction: column;
+    }
+    header {
+      height: 64px; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.6); backdrop-filter: blur(20px);
+    }
+    .brand { font-family: 'Wix Madefor Display', sans-serif; font-weight: 700; font-size: 19px; display: flex; align-items: center; gap: 8px; }
+    .status { font-family: 'Space Grotesk', monospace; font-size: 12px; color: #1c6662; background: rgba(28,102,98,0.1); padding: 4px 12px; border-radius: 9999px; }
+    .deck-container { flex: 1; display: grid; grid-template-columns: 60% 40%; height: calc(900px - 64px); }
+    .chat-col {
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 32px; border-right: 1px solid rgba(255,255,255,0.6);
+      position: relative;
+    }
+    .stream { display: flex; flex-direction: column; gap: 20px; overflow-y: auto; }
+    .user-msg {
+      align-self: flex-end; background: #1c6662; color: #fff;
+      padding: 16px 20px; border-radius: 20px 20px 4px 20px; font-size: 14px; max-width: 500px;
+    }
+    .assistant-msg {
+      align-self: flex-start; background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.9); padding: 22px; border-radius: 20px;
+      backdrop-filter: blur(20px); font-size: 15px; line-height: 1.6; max-width: 600px;
+    }
+    .streaming-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #1c6662; margin-left: 6px; animation: pulse 1s infinite alternate; }
+    .input-wrapper {
+      margin-top: 16px; background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 9999px; padding: 10px 16px 10px 24px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .sidecar-col {
+      background: rgba(255,255,255,0.4); backdrop-filter: blur(15px);
+      padding: 32px; display: flex; flex-direction: column; gap: 24px;
+    }
+    .panel-title { font-family: 'Wix Madefor Display', sans-serif; font-size: 16px; font-weight: 700; color: #334155; }
+    .timeline { display: flex; flex-direction: column; gap: 12px; }
+    .slot {
+      background: white; border: 1px solid rgba(28,102,98,0.1); border-radius: 14px;
+      padding: 14px 18px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .slot.active { border-color: #1c6662; background: rgba(28,102,98,0.03); }
+    .slot-time { font-family: 'Space Grotesk', monospace; font-size: 12px; color: #64748b; }
+    .slot-title { font-weight: 600; font-size: 14px; color: #0f1014; }
+    .deepwork-box {
+      background: linear-gradient(135deg, rgba(28,102,98,0.05) 0%, rgba(244,224,186,0.2) 100%);
+      border: 1px solid rgba(28,102,98,0.2); border-radius: 18px; padding: 20px;
+    }
+    .dw-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .dw-title { font-weight: 700; font-size: 15px; color: #1c6662; }
+    .dw-btn {
+      width: 100%; background: #1c6662; color: white; border: none; padding: 10px;
+      border-radius: 10px; font-weight: 600; font-size: 13px; margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Fokus Command Deck</div>
+    <div class="status">⚡ Google Calendar en Vivo</div>
+  </header>
+  <div class="deck-container">
+    <div class="chat-col">
+      <div class="stream">
+        <div class="user-msg">¿Cuál es mi mejor horario hoy para concentración y qué reuniones puedo posponer?</div>
+        <div class="assistant-msg">
+          Tienes dos reuniones marcadas como opcionales por la tarde. El segmento ideal para <strong>Deep Work blindado</strong> es de 10:30 AM a 12:00 PM (90 min). Puedes ver la proyección sincronizada en el panel lateral derecho.
+          <span class="streaming-dot"></span>
+        </div>
+      </div>
+      <div class="input-wrapper">
+        <span style="color:#94a3b8; font-size:14px;">Haz una pregunta a tu copiloto...</span>
+        <button style="width:36px; height:36px; border-radius:50%; background:#1c6662; color:#fff; border:none;">↑</button>
+      </div>
+    </div>
+    <div class="sidecar-col">
+      <div class="panel-title">Línea de Tiempo del Día</div>
+      <div class="timeline">
+        <div class="slot">
+          <div><div class="slot-title">Daily Briefing & Enfoque</div><div class="slot-time">09:00 AM — 09:30 AM</div></div>
+          <span style="font-size:12px; color:#10b981;">✓ Hecho</span>
+        </div>
+        <div class="slot active">
+          <div><div class="slot-title">Bloque Deep Work Blindado</div><div class="slot-time">10:30 AM — 12:00 PM</div></div>
+          <span style="font-size:12px; color:#1c6662; font-weight:700;">Próximo</span>
+        </div>
+        <div class="slot">
+          <div><div class="slot-title">Sincronización de Equipo</div><div class="slot-time">02:00 PM — 02:45 PM</div></div>
+          <span style="font-size:12px; color:#64748b;">Calendario</span>
+        </div>
+      </div>
+      <div class="deepwork-box">
+        <div class="dw-header">
+          <span class="dw-title">90 min Focus Mode</span>
+          <span style="font-family:'Space Grotesk',monospace; font-size:18px; font-weight:700; color:#1c6662;">01:30:00</span>
+        </div>
+        <p style="font-size:13px; color:#475569;">Bloquea notificaciones de Slack y Google Calendar automáticamente.</p>
+        <button class="dw-btn">Proteger y Comenzar</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

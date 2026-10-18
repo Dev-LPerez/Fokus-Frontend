@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fokus Chat — Action-Stream Timeline Deck (Option 4)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&family=Wix+Madefor+Display:wght@400..800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1440px; height: 900px; overflow: hidden;
+      background-color: #edece9;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: #0f1014; display: flex; flex-direction: column; align-items: center;
+      position: relative;
+    }
+    header {
+      width: 100%; height: 68px; padding: 0 48px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.6); background: rgba(255,255,255,0.5); backdrop-filter: blur(20px);
+    }
+    .main-stream { width: 100%; max-width: 860px; flex: 1; padding: 32px 0 120px; display: flex; flex-direction: column; gap: 24px; overflow-y: auto; }
+    .user-box { align-self: flex-end; background: #1c6662; color: white; padding: 16px 24px; border-radius: 20px; font-size: 15px; }
+    .ai-card {
+      align-self: flex-start; width: 100%; background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.95);
+      border-radius: 24px; padding: 26px; backdrop-filter: blur(20px); display: flex; flex-direction: column; gap: 18px;
+    }
+    .action-checklist {
+      background: white; border: 1px solid rgba(28,102,98,0.15); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 10px;
+    }
+    .action-item { display: flex; align-items: center; justify-content: space-between; font-size: 14px; }
+    .micro-timeline {
+      display: flex; gap: 8px; margin-top: 10px; background: rgba(28,102,98,0.04); padding: 12px; border-radius: 12px;
+    }
+    .time-slot {
+      flex: 1; padding: 8px; border-radius: 8px; background: white; text-align: center; font-family: 'Space Grotesk', monospace; font-size: 11px;
+    }
+    .time-slot.highlight { background: #f4e0ba; border: 1px solid #d4a373; font-weight: 700; color: #78350f; }
+    .bottom-input {
+      position: absolute; bottom: 32px; width: 800px;
+      background: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 9999px; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;
+      backdrop-filter: blur(25px); box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="font-family:'Wix Madefor Display',sans-serif; font-weight:700; font-size:18px; color:#1c6662;">Fokus Action Stream</div>
+    <div style="font-family:'Space Grotesk',monospace; font-size:13px; color:#1c6662;">Plan de Acción en Vivo</div>
+  </header>
+  <div class="main-stream">
+    <div class="user-box">Diseña mi plan de ejecución para la mañana y sincronízalo con Google Calendar.</div>
+    <div class="ai-card">
+      <div style="font-size:15px; line-height:1.6;">He generado un plan de acción estructurado en 3 pasos clave con un bloque protegido de concentración de 90 minutos:</div>
+      <div class="action-checklist">
+        <div class="action-item"><span>1. Revisión de métricas de tracción</span><span style="color:#64748b; font-family:'Space Grotesk',monospace;">20 min</span></div>
+        <div class="action-item"><span>2. Redacción del informe final (Deep Work)</span><span style="color:#1c6662; font-weight:700; font-family:'Space Grotesk',monospace;">90 min</span></div>
+        <div class="action-item"><span>3. Sincronización con el equipo</span><span style="color:#64748b; font-family:'Space Grotesk',monospace;">30 min</span></div>
+      </div>
+      <div class="micro-timeline">
+        <div class="time-slot">09:00 - 09:30<br>Briefing</div>
+        <div class="time-slot highlight">10:30 - 12:00<br>Deep Work Blindado</div>
+        <div class="time-slot">02:00 - 02:45<br>Equipo</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-input">
+    <span style="color:#94a3b8; font-size:14px;">Ejecuta una acción o escribe...</span>
+    <button style="width:36px; height:36px; border-radius:50%; background:#1c6662; color:#fff; border:none;">↑</button>
+  </div>
+</body>
+</html>

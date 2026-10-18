@@ -1,0 +1,82 @@
+{
+  "options": [
+    {
+      "id": "chat-immersive-sanctuary",
+      "kind": "assigned",
+      "kicker": "THE ROLL",
+      "label": "Immersive Liquid Sanctuary",
+      "thesis": "Lienzo diáfano continuo de cristal líquido donde el flujo conversacional y los micro-widgets de foco coexisten sin saltos visuales ni fricción.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#0f1014",
+        "#ffffff"
+      ],
+      "materials": [
+        "liquid frosted glass",
+        "soft ambient glow",
+        "wix madefor display"
+      ],
+      "viewport": "Canvas central amplio con resplandor ambiental sutil, burbujas diáfanas con widget de temporizador integrado y píldora de entrada flotante.",
+      "risk": "Requiere jerarquía tipográfica rigurosa para que los micro-componentes interactivos dentro de las burbujas no saturen la lectura.",
+      "comp": ".impeccable/mocks/decision/chat-comp-3.png",
+      "html": ".impeccable/mocks/decision/chat-comp-3.html"
+    },
+    {
+      "id": "chat-split-command-deck",
+      "kind": "dealt",
+      "label": "Split Command Deck",
+      "thesis": "Arquitectura de cabina ejecutiva en dos columnas: carril conversacional a la izquierda y panel de telemetría y agenda en vivo a la derecha.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#0f1014",
+        "#2dd4bf",
+        "#ffffff"
+      ],
+      "materials": [
+        "bilateral glass split",
+        "tabular data rail",
+        "space grotesk accents"
+      ],
+      "viewport": "Panel izquierdo al 60% para chat en tiempo real; panel derecho persistente al 40% con Google Calendar y disparador rápido Deep Work.",
+      "risk": "En pantallas estrechas la división bilateral debe colapsar fluidamente a pestañas sin romper la continuidad del diálogo.",
+      "comp": ".impeccable/mocks/decision/chat-comp-1.png",
+      "html": ".impeccable/mocks/decision/chat-comp-1.html"
+    },
+    {
+      "id": "chat-floating-focus-island",
+      "kind": "dealt",
+      "label": "Floating Focus Island",
+      "thesis": "Máxima pureza zen y ligereza visual: el asistente como una cápsula flotante suspendida con píldora de entrada ultra-translúcida y cajón Daily Briefing.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#64748b",
+        "#ffffff"
+      ],
+      "materials": [
+        "floating glass pill",
+        "feathered mist ground",
+        "dm sans clean body"
+      ],
+      "viewport": "Flujo conversacional centrado tipo cápsula suspendido con sombra difusa, chips de sugerencias rápidas y barra de entrada líquida.",
+      "risk": "La sobriedad puede requerir un toque extra de descubrimiento para acceder a la agenda o métricas avanzadas.",
+      "comp": ".impeccable/mocks/decision/chat-comp-2.png",
+      "html": ".impeccable/mocks/decision/chat-comp-2.html"
+    }
+  ],
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  },
+  "steer": true,
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "options": [
+    {
+      "id": "chat-immersive-sanctuary",
+      "kind": "assigned",
+      "kicker": "THE ROLL",
+      "label": "Immersive Liquid Sanctuary",
+      "thesis": "Lienzo diáfano continuo de cristal líquido donde el flujo conversacional y los micro-widgets de foco coexisten sin saltos visuales ni fricción.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#0f1014",
+        "#ffffff"
+      ],
+      "materials": [
+        "liquid frosted glass",
+        "soft ambient glow",
+        "wix madefor display"
+      ],
+      "viewport": "Canvas central amplio con resplandor ambiental sutil, burbujas diáfanas con widget de temporizador integrado y píldora de entrada flotante.",
+      "risk": "Requiere jerarquía tipográfica rigurosa para que los micro-componentes interactivos dentro de las burbujas no saturen la lectura.",
+      "comp": ".impeccable/mocks/decision/chat-comp-3.png",
+      "html": ".impeccable/mocks/decision/chat-comp-3.html"
+    },
+    {
+      "id": "chat-ambient-hud-rail",
+      "kind": "dealt",
+      "label": "Ambient Focus HUD & Productive Rail",
+      "thesis": "Carril de utilidades a la izquierda (Calendario, Eisenhower, Pomodoro) y HUD superior con medidor de energía y horas de foco protegido acumuladas.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#0f1014",
+        "#10b981",
+        "#ffffff"
+      ],
+      "materials": [
+        "vertical icon dock",
+        "telemetry top HUD",
+        "space grotesk metrics"
+      ],
+      "viewport": "Dock vertical translúcido de 72px a la izquierda, barra superior con métricas de energía (88%) y tiempo protegido, y flujo central despejado.",
+      "risk": "El dock lateral consume ancho horizontal que debe replegarse a un cajón inferior en pantallas pequeñas.",
+      "comp": ".impeccable/mocks/decision/chat-comp-5.png",
+      "html": ".impeccable/mocks/decision/chat-comp-5.html"
+    },
+    {
+      "id": "chat-action-stream-deck",
+      "kind": "dealt",
+      "label": "Action-Stream Timeline Deck",
+      "thesis": "Flujo conversacional accionable donde cada propuesta del copiloto genera listas de ejecución y micro-líneas de tiempo con bloques blindados.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#0f1014",
+        "#ffffff"
+      ],
+      "materials": [
+        "interactive action cards",
+        "embedded micro-timeline",
+        "wix madefor display"
+      ],
+      "viewport": "Burbuja de asistente con tarjeta de checklist ejecutable (Plan de Choque) y micro-timeline horizontal con bloque Deep Work destacado en ámbar.",
+      "risk": "Demasiadas micro-acciones por mensaje pueden desviar la atención de la lectura si no se agrupan limpiamente.",
+      "comp": ".impeccable/mocks/decision/chat-comp-4.png",
+      "html": ".impeccable/mocks/decision/chat-comp-4.html"
+    }
+  ],
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  },
+  "steer": true,
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  }
+}

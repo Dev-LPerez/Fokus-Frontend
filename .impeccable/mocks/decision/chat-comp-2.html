@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fokus Chat — Floating Focus Island (Option 2)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&family=Wix+Madefor+Display:wght@400..800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1440px; height: 900px; overflow: hidden;
+      background-color: #edece9;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: #0f1014; display: flex; flex-direction: column; align-items: center;
+      position: relative;
+    }
+    header {
+      width: 100%; height: 70px; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+    }
+    .logo { font-family: 'Wix Madefor Display', sans-serif; font-weight: 700; font-size: 18px; color: #1c6662; }
+    .briefing-pill {
+      background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.9);
+      padding: 8px 18px; border-radius: 9999px; font-size: 13px; font-weight: 600;
+      display: flex; align-items: center; gap: 8px; backdrop-filter: blur(16px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .island-container {
+      width: 100%; max-width: 780px; flex: 1; padding: 40px 0 120px;
+      display: flex; flex-direction: column; gap: 24px; overflow-y: auto;
+    }
+    .msg-user {
+      align-self: flex-end; background: #1c6662; color: #fff;
+      padding: 16px 22px; border-radius: 20px; font-size: 15px; line-height: 1.5;
+    }
+    .msg-ai {
+      align-self: flex-start; width: 100%; background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.9); border-radius: 24px; padding: 26px;
+      backdrop-filter: blur(20px); box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      font-size: 15px; line-height: 1.6;
+    }
+    .suggestions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .chip {
+      background: rgba(28,102,98,0.06); border: 1px solid rgba(28,102,98,0.15);
+      color: #1c6662; padding: 6px 14px; border-radius: 9999px; font-size: 13px;
+      font-weight: 500; cursor: pointer;
+    }
+    .input-bar {
+      position: absolute; bottom: 36px; width: 720px;
+      background: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 9999px; padding: 12px 20px 12px 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      backdrop-filter: blur(25px); box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Fokus Island</div>
+    <div class="briefing-pill">
+      <span>☀️ Daily Briefing</span>
+      <span style="width:6px; height:6px; border-radius:50%; background:#f59e0b;"></span>
+    </div>
+  </header>
+  <div class="island-container">
+    <div class="msg-user">¿Qué recomendaciones tienes para mis prioridades hoy?</div>
+    <div class="msg-ai">
+      <p>Hoy tienes 3 tareas críticas pendientes en tu matriz de Eisenhower. Si inicias ahora con la propuesta de diseño antes de tu reunión de las 3:00 PM, evitarás desbordamientos.</p>
+      <div class="suggestions">
+        <span class="chip">⚡ Iniciar Pomodoro 45m</span>
+        <span class="chip">📅 Bloquear Google Calendar</span>
+        <span class="chip">📋 Ver Matriz Completa</span>
+      </div>
+    </div>
+  </div>
+  <div class="input-bar">
+    <span style="color:#94a3b8; font-size:14px;">Pregunta a Fokus...</span>
+    <button style="width:40px; height:40px; border-radius:50%; background:#1c6662; color:#fff; border:none;">↑</button>
+  </div>
+</body>
+</html>

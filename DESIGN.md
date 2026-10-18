@@ -250,9 +250,19 @@ const circumference = 2 * Math.PI * radius;
 - Usar **Wix Madefor Display** para los encabezados de columnas ("Por Hacer", "En Curso", "Completado").
 - Incorporar chips de estado en píldoras con tipografía JetBrains Mono a 11px.
 
-### En `/chat` (Copiloto Fokus):
-- La barra de input inferior debe adoptar la fórmula de la navbar flotante (`rounded-full`, `bg-white/60 backdrop-blur-2xl border-white/85 shadow-lg`).
-- Los mensajes del copiloto se presentan en tarjetas de cristal blanco diáfano, mientras las sugerencias de bloques de Deep Work adoptan el anillo y el badge `Google Calendar Sincronizado`.
+### En `/chat` (Copiloto Fokus - Santuario Líquido Inmersivo):
+- **Superficie y Modo:** Modo *Operate* (enfoque, cero fatiga cognitiva, concentración blindada).
+- **Lienzo Base:** `#edece9` con gradientes etéreos de luz ambiental (`#1c6662`/0.06 superior izquierda y `#f4e0ba`/0.35 inferior derecha).
+- **Header Transparente:** `bg-white/60 backdrop-blur-xl border-b border-white/80` con botón de acción primario `Nuevo Chat` en Sanctuary Teal (`#1c6662`).
+- **Barra de Entrada Flotante:** Píldora curva suspendida (`rounded-3xl sm:rounded-[2.2rem] bg-white/80 backdrop-blur-2xl border border-white/95 shadow-xl`), textarea adaptativo en DM Sans, chips de capacidades rápidas y botón circular de envío en Sanctuary Teal (`#1c6662` con sombra suave).
+- **Tarjetas de Sugerencia:** Cristal líquido `bg-white/80 backdrop-blur-xl border-white/85` con acentos de color en badges (Teal y Ámbar).
+- **Burbujas de Conversación:**
+  - *Usuario:* Píldora esculpida en Sanctuary Teal (`bg-[#1c6662] text-white rounded-3xl shadow-md shadow-[#1c6662]/20`).
+  - *Copiloto:* Cristal diáfano (`bg-white/85 backdrop-blur-xl border border-white/90 rounded-3xl p-5 sm:p-6`) con cursor de streaming pulsante en teal.
+- **Tarjeta Interactiva Deep Work:**
+  - Anillo radial SVG animado (`r=22`, track ámbar `#f4e0ba`, arco de progreso teal `#1c6662`) con lectura en Space Grotesk.
+  - Insignia de verificación "Google Calendar Sincronizado".
+  - Controles de reproducción/pausa con feedback sonoro/táctil.
 
 ### En `/briefing` (Resumen Diario):
 - Organizar el timeline con los mismos Stepper Tabs cálidos (`#f4e0ba` para el bloque activo).

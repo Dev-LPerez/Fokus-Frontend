@@ -1,0 +1,7 @@
+{
+  "prompt": "High-fidelity desktop web application UI comp (Option 1: 'Split Command Deck') for the '/chat' view of Fokus, featuring a 60/40 split with a luminous liquid glass conversational stream on the left and a persistent context sidecar (Google Calendar timeline, deep work countdown widget, and Eisenhower priority chips) on the right.",
+  "title": "Split Command Deck",
+  "aspect": "16:9",
+  "viewport": "1440x900",
+  "mode": "operate"
+}
