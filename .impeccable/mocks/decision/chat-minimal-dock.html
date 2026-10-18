@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opción 3: Whisper Rail & Focused Canvas — Fokus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=Wix+Madefor+Display:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #edece9;
+      font-family: 'DM Sans', sans-serif;
+      color: #0f172a;
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* Whisper Thin Icon Rail (56px) */
+    aside {
+      width: 58px; height: 100%;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(229, 231, 235, 0.8);
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+      padding: 18px 0; z-index: 20;
+    }
+    .rail-group { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .rail-btn {
+      width: 38px; height: 38px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; border: none; color: #64748b;
+      cursor: pointer; transition: all 0.15s ease;
+      position: relative;
+    }
+    .rail-btn:hover { background: rgba(255, 255, 255, 0.9); color: #1c6662; }
+    .rail-btn.active { background: #1c6662; color: #ffffff; box-shadow: 0 4px 12px rgba(28, 102, 98, 0.25); }
+
+    /* Main Area */
+    .viewport {
+      flex: 1; display: flex; flex-direction: column;
+      position: relative;
+    }
+
+    /* Minimal Header */
+    header {
+      height: 56px; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(16px);
+    }
+    .header-title { font-family: 'Wix Madefor Display', sans-serif; font-size: 14px; font-weight: 700; color: #0f172a; }
+    .header-status {
+      display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #047857;
+      background: #ecfdf5; padding: 3px 10px; border-radius: 20px; border: 1px solid #a7f3d0;
+    }
+
+    /* Canvas */
+    .stream {
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 40px 24px 120px;
+    }
+    .stream-title {
+      font-family: 'Wix Madefor Display', sans-serif; font-size: 34px; font-weight: 700;
+      letter-spacing: -0.03em; text-align: center; color: #0f172a;
+    }
+    .stream-sub {
+      font-size: 14px; color: #64748b; text-align: center; margin-top: 10px; max-width: 440px;
+    }
+    .pill-shortcuts {
+      display: flex; gap: 8px; margin-top: 28px;
+    }
+    .pill-btn {
+      background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(229, 231, 235, 0.9);
+      padding: 6px 14px; border-radius: 9999px; font-size: 12px; font-weight: 500; color: #334155;
+      cursor: pointer; transition: all 0.15s ease;
+    }
+    .pill-btn:hover { color: #1c6662; border-color: rgba(28, 102, 98, 0.3); background: #fff; }
+
+    /* Floating input */
+    .bottom-input {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 720px; padding: 0 20px;
+    }
+    .floating-pill {
+      background: rgba(255, 255, 255, 0.88); border: 1px solid rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(25px); border-radius: 24px; padding: 10px 14px 10px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    }
+    .floating-pill input {
+      flex: 1; border: none; outline: none; background: transparent; font-size: 14px;
+    }
+    .send-icon {
+      width: 36px; height: 36px; border-radius: 18px; background: #1c6662; color: #fff;
+      display: flex; align-items: center; justify-content: center; border: none; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Whisper Thin Icon Rail -->
+  <aside>
+    <div class="rail-group">
+      <div style="font-weight: 800; font-family:'Wix Madefor Display'; font-size: 16px; color:#1c6662; margin-bottom: 8px;">F</div>
+      <button class="rail-btn active" title="Chat Copilot">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      </button>
+      <button class="rail-btn" title="Blindar 90m Deep Work">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      </button>
+      <button class="rail-btn" title="Google Calendar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      </button>
+      <button class="rail-btn" title="Matriz Eisenhower">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="12" x2="21" y2="12"></line><line x1="12" y1="3" x2="12" y2="21"></line></svg>
+      </button>
+    </div>
+
+    <div class="rail-group">
+      <button class="rail-btn" title="Nueva Sesión">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Viewport -->
+  <div class="viewport">
+    <header>
+      <div class="header-title">Fokus Copilot</div>
+      <div class="header-status">
+        <span>●</span>
+        <span>Google Calendar Activo</span>
+      </div>
+    </header>
+
+    <div class="stream">
+      <h1 class="stream-title">¿Qué meta blindamos hoy, Luis?</h1>
+      <p class="stream-sub">Tu espacio sereno para pensar, planificar y bloquear tiempo sin saturación visual.</p>
+
+      <div class="pill-shortcuts">
+        <button class="pill-btn">⚡ Blindar 90m</button>
+        <button class="pill-btn">📅 Auditar Huecos</button>
+        <button class="pill-btn">📋 Eisenhower</button>
+      </div>
+    </div>
+
+    <div class="bottom-input">
+      <div class="floating-pill">
+        <input type="text" placeholder="Escribe a tu copiloto o presiona / para comandos..." />
+        <button class="send-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

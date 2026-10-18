@@ -1,0 +1,23 @@
+{
+  "question": "¿Cuál de estas propuestas minimalistas prefieres para eliminar la saturación en la vista de /chat?",
+  "options": [
+    {
+      "id": "opt-1",
+      "label": "Opción 1: Zen Pure Canvas (Lienzo Sereno Absoluto) — Recomendada",
+      "description": "Elimina el rail lateral y la cabecera duplicada. Todo el ancho respira libremente con un saludo elegante, una sola línea de 3 micro-chips sutiles y la cápsula flotante inferior en cristal líquido.",
+      "htmlMock": ".impeccable/mocks/decision/chat-zen-pure-canvas.html"
+    },
+    {
+      "id": "opt-2",
+      "label": "Opción 2: Focus Island (Centro de Gravedad Minimalista)",
+      "description": "Inspirada en herramientas conversacionales de foco puro (Claude / Perplexity). La entrada inicia en el centro con un saludo sobrio y se desplaza hacia arriba suavemente al escribir.",
+      "htmlMock": ".impeccable/mocks/decision/chat-focus-island.html"
+    },
+    {
+      "id": "opt-3",
+      "label": "Opción 3: Whisper Rail & Focused Canvas (Rail Ultradelgado de 56px Colapsable)",
+      "description": "Sustituye la barra lateral de 240px por un discreto riel de solo iconos sutiles (56px) con tooltips y opción de ocultar, manteniendo el área de chat limpia y sin tarjetas redundantes.",
+      "htmlMock": ".impeccable/mocks/decision/chat-minimal-dock.html"
+    }
+  ]
+}

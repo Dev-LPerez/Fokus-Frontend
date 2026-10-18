@@ -75,16 +75,13 @@ flowchart TD
 
 ---
 
-### 💬 Fase 4: Copiloto de Crecimiento & Chat AI (`/chat`) — ✅ COMPLETADO LOCALMENTE
-**Objetivo:** Adaptar `/chat` con la Opción 5 (*Productive Rail & Action Sanctuary*) eliminando telemetría ficticia para reflejar 100% estados reales.
-- **Opción seleccionada:** *Option 5 adaptada (Productive Rail sin telemetría falsa)*.
-- **Componentes Creados / Refactorizados:**
-  - `components/chat/ProductiveRail.tsx`: Rail lateral de acciones rápidas (Deep Work 90m, Auditar Agenda, Priorizar Eisenhower, Daily Briefing) y enlaces al ecosistema con badges reales de sincronización.
-  - `app/(protected)/chat/page.tsx`: Cabecera superior con estado real de Google Calendar, contador real de compromisos activos y botón `+ Nueva Sesión`.
-  - `components/chat/ChatWindow.tsx`: Estandarización de micro-textos a 11px y mejoras de contraste.
-  - `components/chat/DeepWorkCard.tsx`: Estandarización de tipografía a 11px en chips y tarjetas de slots libres y confirmación.
-  - `components/chat/ToolIndicator.tsx`: Estandarización de micro-etiquetas a 11px en todos los bloques de herramientas.
-  - `components/chat/ChatInput.tsx`: Píldora de entrada flotante con chips de acceso rápido y atajo de teclado a 11px.
+### 💬 Fase 4: Copiloto de Crecimiento & Chat AI (`/chat`) — ✅ REFINADO A ZEN PURE CANVAS
+**Objetivo:** Eliminar toda saturación visual, barras laterales invasivas y tarjetas duplicadas, dejando un lienzo 100% diáfano, sereno y centrado en el pensamiento.
+- **Opción seleccionada:** *Option 1: Zen Pure Canvas*.
+- **Refactorizaciones Realizadas:**
+  - `app/(protected)/chat/page.tsx`: Eliminación de la doble cabecera redundante, eliminación del rail lateral invasivo y eliminación de banners forzados. El área de chat ahora respira a pantalla completa en `max-w-3xl` centrado.
+  - `components/chat/ChatWindow.tsx`: Saludo sobrio y limpio en *Wix Madefor Display*, píldora de contexto sutil y una sola fila de 3 micro-chips sugeridos discretos (`✦ Blindar 90m Deep Work`, `✦ Auditar huecos en mi agenda`, `✦ Priorizar con Matriz Eisenhower`).
+  - `components/chat/ChatInput.tsx`: Cápsula flotante ligera en cristal líquido sin chips internos repetitivos, con auto-resize suave y botón de acción en Sanctuary Teal.
 - **Validación:** `pnpm build` (15/15 páginas, exit 0) e `impeccable detect` (0 anti-patrones).
 
 ---

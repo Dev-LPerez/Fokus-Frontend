@@ -1,21 +1,14 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { ChatMessage } from './MessageBubble';
-import { MessageBubble } from './MessageBubble';
-import {
-  Sparkles,
-  ArrowUpRight,
-  ShieldCheck,
-  Server,
-  Calendar,
-  Compass,
-  Zap,
-} from 'lucide-react';
+import { ChatMessage, MessageBubble } from './MessageBubble';
+import { Server, Sparkles } from 'lucide-react';
 
 interface ChatWindowProps {
   messages: ChatMessage[];
   userName?: string | null;
+  hasCalendarConnected?: boolean;
+  locationSummary?: string | null;
   onSelectSuggestion?: (suggestion: string) => void;
   onSelectSlot?: (slot: { start: string; end: string; duration_minutes?: number }) => void;
   isBookingSlot?: boolean;
@@ -28,13 +21,12 @@ interface ChatWindowProps {
 export function ChatWindow({
   messages,
   userName,
+  hasCalendarConnected = false,
+  locationSummary,
   onSelectSuggestion,
   onSelectSlot,
   isBookingSlot = false,
   isColdStart = false,
-  isLoading = false,
-  agentState,
-  toolName,
 }: ChatWindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -48,46 +40,18 @@ export function ChatWindow({
     scrollToBottom();
   }, [messages]);
 
-  const suggestions = [
+  const quickChips = [
     {
-      title: 'Bloquear 90 min de Deep Work',
-      desc: 'Sincroniza bloque de concentración en Google Calendar',
+      label: 'Blindar 90m Deep Work',
       text: 'Quiero bloquear 90 minutos de Deep Work en mi Google Calendar para avanzar en mi prioridad crítica de hoy.',
-      icon: Calendar,
-      accent: 'text-[#1c6662]',
-      bgIcon: 'bg-[#1c6662]/10 border-[#1c6662]/20',
-      badge: 'Deep Work',
-      badgeColor: 'bg-[#1c6662]/10 border-[#1c6662]/20 text-[#1c6662]',
     },
     {
-      title: 'Auditar agenda y huecos libres',
-      desc: 'Descubre disponibilidad en Google Calendar',
+      label: 'Auditar huecos en mi agenda',
       text: 'Audita mi agenda de hoy en Google Calendar y dime qué huecos de trabajo libre tengo disponibles.',
-      icon: Compass,
-      accent: 'text-[#0f766e]',
-      bgIcon: 'bg-[#0f766e]/10 border-[#0f766e]/20',
-      badge: 'Disponibilidad',
-      badgeColor: 'bg-[#0f766e]/10 border-[#0f766e]/20 text-[#0f766e]',
     },
     {
-      title: 'Daily Briefing matutino',
-      desc: 'Pronóstico de clima y resumen de compromisos',
-      text: 'Dame mi Daily Briefing matutino: cómo está el clima y cuáles son mis reuniones más importantes.',
-      icon: Sparkles,
-      accent: 'text-[#92400e]',
-      bgIcon: 'bg-[#f4e0ba]/50 border-[#d4a373]/40',
-      badge: 'Briefing',
-      badgeColor: 'bg-[#f4e0ba]/40 border-[#d4a373]/40 text-[#78350f]',
-    },
-    {
-      title: 'Priorizar Matriz de Eisenhower',
-      desc: 'Clasifica tareas críticas vs secundarias',
+      label: 'Priorizar con Matriz Eisenhower',
       text: 'Revisa mi lista de tareas y organízalas según la Matriz de Eisenhower para saber qué resolver de inmediato.',
-      icon: Zap,
-      accent: 'text-[#1c6662]',
-      bgIcon: 'bg-[#1c6662]/10 border-[#1c6662]/20',
-      badge: 'Eisenhower',
-      badgeColor: 'bg-[#1c6662]/10 border-[#1c6662]/20 text-[#1c6662]',
     },
   ];
 
@@ -99,17 +63,31 @@ export function ChatWindow({
           <Server className="w-5 h-5 flex-shrink-0 text-[#b45309] animate-pulse" />
           <div>
             <p className="font-semibold text-[#78350f]">Reactivando Fokus...</p>
-            <p className="text-[#92400e] text-[11px] mt-0.5">
+            <p className="text-[#92400e] text-[11px] mt-0.5 font-mono">
               El motor backend se está iniciando tras una pausa de inactividad. Tu respuesta comenzará en unos segundos.
             </p>
           </div>
         </div>
       )}
 
-      {/* Empty State */}
+      {/* Empty State: Option 1 (Zen Pure Canvas) */}
       {messages.length === 0 ? (
-        <div className="flex flex-col items-center justify-center text-center max-w-2xl mx-auto px-4 my-auto py-12">
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-[#0f1014] tracking-tight leading-tight">
+        <div className="flex flex-col items-center justify-center text-center max-w-2xl mx-auto px-4 my-auto py-12 sm:py-16">
+          {/* Subtle Context Pill */}
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-white/95 px-3.5 py-1.5 rounded-full text-[11px] font-mono text-stone-600 mb-6 shadow-2xs">
+            <span
+              className={`w-1.5 h-1.5 rounded-full ${
+                hasCalendarConnected ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'
+              }`}
+            />
+            <span>
+              {locationSummary ? `${locationSummary} · ` : ''}
+              {hasCalendarConnected ? 'Google Calendar Conectado' : 'Calendario Desconectado'}
+            </span>
+          </div>
+
+          {/* Clean Greeting Headline */}
+          <h1 className="font-display font-bold text-3xl sm:text-4xl text-stone-900 tracking-tight leading-tight">
             {(() => {
               const hour = new Date().getHours();
               const displayName = userName ? `, ${userName}` : '';
@@ -117,58 +95,34 @@ export function ChatWindow({
               if (hour >= 12 && hour < 19) return `Buenas tardes${displayName}`;
               return `Buenas noches${displayName}`;
             })()}
-          </h2>
-          <h3 className="font-display font-bold text-2xl sm:text-3xl text-[#1e293b] mt-1.5 tracking-tight">
-            ¿Qué meta blindamos <span className="text-[#1c6662]">hoy?</span>
-          </h3>
+            <br />
+            ¿En qué protegemos tu <span className="text-[#1c6662]">enfoque</span> hoy?
+          </h1>
 
-          <p className="text-xs sm:text-sm text-slate-600 mt-3.5 max-w-md leading-relaxed font-sans">
-            Tu copiloto de crecimiento personal y profesional. Organiza tu agenda, blinda momentos de enfoque real y avanza en tus proyectos clave sin abrumarte.
+          <p className="text-xs sm:text-sm text-stone-600 mt-3.5 max-w-md leading-relaxed font-sans">
+            Organiza tu agenda, blinda bloques de trabajo profundo y avanza en tus prioridades con serenidad.
           </p>
 
-          {/* Quick Suggestions Cards with Liquid Glass Touch */}
+          {/* Single Row of 3 Subtle Minimalist Chips */}
           {onSelectSuggestion && (
-            <div className="mt-8 w-full space-y-3 text-left">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {suggestions.map((item, idx) => {
-                  const Icon = item.icon;
-                  return (
-                    <button
-                      key={idx}
-                      onClick={() => onSelectSuggestion(item.text)}
-                      className="p-4 bg-white/80 hover:bg-white/95 backdrop-blur-xl border border-white/85 hover:border-[#1c6662]/40 rounded-2xl text-xs text-slate-700 hover:text-slate-950 transition-all flex flex-col justify-between gap-3 cursor-pointer group shadow-2xs hover:shadow-md hover:shadow-[#1c6662]/5 hover:-translate-y-0.5"
-                    >
-                      <div className="flex items-start justify-between gap-2 w-full">
-                        <div className="flex items-center gap-2.5">
-                          <div className={`p-2 rounded-xl border ${item.bgIcon} flex-shrink-0`}>
-                            <Icon className={`w-4 h-4 ${item.accent}`} />
-                          </div>
-                          <div>
-                            <p className="font-semibold text-xs text-slate-900 group-hover:text-[#1c6662] transition-colors">
-                              {item.title}
-                            </p>
-                            <span className={`text-[11px] font-mono px-2 py-0.5 rounded-full border ${item.badgeColor} inline-block mt-0.5`}>
-                              {item.badge}
-                            </span>
-                          </div>
-                        </div>
-
-                        <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-[#1c6662] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0" />
-                      </div>
-
-                      <p className="text-[11.5px] text-slate-600 leading-relaxed font-sans">
-                        {item.desc}
-                      </p>
-                    </button>
-                  );
-                })}
-              </div>
+            <div className="mt-8 flex items-center justify-center gap-2.5 flex-wrap">
+              {quickChips.map((chip, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => onSelectSuggestion(chip.text)}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/85 hover:bg-white border border-stone-200/80 hover:border-[#1c6662]/40 text-stone-700 hover:text-[#1c6662] text-xs font-medium transition-all duration-150 cursor-pointer shadow-2xs hover:shadow-xs hover:-translate-y-0.5 group"
+                >
+                  <Sparkles className="w-3 h-3 text-[#1c6662] transition-transform group-hover:scale-110" />
+                  <span>{chip.label}</span>
+                </button>
+              ))}
             </div>
           )}
         </div>
       ) : (
-        /* Message Stream with bottom offset for floating pill input */
-        <div className="max-w-4xl mx-auto space-y-6 pb-28 pt-2">
+        /* Message Stream: Pure Centered Sanctuary (Max 780px) */
+        <div className="max-w-3xl mx-auto space-y-6 pb-28 pt-2">
           {messages.map((message) => (
             <MessageBubble
               key={message.id}
