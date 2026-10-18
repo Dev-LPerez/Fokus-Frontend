@@ -58,19 +58,20 @@ flowchart TD
 
 ---
 
-### 📋 Fase 3: Proyectos, Kanban y Matriz Eisenhower (`/projects`)
+### 📋 Fase 3: Proyectos, Kanban y Matriz Eisenhower (`/projects`) — ✅ COMPLETADO LOCALMENTE
 **Objetivo:** Rediseñar la gestión de tareas para que priorizar sea natural, visualmente descansado y alejado de las hojas de cálculo aburridas.
-
-- **Componentes Clave:**
-  - **Matriz de Eisenhower 2×2 Líquida:** Cuadrantes con identidad cromática suave:
-    - *1. Hacer Ya:* Rosa suave (`#f43f5e`/10 con borde sutil).
-    - *2. Agendar (Deep Work):* Sanctuary Teal (`#1c6662`/10 con borde teal).
-    - *3. Delegar:* Ámbar cálido (`#f4e0ba`/30).
-    - *4. Descartar:* Pizarra neutra traslúcida.
-  - **Tablero Kanban de Flujo Tranquilo:** Columnas con anchos cómodos, tarjetas con micro-elevación al arrastrar y etiquetas de prioridad tipográficas a 11px en JetBrains Mono.
-- **Archivos a intervenir:**
-  - [`app/(protected)/projects/page.tsx`](./app/(protected)/projects/page.tsx)
-  - Componentes auxiliares en `components/projects/`
+- **Opción seleccionada:** *Option 1: Strategic Sanctuary (Eisenhower 2x2 Glass Matrix)*.
+- **Componentes Creados:**
+  - `components/projects/ProjectsHeader.tsx`: Pulso ejecutivo en Space Grotesk, buscador `/`, selector de vistas y filtro de proyectos.
+  - `components/projects/EisenhowerMatrixView.tsx`: Matriz 2x2 en cristal líquido con halo y acción directa en Cuadrante II (Deep Work).
+  - `components/projects/ProjectKanbanView.tsx`: Tablero Kanban por proyecto con micro-barras de progreso.
+  - `components/projects/PriorityListView.tsx`: Agrupación por prioridad (Alta / Media / Baja).
+  - `components/projects/TaskCard.tsx`: Tarjeta interactiva con checkbox circular táctil, metadatos a 11px, Google Calendar y atajo de Deep Work.
+  - `components/projects/CreateTaskModal.tsx`: Modal esmerilado de captura rápida (`N`).
+  - `components/projects/ShortcutsModal.tsx`: Menú accesible de atajos (`?`).
+  - `components/projects/UndoToast.tsx`: Toast optimista flotante de 5 segundos con botón Deshacer.
+  - `app/(protected)/projects/page.tsx`: Orquestador principal modularizado y limpio.
+- **Validación:** `pnpm build` (15/15 páginas, exit 0) e `impeccable detect` (0 anti-patrones).
 
 ---
 

@@ -1,0 +1,82 @@
+{
+  "options": [
+    {
+      "id": "projects-strategic-sanctuary",
+      "kind": "assigned",
+      "kicker": "THE ROLL",
+      "label": "Strategic Sanctuary (Eisenhower 2x2 Glass Matrix)",
+      "thesis": "Matriz de Eisenhower 2x2 en cristal líquido traslúcido (#edece9 ground), destacando el Cuadrante II (Estratégico / Deep Work) con halo ámbar/teal y botón directo de blindaje en Google Calendar. Barra superior de telemetría ejecutiva en Space Grotesk y dock inferior flotante para captura rápida (N).",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#e11d48",
+        "#ffffff"
+      ],
+      "materials": [
+        "2x2 liquid glass quadrants",
+        "deep work sanctuary glow",
+        "space grotesk metrics",
+        "floating action dock"
+      ],
+      "viewport": "Cuadrícula 2x2 con tarjetas de cristal esmerilado, etiquetas de duración y proyecto, y cabecera de pulso ejecutivo.",
+      "risk": "En pantallas móviles la cuadrícula 2x2 debe colapsar fluidamente en acordeón o carrusel de cuadrantes.",
+      "comp": ".impeccable/mocks/decision/projects-comp-1.png"
+    },
+    {
+      "id": "projects-dual-stream-horizon",
+      "kind": "dealt",
+      "label": "Dual-Stream Horizon (Split 65/35 Matrix + Focus Execution Rail)",
+      "thesis": "Arquitectura dividida 65/35: a la izquierda matriz o kanban fluido con tarjetas de cristal ligero; a la derecha cabina lateral persistente de ejecución con indicador radial de cumplimiento, recomendación de próximo bloque Deep Work y distribución temporal por proyecto.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#0284c7",
+        "#ffffff"
+      ],
+      "materials": [
+        "split 65/35 layout",
+        "execution cockpit sidecar",
+        "radial velocity gauge",
+        "one-click deep work trigger"
+      ],
+      "viewport": "Lienzo de tareas a la izquierda con selector de modo; panel de comando persistente a la derecha con velocímetro de avance.",
+      "risk": "El panel lateral ocupa espacio horizontal; ideal para pantallas de escritorio (>1024px) y requiere colapso limpio en pantallas medianas.",
+      "comp": ".impeccable/mocks/decision/projects-comp-2.png"
+    },
+    {
+      "id": "projects-fluid-project-deck",
+      "kind": "dealt",
+      "label": "Fluid Project Deck (Luminous Horizontal Kanban)",
+      "thesis": "Tablero Kanban horizontal continuo con carriles de cristal suspendidos agrupados por proyecto/meta, barras de salud de avance, tarjetas con micro-resplandores ámbar y sincronización en tiempo real con Google Calendar.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#059669",
+        "#ffffff"
+      ],
+      "materials": [
+        "horizontal kanban lanes",
+        "project health indicators",
+        "elevated liquid cards",
+        "pill mode morpher"
+      ],
+      "viewport": "Carriles horizontales agrupados por proyecto con tarjetas flotantes, chips de duración y barra de herramientas superior.",
+      "risk": "Si el usuario tiene muchos proyectos simultáneos, requiere scroll horizontal suave con sombras de indicación de desbordamiento.",
+      "comp": ".impeccable/mocks/decision/projects-comp-3.png"
+    }
+  ],
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  },
+  "steer": true,
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  }
+}
