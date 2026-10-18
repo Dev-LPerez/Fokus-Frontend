@@ -132,13 +132,13 @@ export function DeepWorkCard({
     const currentSelected = availableSlots[selectedSlotIndex] || availableSlots[0];
 
     return (
-      <div className="w-full my-3 bg-white/95 backdrop-blur-xl border border-indigo-200/90 rounded-2xl p-4 sm:p-5 shadow-sm shadow-indigo-500/5 animate-fade-in text-slate-800 relative overflow-hidden">
-        <div className="absolute -top-12 -right-12 w-32 h-32 bg-indigo-100/50 rounded-full blur-2xl pointer-events-none" />
+      <div className="w-full my-3 bg-white/95 backdrop-blur-xl border border-white/90 rounded-3xl p-5 sm:p-6 shadow-sm shadow-[#1c6662]/5 animate-fade-in text-slate-800 relative overflow-hidden">
+        <div className="absolute -top-12 -right-12 w-36 h-36 bg-[#f4e0ba]/30 rounded-full blur-2xl pointer-events-none" />
 
         {/* Header */}
         <div className="flex items-start justify-between gap-3 relative z-10">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 flex-shrink-0 shadow-xs">
+            <div className="w-10 h-10 rounded-2xl bg-[#1c6662]/10 border border-[#1c6662]/20 flex items-center justify-center text-[#1c6662] flex-shrink-0 shadow-2xs">
               <Sparkles className="w-5 h-5 stroke-[2.2]" />
             </div>
             <div>
@@ -146,8 +146,8 @@ export function DeepWorkCard({
                 <h4 className="font-bold text-sm sm:text-base text-slate-900 font-display">
                   Huecos Libres Detectados
                 </h4>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono bg-sky-50 border border-sky-200 text-sky-700 font-medium">
-                  <Calendar className="w-3 h-3 text-sky-600" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-medium">
+                  <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                   <span>Google Calendar</span>
                 </span>
               </div>
@@ -157,16 +157,16 @@ export function DeepWorkCard({
             </div>
           </div>
 
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold bg-indigo-50 border border-indigo-200 text-indigo-700 flex-shrink-0">
-            <Zap className="w-3 h-3 text-indigo-600" />
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold bg-[#1c6662]/10 border border-[#1c6662]/20 text-[#1c6662] flex-shrink-0">
+            <Zap className="w-3 h-3 text-[#1c6662]" />
             <span>{availableSlots.length} Opciones</span>
           </span>
         </div>
 
         {/* Slot Selection Grid */}
-        <div className="mt-4 pt-3.5 border-t border-slate-200/80 space-y-3 relative z-10">
+        <div className="mt-4 pt-3.5 border-t border-slate-200/60 space-y-3.5 relative z-10">
           {taskDescription && (
-            <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 text-xs">
+            <div className="bg-slate-50/80 p-3 rounded-2xl border border-slate-200/60 text-xs">
               <span className="text-[10px] uppercase font-mono text-slate-500 tracking-wider block font-semibold">
                 Objetivo
               </span>
@@ -186,18 +186,18 @@ export function DeepWorkCard({
                   key={idx}
                   type="button"
                   onClick={() => setSelectedSlotIndex(idx)}
-                  className={`p-3 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between gap-1.5 ${
+                  className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between gap-2 ${
                     isSelected
-                      ? 'bg-indigo-50/90 border-indigo-400/90 ring-2 ring-indigo-500/20 shadow-xs'
-                      : 'bg-white hover:bg-slate-50 border-slate-200/90 text-slate-700'
+                      ? 'bg-[#1c6662]/5 border-[#1c6662]/50 ring-2 ring-[#1c6662]/20 shadow-xs'
+                      : 'bg-white hover:bg-slate-50/80 border-slate-200/80 text-slate-700'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-1 w-full">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-600">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#1c6662]">
                       Opción {idx + 1}
                     </span>
                     {(slot.is_recommended || idx === 0) && (
-                      <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-amber-100/70 border border-amber-300/60 text-amber-800">
+                      <span className="text-[9px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#f4e0ba]/50 border border-[#d4a373]/40 text-[#78350f]">
                         Óptimo
                       </span>
                     )}
@@ -205,7 +205,7 @@ export function DeepWorkCard({
                   <span className="text-xs font-bold font-mono text-slate-900 block">
                     {rangeText}
                   </span>
-                  <span className="text-[10px] text-slate-500 flex items-center gap-1 font-medium">
+                  <span className="text-[10.5px] text-slate-500 flex items-center gap-1 font-medium font-sans">
                     <Clock className="w-2.5 h-2.5 text-slate-400" />
                     {slot.duration_minutes || durationMinutes} min ininterrumpidos
                   </span>
@@ -218,15 +218,15 @@ export function DeepWorkCard({
           {onSelectSlot && (
             <div className="pt-2 flex items-center justify-between gap-3">
               <div className="flex items-center gap-1.5 text-[11px] text-slate-500 font-mono">
-                <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
-                <span>Bloqueo con 1 clic en agenda real</span>
+                <ShieldCheck className="w-3.5 h-3.5 text-[#1c6662]" />
+                <span>Bloqueo directo en Google Calendar</span>
               </div>
 
               <button
                 type="button"
                 disabled={isBooking}
                 onClick={() => onSelectSlot(currentSelected)}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-600 hover:brightness-105 active:scale-[0.98] text-white font-medium text-xs transition-all shadow-md shadow-indigo-500/20 cursor-pointer disabled:opacity-50"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1c6662] hover:bg-[#16524f] active:scale-[0.98] text-white font-medium text-xs transition-all shadow-md shadow-[#1c6662]/20 cursor-pointer disabled:opacity-50"
               >
                 {isBooking ? (
                   <span>Sincronizando...</span>
@@ -244,50 +244,57 @@ export function DeepWorkCard({
     );
   }
 
+  // Calculate circular progress for radial ring
+  const totalSeconds = (durationMinutes || 90) * 60;
+  const progressRatio = totalSeconds > 0 ? timerSecondsLeft / totalSeconds : 0;
+  const radius = 22;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - progressRatio * circumference;
+
   // Case B: Confirmed Deep Work Block (Production Rich Card)
   return (
-    <div className="w-full my-3 bg-white/95 backdrop-blur-xl border border-indigo-200/80 rounded-2xl p-4 sm:p-5 shadow-md shadow-indigo-500/5 animate-liquid-entrance text-slate-800 relative overflow-hidden">
+    <div className="w-full my-3 bg-white/95 backdrop-blur-xl border border-white/90 rounded-3xl p-5 sm:p-6 shadow-sm shadow-[#1c6662]/5 animate-liquid-entrance text-slate-800 relative overflow-hidden">
       {/* Decorative subtle iris glow */}
-      <div className="absolute -top-12 -right-12 w-32 h-32 bg-indigo-200/40 rounded-full blur-2xl pointer-events-none animate-aura-pulse" />
+      <div className="absolute -top-12 -right-12 w-36 h-36 bg-[#f4e0ba]/30 rounded-full blur-2xl pointer-events-none" />
 
       {/* Header */}
       <div className="flex items-start justify-between gap-3 relative z-10">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 flex-shrink-0 shadow-xs">
+          <div className="w-10 h-10 rounded-2xl bg-[#1c6662]/10 border border-[#1c6662]/20 flex items-center justify-center text-[#1c6662] flex-shrink-0 shadow-2xs">
             <Target className="w-5 h-5 stroke-[2.2]" />
           </div>
 
           <div>
             <div className="flex items-center gap-2 flex-wrap">
               <h4 className="font-bold text-sm sm:text-base text-slate-900 font-display">
-                Bloque de Deep Work Confirmado
+                Bloque Protegido: {durationMinutes} min Deep Work
               </h4>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-50 border border-emerald-200 text-emerald-700 font-medium">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-medium">
                 <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                <span>Google Calendar</span>
+                <span>Google Calendar Sincronizado</span>
               </span>
             </div>
             <p className="text-[11px] text-slate-500 mt-0.5 font-mono">
-              Tiempo de concentración protegido contra interrupciones
+              Espacio blindado contra reuniones e interrupciones
             </p>
           </div>
         </div>
 
         {/* Priority Badge */}
-        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold bg-amber-50 border border-amber-200 text-amber-700 flex-shrink-0">
-          <Flame className="w-3 h-3 text-amber-600" />
+        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold bg-[#f4e0ba]/50 border border-[#d4a373]/40 text-[#78350f] flex-shrink-0">
+          <Flame className="w-3 h-3 text-[#b45309]" />
           <span>Alta Prioridad</span>
         </span>
       </div>
 
       {/* Content Details */}
-      <div className="mt-4 pt-3.5 border-t border-slate-200/80 space-y-3 relative z-10">
+      <div className="mt-4 pt-3.5 border-t border-slate-200/60 space-y-3.5 relative z-10">
         {/* Task description */}
-        <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80">
+        <div className="bg-slate-50/80 p-3 rounded-2xl border border-slate-200/60">
           <span className="text-[10px] uppercase font-mono text-slate-500 tracking-wider block font-semibold">
             Objetivo de Enfoque
           </span>
-          <p className="text-sm font-semibold text-slate-900 mt-0.5 leading-snug">
+          <p className="text-sm font-semibold text-slate-900 mt-0.5 leading-snug font-sans">
             {taskDescription || 'Sesión de trabajo concentrado'}
           </p>
         </div>
@@ -295,8 +302,8 @@ export function DeepWorkCard({
         {/* Schedule & Project info grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           {/* Horario Reservado */}
-          <div className="flex items-center gap-2.5 bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-            <Clock className="w-4 h-4 text-indigo-600 flex-shrink-0" />
+          <div className="flex items-center gap-2.5 bg-slate-50/80 p-3 rounded-2xl border border-slate-200/60">
+            <Clock className="w-4 h-4 text-[#1c6662] flex-shrink-0" />
             <div className="min-w-0">
               <span className="text-[10px] text-slate-500 font-mono block">Horario Reservado</span>
               <span className="text-xs font-bold text-slate-900 font-mono truncate block">
@@ -306,36 +313,76 @@ export function DeepWorkCard({
           </div>
 
           {/* Proyecto */}
-          <div className="flex items-center gap-2.5 bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-            <Briefcase className="w-4 h-4 text-indigo-600 flex-shrink-0" />
+          <div className="flex items-center gap-2.5 bg-slate-50/80 p-3 rounded-2xl border border-slate-200/60">
+            <Briefcase className="w-4 h-4 text-[#1c6662] flex-shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] text-slate-500 font-mono block">Proyecto / Cliente</span>
-              <span className="text-xs font-semibold text-slate-800 truncate block">
-                {project || 'Operaciones Generales'}
+              <span className="text-[10px] text-slate-500 font-mono block">Proyecto / Contexto</span>
+              <span className="text-xs font-semibold text-slate-800 truncate block font-sans">
+                {project || 'Operaciones Clave'}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Immersion Tracker / Focus Timer Bar */}
-        <div className="bg-slate-50/90 border border-slate-200/80 rounded-xl p-2.5 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2 min-w-0">
-            <span className="text-[11px] font-mono font-bold text-slate-700">
-              Temporizador de Inmersión:
-            </span>
-            <span className="px-2 py-0.5 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-700 font-mono font-bold text-xs tracking-wider">
-              {formatSeconds(timerSecondsLeft)}
-            </span>
+        {/* Circular Countdown Ring & Immersion Tracker (Hero Feature of Comp 3) */}
+        <div className="bg-gradient-to-r from-slate-50/90 to-white/90 border border-slate-200/80 rounded-2xl p-3.5 flex items-center justify-between gap-4 shadow-2xs">
+          <div className="flex items-center gap-3.5 min-w-0">
+            {/* SVG Radial Countdown Ring */}
+            <div className="relative w-14 h-14 flex items-center justify-center flex-shrink-0">
+              <svg className="w-14 h-14 -rotate-90" viewBox="0 0 54 54">
+                <circle
+                  cx="27"
+                  cy="27"
+                  r={radius}
+                  stroke="#f4e0ba"
+                  strokeWidth="4"
+                  fill="transparent"
+                  className="opacity-70"
+                />
+                <circle
+                  cx="27"
+                  cy="27"
+                  r={radius}
+                  stroke="#1c6662"
+                  strokeWidth="4"
+                  fill="transparent"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={strokeDashoffset}
+                  strokeLinecap="round"
+                  className="transition-all duration-1000 ease-linear"
+                />
+              </svg>
+              <Target className="w-4 h-4 text-[#1c6662] absolute" />
+            </div>
+
+            <div className="min-w-0">
+              <span className="text-[10.5px] font-mono text-slate-500 uppercase tracking-wider block font-semibold">
+                Temporizador de Inmersión
+              </span>
+              <span className="font-mono text-xl font-bold text-[#1c6662] tracking-tight block">
+                {formatSeconds(timerSecondsLeft)}
+              </span>
+            </div>
           </div>
 
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={() => setIsTimerActive(!isTimerActive)}
-              className="p-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:text-indigo-600 hover:border-indigo-300 transition-all cursor-pointer shadow-2xs"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#1c6662] hover:bg-[#16524f] text-white text-xs font-medium transition-all cursor-pointer shadow-xs"
               title={isTimerActive ? 'Pausar foco' : 'Iniciar temporizador de inmersión'}
             >
-              {isTimerActive ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+              {isTimerActive ? (
+                <>
+                  <Pause className="w-3.5 h-3.5" />
+                  <span>Pausar</span>
+                </>
+              ) : (
+                <>
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Iniciar Bloque</span>
+                </>
+              )}
             </button>
             <button
               type="button"
@@ -343,7 +390,7 @@ export function DeepWorkCard({
                 setIsTimerActive(false);
                 setTimerSecondsLeft((durationMinutes || 90) * 60);
               }}
-              className="p-1.5 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-slate-700 transition-all cursor-pointer shadow-2xs"
+              className="p-1.5 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-slate-700 transition-all cursor-pointer shadow-2xs"
               title="Reiniciar temporizador"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -353,14 +400,14 @@ export function DeepWorkCard({
 
         {/* Confirmation message note */}
         {message && (
-          <p className="text-[11px] text-slate-600 leading-relaxed italic bg-white/70 p-2 rounded-lg border border-slate-200/60">
+          <p className="text-[11.5px] text-slate-600 leading-relaxed italic bg-white/80 p-2.5 rounded-xl border border-slate-200/60 font-sans">
             &ldquo;{message}&rdquo;
           </p>
         )}
 
         {/* Google Calendar Action Link */}
-        <div className="pt-1 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-1.5 text-[11px] text-indigo-600 font-mono">
+        <div className="pt-1 flex items-center justify-between gap-3 flex-wrap">
+          <div className="flex items-center gap-1.5 text-[11px] text-[#1c6662] font-mono">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Sincronizado con tu agenda real</span>
           </div>
@@ -369,9 +416,9 @@ export function DeepWorkCard({
             href={getCalendarLink()}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-600 hover:brightness-105 text-white font-medium text-xs transition-all shadow-md shadow-indigo-500/20 cursor-pointer flex-shrink-0"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-[#1c6662]/30 text-[#1c6662] font-medium text-xs transition-all shadow-2xs cursor-pointer flex-shrink-0"
           >
-            <CalendarCheck className="w-3.5 h-3.5 stroke-[2.5]" />
+            <CalendarCheck className="w-3.5 h-3.5 stroke-[2]" />
             <span>Ver en Google Calendar</span>
             <ExternalLink className="w-3 h-3" />
           </a>

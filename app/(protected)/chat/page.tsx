@@ -475,32 +475,44 @@ export default function ChatPage() {
   }, [searchParams, conversationIdParam, messages.length, isLoading, handleSendMessage]);
 
   return (
-    <div className="flex-1 flex flex-col h-full min-h-0 overflow-hidden bg-transparent">
-      {/* Daily Executive Briefing Collapsible Bar */}
-      <DailyBriefingCard
-        location={location}
-        onRequestLocation={requestLocation}
-        showLocationBanner={showLocationBanner}
-        onDismissLocationBanner={dismissBanner}
-        onQuickAction={(prompt) => {
-          if (prompt === 'Vivo en ' || prompt.startsWith('Vivo en')) {
-            setPrefilledPrompt(prompt);
-          } else {
-            handleSendMessage(prompt);
-          }
-        }}
+    <div className="flex-1 flex flex-col h-full min-h-0 overflow-hidden bg-[#edece9] relative">
+      {/* Ambient Atmospheric Glows */}
+      <div 
+        className="absolute top-12 left-1/4 w-[500px] h-[500px] bg-[#1c6662]/[0.06] rounded-full blur-[80px] pointer-events-none -z-0" 
+        aria-hidden="true" 
       />
+      <div 
+        className="absolute bottom-24 right-1/4 w-[450px] h-[450px] bg-[#f4e0ba]/35 rounded-full blur-[90px] pointer-events-none -z-0" 
+        aria-hidden="true" 
+      />
+
+      {/* Daily Executive Briefing Collapsible Bar */}
+      <div className="relative z-10 flex-shrink-0">
+        <DailyBriefingCard
+          location={location}
+          onRequestLocation={requestLocation}
+          showLocationBanner={showLocationBanner}
+          onDismissLocationBanner={dismissBanner}
+          onQuickAction={(prompt) => {
+            if (prompt === 'Vivo en ' || prompt.startsWith('Vivo en')) {
+              setPrefilledPrompt(prompt);
+            } else {
+              handleSendMessage(prompt);
+            }
+          }}
+        />
+      </div>
 
       {/* Error alert */}
       {errorMessage && (
-        <div className="mx-4 mt-3 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center justify-between gap-3 animate-fade-in flex-shrink-0 shadow-xs">
+        <div className="mx-4 sm:mx-8 mt-3 p-3.5 rounded-2xl bg-rose-50/90 backdrop-blur-md border border-rose-200 text-rose-800 text-xs flex items-center justify-between gap-3 animate-fade-in flex-shrink-0 shadow-xs relative z-10">
           <div className="flex items-center gap-2 min-w-0">
-            <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-500" />
+            <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-600" />
             <span className="truncate">{errorMessage}</span>
           </div>
           <button
             onClick={() => setErrorMessage(null)}
-            className="text-[11px] font-medium text-red-600 hover:text-red-800 px-2 py-0.5 rounded hover:bg-red-100 transition-colors cursor-pointer"
+            className="text-[11px] font-medium text-rose-700 hover:text-rose-900 px-2 py-0.5 rounded-lg hover:bg-rose-100 transition-colors cursor-pointer"
           >
             Cerrar
           </button>
@@ -508,44 +520,48 @@ export default function ChatPage() {
       )}
 
       {/* Main chat messages area */}
-      {loadingHistory ? (
-        <div className="flex-1 flex flex-col items-center justify-center gap-3 text-slate-500 font-mono text-xs">
-          <Loader2 className="w-6 h-6 animate-spin text-indigo-600" />
-          <span>Cargando mensajes...</span>
-        </div>
-      ) : (
-        <ChatWindow
-          messages={messages}
-          userName={userName}
-          isLoading={isLoading}
-          isColdStart={isColdStart}
-          agentState={agentState}
-          toolName={activeToolName}
-          onSelectSuggestion={(text) => handleSendMessage(text)}
-          onSelectSlot={(slot) => {
-            const startStr = slot.start.includes('T') ? slot.start.split('T')[1].slice(0, 5) : slot.start;
-            const endStr = slot.end.includes('T') ? slot.end.split('T')[1].slice(0, 5) : slot.end;
-            handleSendMessage(`Bloquea en Google Calendar el bloque de Deep Work de ${startStr} a ${endStr}.`);
-          }}
-          isBookingSlot={isLoading}
-        />
-      )}
+      <div className="flex-1 flex flex-col min-h-0 relative z-10 overflow-hidden">
+        {loadingHistory ? (
+          <div className="flex-1 flex flex-col items-center justify-center gap-3 text-slate-500 font-mono text-xs">
+            <Loader2 className="w-6 h-6 animate-spin text-[#1c6662]" />
+            <span>Cargando mensajes...</span>
+          </div>
+        ) : (
+          <ChatWindow
+            messages={messages}
+            userName={userName}
+            isLoading={isLoading}
+            isColdStart={isColdStart}
+            agentState={agentState}
+            toolName={activeToolName}
+            onSelectSuggestion={(text) => handleSendMessage(text)}
+            onSelectSlot={(slot) => {
+              const startStr = slot.start.includes('T') ? slot.start.split('T')[1].slice(0, 5) : slot.start;
+              const endStr = slot.end.includes('T') ? slot.end.split('T')[1].slice(0, 5) : slot.end;
+              handleSendMessage(`Bloquea en Google Calendar el bloque de Deep Work de ${startStr} a ${endStr}.`);
+            }}
+            isBookingSlot={isLoading}
+          />
+        )}
+      </div>
 
-      {/* Chat input area */}
-      <div className="flex-shrink-0 bg-white/40 backdrop-blur-md border-t border-slate-200/60">
-        <ChatInput
-          onSendMessage={(msg) => {
-            setPrefilledPrompt('');
-            handleSendMessage(msg);
-          }}
-          onStop={handleStop}
-          disabled={isLoading || loadingHistory}
-          isLoading={isLoading}
-          agentState={agentState}
-          toolName={activeToolName}
-          userName={userName}
-          prefilledPrompt={prefilledPrompt}
-        />
+      {/* Floating Chat input area */}
+      <div className="relative z-20 flex-shrink-0 pointer-events-none pb-2 pt-0">
+        <div className="pointer-events-auto">
+          <ChatInput
+            onSendMessage={(msg) => {
+              setPrefilledPrompt('');
+              handleSendMessage(msg);
+            }}
+            onStop={handleStop}
+            disabled={isLoading || loadingHistory}
+            isLoading={isLoading}
+            agentState={agentState}
+            toolName={activeToolName}
+            userName={userName}
+            prefilledPrompt={prefilledPrompt}
+          />
+        </div>
       </div>
 
       {/* Interactive Onboarding Modal for First-time & Existing Users */}

@@ -130,11 +130,11 @@ export function MessageBubble({ message, onSelectSlot, isBooking }: MessageBubbl
       {/* Avatar */}
       <div className="flex-shrink-0 mt-1">
         {isUser ? (
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-600 to-indigo-500 border border-indigo-400/40 flex items-center justify-center text-white shadow-sm shadow-indigo-500/20">
+          <div className="w-8 h-8 rounded-full bg-[#1c6662] border border-white/70 flex items-center justify-center text-white shadow-xs">
             <User className="w-4 h-4" />
           </div>
         ) : (
-          <div className="w-8 h-8 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-indigo-600">
+          <div className="w-8 h-8 rounded-xl bg-white/90 backdrop-blur-md border border-white/90 shadow-2xs flex items-center justify-center text-[#1c6662]">
             <Bot className="w-4 h-4" />
           </div>
         )}
@@ -181,7 +181,7 @@ export function MessageBubble({ message, onSelectSlot, isBooking }: MessageBubbl
               (deepWorkCall?.input?.duration_minutes as number) ||
               90
             }
-            googleEventId={deepWorkResult.google_event_id}
+            googleEventId={deepWorkResult.googleEventId || deepWorkResult.google_event_id}
             message={deepWorkResult.message}
           />
         )}
@@ -200,10 +200,10 @@ export function MessageBubble({ message, onSelectSlot, isBooking }: MessageBubbl
         {/* Text Message Bubble */}
         {(hasContent || message.isStreaming) && (
           <div
-            className={`relative rounded-2xl px-5 py-3.5 text-sm transition-all ${
+            className={`relative rounded-3xl px-5 py-4 text-sm transition-all ${
               isUser
-                ? 'bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 text-white font-medium shadow-md shadow-indigo-500/15 max-w-[85%] rounded-tr-xs'
-                : 'bg-white/90 backdrop-blur-md text-slate-800 border border-slate-200/80 shadow-xs w-full rounded-tl-xs'
+                ? 'bg-[#1c6662] text-white font-medium shadow-md shadow-[#1c6662]/20 max-w-[85%] rounded-tr-xs'
+                : 'bg-white/85 backdrop-blur-xl text-slate-800 border border-white/90 shadow-xs shadow-slate-900/5 w-full rounded-tl-xs'
             }`}
           >
             {isUser ? (
@@ -216,12 +216,12 @@ export function MessageBubble({ message, onSelectSlot, isBooking }: MessageBubbl
                   <div className="leading-relaxed">
                     <MarkdownContent content={message.content} />
                     {message.isStreaming && (
-                      <span className="inline-block w-2 h-4 bg-indigo-600 animate-pulse ml-1 align-middle rounded-xs" />
+                      <span className="inline-block w-2 h-4 bg-[#1c6662] animate-pulse ml-1 align-middle rounded-xs" />
                     )}
                   </div>
                 ) : message.isStreaming ? (
-                  <div className="flex items-center gap-2 text-xs text-indigo-600 font-mono py-0.5">
-                    <span className="w-2 h-2 rounded-full bg-indigo-600 animate-ping" />
+                  <div className="flex items-center gap-2 text-xs text-[#1c6662] font-mono py-0.5">
+                    <span className="w-2 h-2 rounded-full bg-[#1c6662] animate-ping" />
                     <span>Pensando...</span>
                   </div>
                 ) : null}
@@ -230,27 +230,27 @@ export function MessageBubble({ message, onSelectSlot, isBooking }: MessageBubbl
 
             {/* Action buttons (Copy + Speak) */}
             {!isUser && hasContent && (
-              <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+              <div className="absolute top-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
                 <button
                   type="button"
                   onClick={handleToggleSpeak}
-                  className={`p-1 rounded-lg transition-colors cursor-pointer ${
+                  className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
                     isSpeaking
-                      ? 'bg-indigo-100 text-indigo-700 border border-indigo-200'
-                      : 'bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800'
+                      ? 'bg-[#1c6662]/10 text-[#1c6662] border border-[#1c6662]/20'
+                      : 'bg-white/80 hover:bg-white text-slate-500 hover:text-slate-800 border border-slate-200/60'
                   }`}
                   title={isSpeaking ? 'Detener lectura' : 'Escuchar mensaje en voz alta'}
                 >
-                  {isSpeaking ? <VolumeX className="w-3.5 h-3.5 text-indigo-600" /> : <Volume2 className="w-3.5 h-3.5" />}
+                  {isSpeaking ? <VolumeX className="w-3.5 h-3.5 text-[#1c6662]" /> : <Volume2 className="w-3.5 h-3.5" />}
                 </button>
 
                 <button
                   type="button"
                   onClick={handleCopy}
-                  className="p-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
+                  className="p-1.5 rounded-lg bg-white/80 hover:bg-white text-slate-500 hover:text-slate-800 border border-slate-200/60 transition-colors cursor-pointer"
                   title="Copiar texto"
                 >
-                  {copied ? <Check className="w-3.5 h-3.5 text-indigo-600" /> : <Copy className="w-3.5 h-3.5" />}
+                  {copied ? <Check className="w-3.5 h-3.5 text-[#1c6662]" /> : <Copy className="w-3.5 h-3.5" />}
                 </button>
               </div>
             )}

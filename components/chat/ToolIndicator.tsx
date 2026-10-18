@@ -77,8 +77,8 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
         label: city ? `Clima en ${city}` : 'Consulta de clima',
         category: 'weather',
         icon: CloudSun,
-        accent: 'text-amber-400',
-        bgAccent: 'bg-amber-500/10 border-amber-500/20',
+        accent: 'text-[#b45309]',
+        bgAccent: 'bg-[#f4e0ba]/50 border-[#d4a373]/40',
       };
     }
 
@@ -88,8 +88,8 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
         label: desc ? `Guardar recordatorio: ${desc}` : 'Crear recordatorio',
         category: 'create_reminder',
         icon: CalendarPlus,
-        accent: 'text-[#d4af37]',
-        bgAccent: 'bg-[#d4af37]/10 border-[#d4af37]/20',
+        accent: 'text-[#1c6662]',
+        bgAccent: 'bg-[#1c6662]/10 border-[#1c6662]/20',
       };
     }
 
@@ -98,8 +98,8 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
         label: 'Consultar lista de recordatorios',
         category: 'list_reminders',
         icon: ListTodo,
-        accent: 'text-indigo-400',
-        bgAccent: 'bg-indigo-500/10 border-indigo-500/20',
+        accent: 'text-[#1c6662]',
+        bgAccent: 'bg-[#1c6662]/10 border-[#1c6662]/20',
       };
     }
 
@@ -108,8 +108,8 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
         label: 'Eliminar recordatorio',
         category: 'delete_reminder',
         icon: CalendarX,
-        accent: 'text-rose-400',
-        bgAccent: 'bg-rose-500/10 border-rose-500/20',
+        accent: 'text-rose-600',
+        bgAccent: 'bg-rose-50 border-rose-200',
       };
     }
 
@@ -118,8 +118,8 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
         label: 'Completar recordatorio',
         category: 'complete_reminder',
         icon: CalendarCheck,
-        accent: 'text-emerald-400',
-        bgAccent: 'bg-emerald-500/10 border-emerald-500/20',
+        accent: 'text-emerald-700',
+        bgAccent: 'bg-emerald-50 border-emerald-200',
       };
     }
 
@@ -129,8 +129,8 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
         label: task ? `Bloquear Deep Work: ${task}` : 'Programar bloque de Deep Work',
         category: 'schedule_deep_work',
         icon: Target,
-        accent: 'text-emerald-400',
-        bgAccent: 'bg-emerald-500/10 border-emerald-500/20',
+        accent: 'text-[#1c6662]',
+        bgAccent: 'bg-[#1c6662]/10 border-[#1c6662]/20',
       };
     }
 
@@ -139,8 +139,8 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
         label: 'Consultar agenda de Google Calendar',
         category: 'get_calendar_agenda',
         icon: Calendar,
-        accent: 'text-cyan-400',
-        bgAccent: 'bg-cyan-500/10 border-cyan-500/20',
+        accent: 'text-[#0f766e]',
+        bgAccent: 'bg-[#0f766e]/10 border-[#0f766e]/20',
       };
     }
 
@@ -149,8 +149,8 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
         label: 'Auditar disponibilidad & huecos libres',
         category: 'find_free_work_slots',
         icon: Clock,
-        accent: 'text-teal-400',
-        bgAccent: 'bg-teal-500/10 border-teal-500/20',
+        accent: 'text-[#1c6662]',
+        bgAccent: 'bg-[#1c6662]/10 border-[#1c6662]/20',
       };
     }
 
@@ -160,8 +160,8 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
         label: q ? `Búsqueda web: ${q}` : 'Búsqueda en internet',
         category: 'search_web',
         icon: Search,
-        accent: 'text-sky-400',
-        bgAccent: 'bg-sky-500/10 border-sky-500/20',
+        accent: 'text-sky-600',
+        bgAccent: 'bg-sky-50 border-sky-200',
       };
     }
 
@@ -169,8 +169,8 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
       label: name,
       category: 'generic',
       icon: Sparkles,
-      accent: 'text-zinc-300',
-      bgAccent: 'bg-zinc-800 border-zinc-700',
+      accent: 'text-slate-700',
+      bgAccent: 'bg-white border-slate-200',
     };
   };
 
@@ -263,8 +263,8 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
 
   return (
     <div
-      className={`w-full my-2 bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-2xl p-3.5 text-xs shadow-xs transition-all animate-liquid-entrance ${
-        status === 'running' ? 'liquid-shimmer border-indigo-300/80 ring-1 ring-indigo-500/20' : ''
+      className={`w-full my-2 bg-white/85 backdrop-blur-xl border border-white/90 rounded-2xl p-3.5 text-xs shadow-xs transition-all animate-liquid-entrance ${
+        status === 'running' ? 'liquid-shimmer border-[#1c6662]/40 ring-1 ring-[#1c6662]/20' : ''
       }`}
     >
       {/* Header bar */}
@@ -295,21 +295,21 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
         {/* Status badges & Expand button */}
         <div className="flex items-center gap-2 flex-shrink-0">
           {status === 'running' && (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono text-indigo-700 bg-indigo-50 border border-indigo-200">
-              <Loader2 className="w-3 h-3 animate-spin text-indigo-600" />
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono text-[#1c6662] bg-[#1c6662]/10 border border-[#1c6662]/20">
+              <Loader2 className="w-3 h-3 animate-spin text-[#1c6662]" />
               <span>procesando</span>
             </span>
           )}
 
           {status === 'done' && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono text-emerald-800 bg-emerald-50 border border-emerald-200">
               <Check className="w-3 h-3 stroke-[2.5] text-emerald-600" />
               <span>completado</span>
             </span>
           )}
 
           {status === 'error' && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono text-rose-600 bg-rose-50 border border-rose-200">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono text-rose-700 bg-rose-50 border border-rose-200">
               <AlertCircle className="w-3 h-3" />
               <span>error</span>
             </span>
