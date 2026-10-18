@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Space_Grotesk, DM_Sans } from 'next/font/google';
+import { Space_Grotesk, DM_Sans, Wix_Madefor_Display } from 'next/font/google';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -13,6 +13,13 @@ const dmSans = DM_Sans({
   subsets: ['latin'],
   variable: '--font-dm-sans',
   weight: ['400', '500', '600', '700'],
+  display: 'swap',
+});
+
+const wixMadefor = Wix_Madefor_Display({
+  subsets: ['latin'],
+  variable: '--font-wix-madefor',
+  weight: ['600', '700', '800'],
   display: 'swap',
 });
 
@@ -34,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${spaceGrotesk.variable} ${dmSans.variable}`}>
+    <html lang="es" className={`${spaceGrotesk.variable} ${dmSans.variable} ${wixMadefor.variable}`}>
       <body className="antialiased min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-indigo-100 selection:text-indigo-900 font-sans">
         {children}
       </body>
