@@ -73,20 +73,20 @@ export function ToolsModal({ isOpen, onClose }: ToolsModalProps) {
     if (clean.includes('search') || clean.includes('buscar')) {
       return <Search className="w-4 h-4 text-sky-600" />;
     }
-    return <Sparkles className="w-4 h-4 text-indigo-600" />;
+    return <Sparkles className="w-4 h-4 text-[#1c6662]" />;
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-fade-in">
-      <div className="w-full max-w-xl bg-white/95 backdrop-blur-2xl border border-slate-200/90 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
+      <div className="w-full max-w-xl bg-white/95 backdrop-blur-2xl border border-white/90 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
         {/* Modal Header */}
-        <div className="p-5 border-b border-slate-200/80 flex items-center justify-between bg-slate-50/70">
+        <div className="p-5 border-b border-slate-200/60 flex items-center justify-between bg-white/80">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-600">
+            <div className="p-2 rounded-xl bg-teal-50 border border-teal-100 text-[#1c6662]">
               <Wrench className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="font-display font-bold text-sm text-slate-900">Herramientas del Agente</h2>
+              <h2 className="font-display font-bold text-sm text-slate-900">Herramientas del Copiloto</h2>
               <p className="text-[11px] text-slate-500 font-mono">
                 Function Calling Schema registrado en FastAPI
               </p>
@@ -104,7 +104,7 @@ export function ToolsModal({ isOpen, onClose }: ToolsModalProps) {
         <div className="p-5 overflow-y-auto space-y-3 flex-1 bg-transparent">
           {loading && (
             <div className="py-12 flex flex-col items-center justify-center gap-2 text-slate-500 text-xs font-mono">
-              <Loader2 className="w-5 h-5 animate-spin text-indigo-600" />
+              <Loader2 className="w-5 h-5 animate-spin text-[#1c6662]" />
               <span>Consultando tools registradas en FastAPI...</span>
             </div>
           )}
@@ -120,7 +120,7 @@ export function ToolsModal({ isOpen, onClose }: ToolsModalProps) {
           )}
 
           {!loading && !error && tools.length === 0 && (
-            <div className="py-8 text-center text-slate-500 text-xs">
+            <div className="py-8 text-center text-slate-500 text-xs font-sans">
               No se encontraron herramientas activas.
             </div>
           )}
@@ -130,14 +130,14 @@ export function ToolsModal({ isOpen, onClose }: ToolsModalProps) {
               {tools.map((tool) => (
                 <div
                   key={tool.name}
-                  className="p-3.5 rounded-xl bg-slate-50/70 border border-slate-200/80 hover:border-indigo-300 transition-all flex items-start gap-3.5 shadow-2xs"
+                  className="p-3.5 rounded-2xl bg-white/80 border border-slate-200/70 hover:border-[#1c6662]/40 transition-all flex items-start gap-3.5 shadow-2xs"
                 >
-                  <div className="p-2 rounded-lg bg-white border border-slate-200 flex-shrink-0 mt-0.5">
+                  <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 flex-shrink-0 mt-0.5">
                     {getToolIcon(tool.name)}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <span className="font-mono text-xs font-semibold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-100">
+                      <span className="font-mono text-xs font-semibold text-[#1c6662] bg-teal-50 px-2 py-0.5 rounded-md border border-teal-100">
                         {tool.name}
                       </span>
                       <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
@@ -145,7 +145,7 @@ export function ToolsModal({ isOpen, onClose }: ToolsModalProps) {
                         online
                       </span>
                     </div>
-                    <p className="text-xs text-slate-700 leading-relaxed mt-1">
+                    <p className="text-xs text-slate-700 leading-relaxed mt-1 font-sans">
                       {tool.description || 'Sin descripción disponible.'}
                     </p>
                   </div>
@@ -156,7 +156,7 @@ export function ToolsModal({ isOpen, onClose }: ToolsModalProps) {
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 border-t border-slate-200/80 bg-slate-50/70 flex justify-end">
+        <div className="p-4 border-t border-slate-200/60 bg-white/80 flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition-all cursor-pointer shadow-2xs"
