@@ -1,0 +1,80 @@
+{
+  "options": [
+    {
+      "id": "calendar-liquid-timeline-sanctuary",
+      "kind": "assigned",
+      "kicker": "THE ROLL",
+      "label": "Liquid Timeline Sanctuary (Split 70/30)",
+      "thesis": "Línea de tiempo continua y diáfana a la izquierda con bloques de Deep Work destacados en cristal ámbar cálido (#f4e0ba), acompañada a la derecha por un panel lateral persistente de telemetría de foco (energía, horas blindadas y botón de acción rápida).",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#0f1014",
+        "#ffffff"
+      ],
+      "materials": [
+        "liquid frosted glass",
+        "soft ambient glow",
+        "space grotesk metrics",
+        "google calendar verified badge"
+      ],
+      "viewport": "Timeline diáfano con bandas horarias y widgets de foco a la izquierda; panel persistente de blindaje y métricas a la derecha.",
+      "risk": "En pantallas móviles la columna de telemetría debe colapsar fluidamente hacia un drawer o cabecera compacta.",
+      "comp": ".impeccable/mocks/decision/calendar-comp-1.png"
+    },
+    {
+      "id": "calendar-panoramic-rhythm-matrix",
+      "kind": "dealt",
+      "label": "Panoramic Grid & Rhythm Matrix",
+      "thesis": "Cuadrícula semanal/mensual de gran amplitud con separadores translúcidos ultrafinos, cápsulas flotantes de eventos y métricas de ritmo semanal integradas en la barra superior.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#06b6d4",
+        "#ffffff"
+      ],
+      "materials": [
+        "panoramic weekly grid",
+        "floating glass pills",
+        "wix madefor display titles"
+      ],
+      "viewport": "Lienzo panorámico de 7 días con pastillas flotantes en cristal y cabecera flotante con selector de vista (Día/Semana/Mes) y chip de horas blindadas.",
+      "risk": "Requiere calcular cuidadosamente el padding para evitar que días con muchos eventos amontonen las tarjetas en pantallas medianas.",
+      "comp": ".impeccable/mocks/decision/calendar-comp-2.png"
+    },
+    {
+      "id": "calendar-focus-dock-stream",
+      "kind": "dealt",
+      "label": "Focus Dock & Ambient Stream",
+      "thesis": "Lienzo zen centrado en la agenda inmediata del día con línea de tiempo lineal de alta legibilidad, cajón lateral deslizable de inspección y dock flotante inferior con herramientas de un solo clic.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#64748b",
+        "#ffffff"
+      ],
+      "materials": [
+        "centered linear stream",
+        "bottom floating liquid dock",
+        "slide-over glass drawer"
+      ],
+      "viewport": "Timeline lineal centrado con indicador pulsante de hora actual, dock de acciones rápidas inferior y drawer de detalles de evento.",
+      "risk": "Privilegia la vista diaria por encima de la mensual; el cambio a mes requiere un modal o expansión fluida.",
+      "comp": ".impeccable/mocks/decision/calendar-comp-3.png"
+    }
+  ],
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  },
+  "steer": true,
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  }
+}
