@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fokus — Split Profile & Archive Deck (Option 3)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&family=Wix+Madefor+Display:wght@400..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1440px; height: 900px; overflow: hidden;
+      background-color: #edece9;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: #0f1014; display: flex; flex-direction: column;
+      position: relative;
+    }
+    .bloom-1 {
+      position: absolute; top: 0; left: 5%; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(28,102,98,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .bloom-2 {
+      position: absolute; bottom: 0; right: 5%; width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(244,224,186,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    header {
+      height: 68px; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.75); backdrop-filter: blur(20px);
+      position: relative; z-index: 10;
+    }
+    .brand { font-family: 'Wix Madefor Display', sans-serif; font-weight: 700; font-size: 20px; display: flex; align-items: center; gap: 10px; color: #0f1014; }
+    .status-pill {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+      color: #1c6662; background: rgba(28,102,98,0.08); border: 1px solid rgba(28,102,98,0.2);
+      padding: 5px 14px; border-radius: 9999px; display: flex; align-items: center; gap: 6px;
+    }
+    .split-container {
+      flex: 1; display: grid; grid-template-columns: 50% 50%; height: calc(900px - 68px);
+      position: relative; z-index: 10;
+    }
+    .left-col {
+      padding: 36px 40px; border-right: 1px solid rgba(255,255,255,0.7);
+      display: flex; flex-direction: column; gap: 20px; overflow-y: auto;
+    }
+    .right-col {
+      padding: 36px 40px; background: rgba(255,255,255,0.3); backdrop-filter: blur(15px);
+      display: flex; flex-direction: column; gap: 20px; overflow-y: auto;
+    }
+    .col-title { font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: 22px; color: #1c1917; }
+    .glass-card {
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.9); border-radius: 20px;
+      padding: 22px; box-shadow: 0 4px 16px -2px rgba(15,16,20,0.03);
+    }
+    .profile-box { display: flex; align-items: center; gap: 16px; }
+    .avatar-large {
+      width: 52px; height: 52px; border-radius: 16px;
+      background: #1c6662; color: #fff; display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px;
+    }
+    .cal-box {
+      border: 1.5px solid rgba(28,102,98,0.3); background: rgba(255,255,255,0.95);
+      border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .cal-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 9px; border-radius: 9999px; font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; font-weight: 600; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0;
+    }
+    .btn-action {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+      padding: 7px 14px; border-radius: 10px; border: 1px solid #d6d3d1;
+      background: #ffffff; color: #44403c; cursor: pointer;
+    }
+    .session-item {
+      background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.95);
+      border-radius: 16px; padding: 16px 18px; display: flex; justify-content: space-between; align-items: center;
+      transition: all 0.2s; box-shadow: 0 2px 8px -1px rgba(15,16,20,0.02);
+    }
+    .session-date { font-family: 'Space Grotesk', monospace; font-size: 11px; color: #78716c; }
+    .session-title { font-size: 14px; font-weight: 600; color: #1c1917; margin-top: 3px; }
+    .btn-resume {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #1c6662; color: #ffffff; font-family: 'DM Sans', sans-serif; font-weight: 600;
+      font-size: 12px; padding: 7px 14px; border-radius: 10px; border: none; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="bloom-1"></div>
+  <div class="bloom-2"></div>
+
+  <header>
+    <div class="brand">
+      <div style="width:24px; height:24px; border-radius:7px; background:#1c6662; display:flex; align-items:center; justify-content:center; color:white; font-size:12px;">◆</div>
+      <span>Fokus Split Deck</span>
+    </div>
+    <div class="status-pill">
+      <span>Cuenta & Historial Unificados</span>
+    </div>
+  </header>
+
+  <div class="split-container">
+    <!-- Columna Izquierda: Configuración -->
+    <div class="left-col">
+      <h2 class="col-title">Configuración & Integraciones</h2>
+
+      <div class="glass-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div class="profile-box">
+            <div class="avatar-large">LP</div>
+            <div>
+              <p style="font-weight:700; font-size:15px; color:#1c1917;">Luis Pérez</p>
+              <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78716c;">luis.perez@ejemplo.com</p>
+            </div>
+          </div>
+          <button class="btn-action">Salir</button>
+        </div>
+      </div>
+
+      <div class="cal-box">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:22px;">📅 Google Calendar</span>
+          <span class="cal-badge">✓ Sincronizado</span>
+        </div>
+        <p style="font-size:12px; color:#57534e; line-height:1.5;">Permite al Copiloto agendar bloques de Deep Work y leer tus huecos libres de forma segura.</p>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#1c6662;">luis.perez@gmail.com</span>
+          <button class="btn-action" style="color:#b91c1c; border-color:#fecaca;">Desconectar</button>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <p style="font-weight:700; font-size:13px; color:#1c1917; margin-bottom:8px;">🌤️ Ciudad para Daily Briefing</p>
+        <input type="text" style="width:100%; padding:10px 14px; border-radius:10px; border:1px solid #d6d3d1; font-size:13px; background:#fafaf9;" value="Bogotá, Colombia">
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Historial de Sesiones -->
+    <div class="right-col">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h2 class="col-title">Historial de Sesiones</h2>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78716c; background:#f5f5f4; border:1px solid #e7e5e4; padding:3px 10px; border-radius:8px;">
+          4 sesiones guardadas
+        </span>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div class="session-item">
+          <div>
+            <span class="session-date">Hoy · 10:30 AM</span>
+            <p class="session-title">Planificación Estratégica Q1 y Prioridades</p>
+          </div>
+          <button class="btn-resume">Reanudar →</button>
+        </div>
+
+        <div class="session-item">
+          <div>
+            <span class="session-date">Ayer · 04:15 PM</span>
+            <p class="session-title">Auditoría de Agenda y Bloque Deep Work 90m</p>
+          </div>
+          <button class="btn-resume">Reanudar →</button>
+        </div>
+
+        <div class="session-item">
+          <div>
+            <span class="session-date">16 Octubre · 09:00 AM</span>
+            <p class="session-title">Reorganización de Matriz de Eisenhower</p>
+          </div>
+          <button class="btn-resume">Reanudar →</button>
+        </div>
+
+        <div class="session-item">
+          <div>
+            <span class="session-date">15 Octubre · 11:20 AM</span>
+            <p class="session-title">Daily Briefing & Metas de la Semana</p>
+          </div>
+          <button class="btn-resume">Reanudar →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fokus Settings — Sanctuary Command Hub (Option 1)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&family=Wix+Madefor+Display:wght@400..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1440px; height: 900px; overflow: hidden;
+      background-color: #edece9;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: #0f1014; display: flex; flex-direction: column;
+      position: relative;
+    }
+    .bloom-1 {
+      position: absolute; top: 0; left: 10%; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(28,102,98,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .bloom-2 {
+      position: absolute; bottom: 0; right: 10%; width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(244,224,186,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    header {
+      height: 68px; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.75); backdrop-filter: blur(20px);
+      position: relative; z-index: 10;
+    }
+    .brand { font-family: 'Wix Madefor Display', sans-serif; font-weight: 700; font-size: 20px; display: flex; align-items: center; gap: 10px; color: #0f1014; }
+    .status-pill {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+      color: #1c6662; background: rgba(28,102,98,0.08); border: 1px solid rgba(28,102,98,0.2);
+      padding: 5px 14px; border-radius: 9999px; display: flex; align-items: center; gap: 6px;
+    }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #1c6662; }
+    .content-area {
+      flex: 1; padding: 40px 48px; overflow-y: auto;
+      max-width: 1050px; margin: 0 auto; width: 100%;
+      display: flex; flex-direction: column; gap: 24px; position: relative; z-index: 10;
+    }
+    .title-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px; }
+    .main-title { font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: 28px; color: #0f1014; letter-spacing: -0.02em; }
+    .subtitle { font-size: 14px; color: #57534e; margin-top: 4px; }
+    .glass-card {
+      background: rgba(255,255,255,0.82); backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.9); border-radius: 24px;
+      padding: 28px 32px; box-shadow: 0 4px 20px -2px rgba(15,16,20,0.03);
+    }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .card-title { font-family: 'Wix Madefor Display', sans-serif; font-size: 17px; font-weight: 700; color: #1c1917; }
+    .profile-box { display: flex; align-items: center; gap: 20px; }
+    .avatar-large {
+      width: 64px; height: 64px; border-radius: 20px;
+      background: #1c6662; color: #fff; display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px;
+      box-shadow: 0 8px 16px -4px rgba(28,102,98,0.3);
+    }
+    .profile-info h3 { font-size: 16px; font-weight: 700; color: #1c1917; }
+    .profile-info p { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #78716c; margin-top: 2px; }
+    .btn-secondary {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+      padding: 9px 18px; border-radius: 12px; border: 1px solid #d6d3d1;
+      background: #ffffff; color: #44403c; cursor: pointer; transition: all 0.2s;
+    }
+    .integration-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 14px; }
+    .cal-box {
+      border: 1.5px solid rgba(28,102,98,0.3); background: rgba(255,255,255,0.95);
+      border-radius: 20px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; overflow: hidden;
+    }
+    .cal-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 9999px; font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; font-weight: 600; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0;
+    }
+    .cal-title { font-family: 'Wix Madefor Display', sans-serif; font-size: 16px; font-weight: 700; margin: 12px 0 6px 0; color: #1c1917; }
+    .cal-desc { font-size: 12px; color: #57534e; line-height: 1.5; }
+    .sync-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #1c6662; margin-top: 16px; font-weight: 500; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: #44403c; }
+    .input-field {
+      padding: 12px 16px; border-radius: 14px; border: 1px solid #d6d3d1;
+      background: #fafaf9; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #1c1917;
+    }
+    .shortcuts-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    .shortcut-chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 10px; background: #f5f5f4; border: 1px solid #e7e5e4;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #44403c;
+    }
+    .kbd { background: #ffffff; border: 1px solid #d6d3d1; padding: 2px 7px; border-radius: 6px; font-weight: 700; color: #1c6662; }
+  </style>
+</head>
+<body>
+  <div class="bloom-1"></div>
+  <div class="bloom-2"></div>
+
+  <header>
+    <div class="brand">
+      <div style="width:24px; height:24px; border-radius:7px; background:#1c6662; display:flex; align-items:center; justify-content:center; color:white; font-size:12px;">◆</div>
+      <span>Fokus Command</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span>Google Calendar Sincronizado</span>
+      </div>
+      <div class="status-pill" style="color:#78716c; background:#f5f5f4; border-color:#e7e5e4;">
+        <span>Fokus v2.0</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="content-area">
+    <div class="title-row">
+      <div>
+        <h1 class="main-title">Configuración del Santuario</h1>
+        <p class="subtitle">Gestiona tu identidad, sincronización de Google Calendar y preferencias de entorno.</p>
+      </div>
+    </div>
+
+    <!-- 1. Perfil -->
+    <div class="glass-card">
+      <div class="card-header">
+        <div class="profile-box">
+          <div class="avatar-large">LP</div>
+          <div class="profile-info">
+            <h3>Luis Pérez</h3>
+            <p>luis.perez@ejemplo.com · Cuenta Pro Fokus</p>
+          </div>
+        </div>
+        <button class="btn-secondary">Cerrar Sesión</button>
+      </div>
+    </div>
+
+    <!-- 2. Integración Google Calendar -->
+    <div class="glass-card">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">Integraciones & Servicios de Foco</h2>
+          <p style="font-size:12px; color:#78716c; margin-top:2px;">Conexión directa con tu agenda sin intermediarios.</p>
+        </div>
+        <span class="cal-badge">✓ Activo</span>
+      </div>
+
+      <div class="integration-grid">
+        <div class="cal-box">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:24px;">📅</span>
+              <span class="cal-badge">OAuth 2.0 Verificado</span>
+            </div>
+            <h3 class="cal-title">Google Calendar</h3>
+            <p class="cal-desc">Permite al copiloto reservar bloques de Deep Work de 90 min y detectar huecos libres en tu agenda en tiempo real.</p>
+          </div>
+          <div style="margin-top:20px; display:flex; justify-content:space-between; align-items:center;">
+            <span class="sync-meta">Cuenta: luis.perez@gmail.com</span>
+            <button class="btn-secondary" style="color:#b91c1c; border-color:#fecaca;">Desvincular</button>
+          </div>
+        </div>
+
+        <div class="cal-box" style="border-color:#e7e5e4;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:24px;">🌤️</span>
+              <span class="cal-badge" style="background:#fef3c7; color:#92400e; border-color:#fde68a;">Daily Briefing</span>
+            </div>
+            <h3 class="cal-title">Ubicación & Clima Matutino</h3>
+            <p class="cal-desc">Configura tu ciudad por defecto para obtener pronósticos meteorológicos precisos en cada inicio de jornada.</p>
+          </div>
+          <div style="margin-top:20px;">
+            <div class="form-group">
+              <input type="text" class="input-field" value="Bogotá, Colombia" placeholder="Ingresa tu ciudad...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Atajos de Teclado -->
+    <div class="glass-card">
+      <h2 class="card-title">Atajos Globales de Teclado</h2>
+      <p style="font-size:12px; color:#78716c; margin-top:2px; margin-bottom:14px;">Operaciones rápidas en cualquier parte del sistema Fokus.</p>
+      <div class="shortcuts-row">
+        <div class="shortcut-chip"><span class="kbd">N</span> Nueva Tarea / Compromiso</div>
+        <div class="shortcut-chip"><span class="kbd">/</span> Buscar en Agenda</div>
+        <div class="shortcut-chip"><span class="kbd">⌘K</span> Menú de Herramientas</div>
+        <div class="shortcut-chip"><span class="kbd">?</span> Ayuda de Atajos</div>
+        <div class="shortcut-chip"><span class="kbd">Esc</span> Cerrar Diálogo</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+{
+  "options": [
+    {
+      "id": "settings-zen-tabbed-suite",
+      "kind": "assigned",
+      "kicker": "THE ROLL",
+      "label": "Zen Tabbed Suite (Pestañas Segmentadas en Píldora Flotante)",
+      "thesis": "Arquitectura en píldora superior flotante que permite alternar fluidamente entre 'Cuenta & Integraciones', 'Historial de Sesiones' y 'Preferencias' sin recargas ni scroll excesivo, con inspector lateral de estado.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#059669",
+        "#ffffff"
+      ],
+      "materials": [
+        "floating tab pill",
+        "liquid frosted cards",
+        "sidecar status inspector",
+        "google calendar live card"
+      ],
+      "viewport": "Barra de navegación con selector de pestañas en píldora, tarjetas de configuración a la izquierda y resumen de estado a la derecha.",
+      "comp": ".impeccable/mocks/decision/settings-comp-2.png"
+    },
+    {
+      "id": "settings-sanctuary-command-hub",
+      "kind": "dealt",
+      "label": "Sanctuary Command Hub (Tarjetas Modulares de Cristal Líquido)",
+      "thesis": "Lienzo central de cristal líquido (#edece9) con tarjetas apiladas de gran legibilidad para Perfil, Google Calendar OAuth 2.0 en cristal diáfano, ubicación de Daily Briefing y atajos globales de teclado.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#0f1014",
+        "#ffffff"
+      ],
+      "materials": [
+        "stacked liquid glass cards",
+        "oauth connection box",
+        "keyboard shortcut chips",
+        "teal avatar"
+      ],
+      "viewport": "Contenedor centrado max-w-4xl con tarjetas elevadas para cada sección de configuración.",
+      "comp": ".impeccable/mocks/decision/settings-comp-1.html"
+    },
+    {
+      "id": "settings-split-profile-archive-deck",
+      "kind": "dealt",
+      "label": "Split Profile & Archive Deck (Doble Columna 50/50 Cuenta + Historial)",
+      "thesis": "Distribución balanceada en dos columnas: a la izquierda la configuración de cuenta e integración de Google Calendar; a la derecha el archivo cronológico de sesiones de foco con botón para reanudar sesión.",
+      "palette": [
+        "#edece9",
+        "#1c6662",
+        "#f4e0ba",
+        "#2563eb",
+        "#ffffff"
+      ],
+      "materials": [
+        "two-column split 50/50",
+        "session history feed",
+        "resume session trigger",
+        "google calendar verified chip"
+      ],
+      "viewport": "Dos columnas de cristal líquido: columna izquierda de configuración y columna derecha con lista cronológica de sesiones de foco.",
+      "comp": ".impeccable/mocks/decision/settings-comp-3.html"
+    }
+  ],
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  },
+  "steer": true
+}

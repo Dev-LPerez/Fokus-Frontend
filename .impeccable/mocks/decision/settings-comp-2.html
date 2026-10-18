@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fokus — Zen Tabbed Suite (Option 2)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&family=Wix+Madefor+Display:wght@400..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1440px; height: 900px; overflow: hidden;
+      background-color: #edece9;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: #0f1014; display: flex; flex-direction: column;
+      position: relative;
+    }
+    .bloom-1 {
+      position: absolute; top: 0; left: 15%; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(28,102,98,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .bloom-2 {
+      position: absolute; bottom: 0; right: 15%; width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(244,224,186,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    header {
+      height: 68px; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.75); backdrop-filter: blur(20px);
+      position: relative; z-index: 10;
+    }
+    .brand { font-family: 'Wix Madefor Display', sans-serif; font-weight: 700; font-size: 20px; display: flex; align-items: center; gap: 10px; color: #0f1014; }
+    .tabs-pill {
+      display: flex; align-items: center; gap: 4px; padding: 4px;
+      background: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 16px; box-shadow: 0 2px 8px -1px rgba(15,16,20,0.04);
+    }
+    .tab-btn {
+      padding: 8px 18px; border-radius: 12px; font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 600; cursor: pointer; border: none; background: transparent; color: #78716c;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: #1c6662; color: #ffffff; box-shadow: 0 2px 8px -1px rgba(28,102,98,0.25);
+    }
+    .content-area {
+      flex: 1; padding: 36px 48px; max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 68% 32%; gap: 28px; position: relative; z-index: 10;
+    }
+    .glass-card {
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.9); border-radius: 24px;
+      padding: 26px 30px; box-shadow: 0 4px 20px -2px rgba(15,16,20,0.03);
+      display: flex; flex-direction: column; gap: 18px;
+    }
+    .profile-row { display: flex; justify-content: space-between; align-items: center; }
+    .avatar-box {
+      width: 58px; height: 58px; border-radius: 18px;
+      background: #1c6662; color: #fff; display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px;
+    }
+    .cal-box {
+      border: 1.5px solid rgba(28,102,98,0.3); background: rgba(255,255,255,0.95);
+      border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 14px;
+    }
+    .badge-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 9999px; font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; font-weight: 600; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0;
+    }
+    .btn-secondary {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+      padding: 8px 16px; border-radius: 12px; border: 1px solid #d6d3d1;
+      background: #ffffff; color: #44403c; cursor: pointer;
+    }
+    .inspector-card {
+      background: rgba(255,255,255,0.7); backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.85); border-radius: 24px;
+      padding: 24px; display: flex; flex-direction: column; gap: 20px;
+    }
+    .stat-pill {
+      background: white; border: 1px solid #e7e5e4; border-radius: 16px;
+      padding: 16px; display: flex; flex-direction: column; gap: 4px;
+    }
+    .stat-num { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 24px; color: #1c6662; }
+    .stat-label { font-size: 12px; color: #78716c; font-family: 'DM Sans', sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="bloom-1"></div>
+  <div class="bloom-2"></div>
+
+  <header>
+    <div class="brand">
+      <div style="width:24px; height:24px; border-radius:7px; background:#1c6662; display:flex; align-items:center; justify-content:center; color:white; font-size:12px;">◆</div>
+      <span>Fokus Zen Suite</span>
+    </div>
+
+    <!-- Pestañas centrales en píldora flotante -->
+    <div class="tabs-pill">
+      <button class="tab-btn active">Cuenta & Integraciones</button>
+      <button class="tab-btn">Historial de Sesiones</button>
+      <button class="tab-btn">Preferencias</button>
+    </div>
+
+    <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#1c6662; background:rgba(28,102,98,0.08); border:1px solid rgba(28,102,98,0.2); padding:5px 12px; border-radius:9999px;">
+      Google Cal Activo
+    </div>
+  </header>
+
+  <div class="content-area">
+    <!-- Panel Izquierdo: Pestaña Activa -->
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="glass-card">
+        <div class="profile-row">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div class="avatar-box">LP</div>
+            <div>
+              <h2 style="font-family:'Wix Madefor Display',sans-serif; font-size:17px; font-weight:700; color:#1c1917;">Luis Pérez</h2>
+              <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78716c;">luis.perez@ejemplo.com · Plan Fokus Pro</p>
+            </div>
+          </div>
+          <button class="btn-secondary">Cerrar Sesión</button>
+        </div>
+      </div>
+
+      <div class="cal-box">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:24px;">📅</span>
+            <div>
+              <h3 style="font-family:'Wix Madefor Display',sans-serif; font-size:16px; font-weight:700; color:#1c1917;">Google Calendar</h3>
+              <p style="font-size:12px; color:#78716c;">Sincronización bidireccional de eventos y bloques de Deep Work.</p>
+            </div>
+          </div>
+          <span class="badge-pill">✓ Sincronizado</span>
+        </div>
+
+        <div style="background:#f5f5f4; border:1px solid #e7e5e4; border-radius:14px; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#44403c;">Cuenta vinculada: luis.perez@gmail.com</span>
+          <button class="btn-secondary" style="color:#b91c1c; border-color:#fecaca;">Desconectar</button>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <h3 style="font-family:'Wix Madefor Display',sans-serif; font-size:15px; font-weight:700; color:#1c1917;">Ubicación & Clima Matutino</h3>
+        <p style="font-size:12px; color:#78716c;">Personaliza la ciudad por defecto para tu resumen diario matutino.</p>
+        <input type="text" style="width:100%; padding:11px 16px; border-radius:12px; border:1px solid #d6d3d1; font-size:13px; background:#fafaf9;" value="Bogotá, Colombia">
+      </div>
+    </div>
+
+    <!-- Inspector Lateral Derecho -->
+    <div class="inspector-card">
+      <h3 style="font-family:'Wix Madefor Display',sans-serif; font-size:14px; font-weight:700; color:#1c1917;">Resumen de Estado</h3>
+
+      <div class="stat-pill">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Sesiones de foco guardadas en el historial</span>
+      </div>
+
+      <div class="stat-pill">
+        <span class="stat-num" style="color:#059669;">100%</span>
+        <span class="stat-label">Google Calendar vinculado y verificado</span>
+      </div>
+
+      <div style="padding:14px; background:rgba(28,102,98,0.06); border:1px solid rgba(28,102,98,0.15); border-radius:16px;">
+        <p style="font-size:11px; color:#1c6662; font-weight:600; font-family:'JetBrains Mono',monospace;">💡 FOKUS V2.0 SANCTUARY</p>
+        <p style="font-size:12px; color:#44403c; margin-top:4px; line-height:1.5;">Configuración protegida y encriptada a nivel de usuario.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
