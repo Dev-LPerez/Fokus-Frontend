@@ -147,7 +147,7 @@ export function ChatWindow({
                             <p className="font-semibold text-xs text-slate-900 group-hover:text-[#1c6662] transition-colors">
                               {item.title}
                             </p>
-                            <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${item.badgeColor} inline-block mt-0.5`}>
+                            <span className={`text-[11px] font-mono px-2 py-0.5 rounded-full border ${item.badgeColor} inline-block mt-0.5`}>
                               {item.badge}
                             </span>
                           </div>

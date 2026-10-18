@@ -157,7 +157,7 @@ export function ChatInput({
             )}
 
             {!isLoading && (
-              <span className="hidden md:inline-block text-[10.5px] font-mono text-slate-400 select-none">
+              <span className="hidden md:inline-block text-[11px] font-mono text-slate-400 select-none">
                 Enter ↵ para enviar
               </span>
             )}

@@ -405,7 +405,7 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
                 </div>
 
                 {parsedResult.google_event_id && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono text-sky-700 bg-sky-50 border border-sky-200 font-medium">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono text-sky-700 bg-sky-50 border border-sky-200 font-medium">
                     <CheckCircle2 className="w-2.5 h-2.5" />
                     Google Calendar Sincronizado
                   </span>
@@ -463,14 +463,14 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
                       <div className="flex items-center gap-1.5 flex-shrink-0">
                         {rem.google_event_id && (
                           <span
-                            className="px-2 py-0.5 bg-sky-50 border border-sky-200 text-sky-700 rounded text-[10px] font-mono font-medium"
+                            className="px-2 py-0.5 bg-sky-50 border border-sky-200 text-sky-700 rounded text-[11px] font-mono font-medium"
                             title="Sincronizado con Google Calendar"
                           >
                             Cal
                           </span>
                         )}
                         <span
-                          className={`px-1.5 py-0.5 rounded text-[10px] font-mono border font-medium ${
+                          className={`px-1.5 py-0.5 rounded text-[11px] font-mono border font-medium ${
                             rem.status === 'completed'
                               ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
                               : 'bg-slate-100 border-slate-200 text-slate-600'
@@ -577,11 +577,11 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
                           <span className="text-xs font-bold font-mono text-slate-800 block">
                             {startStr} — {endStr}
                           </span>
-                          <span className="text-[10px] text-slate-500 font-mono mt-0.5 block">
+                          <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">
                             {mins >= 60 ? `${(mins / 60).toFixed(1).replace('.0', '')}h` : `${mins}m`} disponible
                           </span>
                         </div>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-indigo-50 border border-indigo-200 text-indigo-700">
+                        <span className="px-2 py-0.5 rounded text-[11px] font-mono font-medium bg-indigo-50 border border-indigo-200 text-indigo-700">
                           {idx === 0 ? 'Recomendado' : 'Disponible'}
                         </span>
                       </div>
@@ -624,11 +624,11 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
                           <p className="text-xs font-semibold text-slate-800 truncate">
                             {title}
                           </p>
-                          <p className="text-[10.5px] text-slate-500 font-mono mt-0.5">
+                          <p className="text-[11px] text-slate-500 font-mono mt-0.5">
                             {startStr}{endStr ? ` — ${endStr}` : ''}
                           </p>
                         </div>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-50 border border-sky-200 text-sky-700 flex-shrink-0">
+                        <span className="px-2 py-0.5 rounded text-[11px] font-mono bg-sky-50 border border-sky-200 text-sky-700 flex-shrink-0">
                           GCal
                         </span>
                       </div>
@@ -661,7 +661,7 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
             <button
               type="button"
               onClick={() => setShowJsonRaw(!showJsonRaw)}
-              className="inline-flex items-center gap-1.5 text-[10px] font-mono text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-[11px] font-mono text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
             >
               <Code className="w-3 h-3" />
               <span>{showJsonRaw ? 'Ocultar JSON técnico' : 'Ver JSON técnico (desarrollador)'}</span>
@@ -672,7 +672,7 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
             <div className="space-y-2 pt-2 border-t border-slate-200 font-mono text-[11px] animate-fade-in">
               {input && (
                 <div>
-                  <span className="text-slate-500 text-[10px] uppercase font-semibold">Input:</span>
+                  <span className="text-slate-500 text-[11px] uppercase font-semibold">Input:</span>
                   <pre className="mt-1 p-2 rounded-xl bg-slate-100 text-slate-800 overflow-x-auto border border-slate-200">
                     {JSON.stringify(input, null, 2)}
                   </pre>
@@ -680,7 +680,7 @@ export function ToolIndicator({ toolName, status, input, result }: ToolIndicator
               )}
               {result && (
                 <div>
-                  <span className="text-slate-500 text-[10px] uppercase font-semibold">Output:</span>
+                  <span className="text-slate-500 text-[11px] uppercase font-semibold">Output:</span>
                   <pre className="mt-1 p-2 rounded-xl bg-slate-100 text-slate-800 overflow-x-auto border border-slate-200">
                     {typeof result === 'string' ? result : JSON.stringify(result, null, 2)}
                   </pre>

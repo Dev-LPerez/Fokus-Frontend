@@ -146,7 +146,7 @@ export function DeepWorkCard({
                 <h4 className="font-bold text-sm sm:text-base text-slate-900 font-display">
                   Huecos Libres Detectados
                 </h4>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-medium">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-medium">
                   <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                   <span>Google Calendar</span>
                 </span>
@@ -157,7 +157,7 @@ export function DeepWorkCard({
             </div>
           </div>
 
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold bg-[#1c6662]/10 border border-[#1c6662]/20 text-[#1c6662] flex-shrink-0">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-[#1c6662]/10 border border-[#1c6662]/20 text-[#1c6662] flex-shrink-0">
             <Zap className="w-3 h-3 text-[#1c6662]" />
             <span>{availableSlots.length} Opciones</span>
           </span>
@@ -167,7 +167,7 @@ export function DeepWorkCard({
         <div className="mt-4 pt-3.5 border-t border-slate-200/60 space-y-3.5 relative z-10">
           {taskDescription && (
             <div className="bg-slate-50/80 p-3 rounded-2xl border border-slate-200/60 text-xs">
-              <span className="text-[10px] uppercase font-mono text-slate-500 tracking-wider block font-semibold">
+              <span className="text-[11px] uppercase font-mono text-slate-500 tracking-wider block font-semibold">
                 Objetivo
               </span>
               <p className="font-semibold text-slate-800 truncate mt-0.5">
@@ -193,11 +193,11 @@ export function DeepWorkCard({
                   }`}
                 >
                   <div className="flex items-center justify-between gap-1 w-full">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#1c6662]">
+                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#1c6662]">
                       Opción {idx + 1}
                     </span>
                     {(slot.is_recommended || idx === 0) && (
-                      <span className="text-[9px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#f4e0ba]/50 border border-[#d4a373]/40 text-[#78350f]">
+                      <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#f4e0ba]/50 border border-[#d4a373]/40 text-[#78350f]">
                         Óptimo
                       </span>
                     )}
@@ -269,7 +269,7 @@ export function DeepWorkCard({
               <h4 className="font-bold text-sm sm:text-base text-slate-900 font-display">
                 Bloque Protegido: {durationMinutes} min Deep Work
               </h4>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-medium">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-medium">
                 <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                 <span>Google Calendar Sincronizado</span>
               </span>
@@ -281,7 +281,7 @@ export function DeepWorkCard({
         </div>
 
         {/* Priority Badge */}
-        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold bg-[#f4e0ba]/50 border border-[#d4a373]/40 text-[#78350f] flex-shrink-0">
+        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-[#f4e0ba]/50 border border-[#d4a373]/40 text-[#78350f] flex-shrink-0">
           <Flame className="w-3 h-3 text-[#b45309]" />
           <span>Alta Prioridad</span>
         </span>
@@ -291,7 +291,7 @@ export function DeepWorkCard({
       <div className="mt-4 pt-3.5 border-t border-slate-200/60 space-y-3.5 relative z-10">
         {/* Task description */}
         <div className="bg-slate-50/80 p-3 rounded-2xl border border-slate-200/60">
-          <span className="text-[10px] uppercase font-mono text-slate-500 tracking-wider block font-semibold">
+          <span className="text-[11px] uppercase font-mono text-slate-500 tracking-wider block font-semibold">
             Objetivo de Enfoque
           </span>
           <p className="text-sm font-semibold text-slate-900 mt-0.5 leading-snug font-sans">
@@ -305,7 +305,7 @@ export function DeepWorkCard({
           <div className="flex items-center gap-2.5 bg-slate-50/80 p-3 rounded-2xl border border-slate-200/60">
             <Clock className="w-4 h-4 text-[#1c6662] flex-shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] text-slate-500 font-mono block">Horario Reservado</span>
+              <span className="text-[11px] text-slate-500 font-mono block">Horario Reservado</span>
               <span className="text-xs font-bold text-slate-900 font-mono truncate block">
                 {formatTimeRange(scheduledStart, scheduledEnd, durationMinutes)}
               </span>
@@ -316,7 +316,7 @@ export function DeepWorkCard({
           <div className="flex items-center gap-2.5 bg-slate-50/80 p-3 rounded-2xl border border-slate-200/60">
             <Briefcase className="w-4 h-4 text-[#1c6662] flex-shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] text-slate-500 font-mono block">Proyecto / Contexto</span>
+              <span className="text-[11px] text-slate-500 font-mono block">Proyecto / Contexto</span>
               <span className="text-xs font-semibold text-slate-800 truncate block font-sans">
                 {project || 'Operaciones Clave'}
               </span>

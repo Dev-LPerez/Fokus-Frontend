@@ -2,26 +2,33 @@
 version: 1
 slug: "app-protected-chat-page-tsx"
 primary_target: "app/(protected)/chat/page.tsx"
-related_targets: []
+related_targets:
+  - "components/chat/ChatWindow.tsx"
+  - "components/chat/MessageBubble.tsx"
+  - "components/chat/DeepWorkCard.tsx"
+  - "components/chat/ChatInput.tsx"
+  - "components/chat/ToolIndicator.tsx"
+  - "components/briefing/DailyBriefingCard.tsx"
 ---
 
-# Surface Brief: Fokus Copilot Chat
+# Surface Brief: Fokus Copilot Chat & Productive Rail
 
-- **Scope:** Route `app/(protected)/chat/page.tsx` and child components (`components/chat/*`).
-- **Visitor Mode:** Operate (focused personal productivity task completion, cognitive clarity, deep work scheduling).
-- **Audience & Job:** Professionals protecting their peak concentration slots, seeking actionable guidance from their AI copilot without task fragmentation.
-- **Constraints:** Must adhere to the approved Luminous Liquid Glass design language (`#edece9`, `#1c6662`, `#f4e0ba`, `#0f1014`, Wix Madefor Display, Space Grotesk, DM Sans).
+- **Scope:** Route `app/(protected)/chat/page.tsx` and child components in `components/chat/` and `components/briefing/`.
+- **Visitor Mode:** Operate (productive dialog, deep work reservation, schedule auditing without artificial clutter).
+- **Audience & Job:** Professionals communicating with their AI copilot to defend their focus, organize tasks, and schedule Deep Work sessions in Google Calendar.
+- **Constraints:** Must adhere strictly to Luminous Liquid Glass design language (`#edece9`, Sanctuary Teal `#1c6662`, Honey Amber `#f4e0ba`, Soft Charcoal `#0f1014`, Wix Madefor Display, Space Grotesk, DM Sans, JetBrains Mono).
+- **Special User Boundary:** NO fabricated or fake telemetry metrics (no fake energy gauges or arbitrary percentages without backend measurement). Every displayed status must be real (`hasCalendarConnected`, `tasksCount`, live calendar events, real tool states).
 
 ## Direction contract
 
-THESIS: An unbroken, luminous liquid sanctuary where conversational stream, live tool telemetries, and focus execution widgets harmonize without disjointed modals or rigid dashboard splits. It refuses the generic robotic chat console in favor of an organic productivity environment.
+THESIS: An unbroken, luminous liquid chat sanctuary with a productive quick-action rail and floating frosted controls. Refuses the generic robotic console and rejects fake dashboard metrics, focusing 100% on genuine calendar synchronization, task management, and deep work protection.
 
-OWN-WORLD: Ground #edece9 with subtle feathered ambient glows. Diaphanous frosted glass cards (bg-white/85 backdrop-blur-xl border-white/80), user bubbles in sanctuary deep teal (#1c6662), warm amber tool pills (#f4e0ba), Space Grotesk metrics, and a floating curved liquid input pill (bg-white/75 backdrop-blur-2xl shadow-xl).
+OWN-WORLD: Ground `#edece9` with feathered ambient glows in sanctuary teal (`#1c6662/0.05`) and warm amber (`#f4e0ba/0.30`). Translucent frosted glass assistant cards (`bg-white/85 backdrop-blur-xl border border-white/80 shadow-xs`), user messages in Sanctuary Teal (`#1c6662`), interactive Deep Work confirmation cards with real Google Calendar event links, and a floating curved liquid input pill at the bottom.
 
-STORY: The user lands in a peaceful workspace, instantly sees their Google Calendar sync status, communicates their goals, observes the copilot inspect their schedule with transparent monospace pills, and triggers a 90-minute Deep Work focus session with a radial countdown ring directly from the message stream.
+STORY: The user lands in the Copilot view, sees their verified Google Calendar connection status, uses the productive rail to trigger focus blocks or agenda audits in one click, watches real tools execute with transparent monospace chips, and books protected focus time seamlessly.
 
-FIRST VIEWPORT: A translucent header with the Fokus logo and calendar sync indicator. A centered conversational stream (max-w-4xl) featuring user teal pills, frosted assistant cards with embedded tool status and the interactive Deep Work block (with radial timer ring and action buttons), anchored by a floating pill input at the bottom center.
+FIRST VIEWPORT: Clean frosted top bar showing Fokus Copilot title, verified Google Calendar connection pill, and session actions. Productive quick-actions strip for 1-click prompts. Centered conversational stream with high-contrast DM Sans typography and floating liquid input pill.
 
-FORM: Immersive Liquid Sanctuary, candidate 3 of 7 (the dealt lead). seed:b52a0270249ae173.
+FORM: Productive Rail & Action Sanctuary (Option 5 adapted without fake telemetry). seed:b52a0270249ae173.
 
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+FINISH: Local Next.js build verification (exit 0), 0 impeccable detect anti-patterns, local Git commit with strictly NO remote git push.

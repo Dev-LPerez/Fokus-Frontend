@@ -5,11 +5,13 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { ChatWindow } from '@/components/chat/ChatWindow';
 import { ChatInput } from '@/components/chat/ChatInput';
+import { ProductiveRail } from '@/components/chat/ProductiveRail';
 import { ChatMessage, ToolCallItem } from '@/components/chat/MessageBubble';
 import { DailyBriefingCard } from '@/components/briefing/DailyBriefingCard';
 import { OnboardingModal } from '@/components/onboarding/OnboardingModal';
 import { useUserLocation } from '@/lib/hooks/useUserLocation';
-import { AlertCircle, Loader2 } from 'lucide-react';
+import { AlertCircle, Loader2, Plus, Calendar, Briefcase, CheckCircle2, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ChatPage() {
   const searchParams = useSearchParams();
@@ -474,6 +476,14 @@ export default function ChatPage() {
     }
   }, [searchParams, conversationIdParam, messages.length, isLoading, handleSendMessage]);
 
+  const handleNewSession = () => {
+    setConversationId(null);
+    setMessages([]);
+    setErrorMessage(null);
+    activeConversationIdRef.current = null;
+    router.push('/chat');
+  };
+
   return (
     <div className="flex-1 flex flex-col h-full min-h-0 overflow-hidden bg-[#edece9] relative">
       {/* Ambient Atmospheric Glows */}
@@ -486,81 +496,149 @@ export default function ChatPage() {
         aria-hidden="true" 
       />
 
-      {/* Daily Executive Briefing Collapsible Bar */}
-      <div className="relative z-10 flex-shrink-0">
-        <DailyBriefingCard
-          location={location}
-          onRequestLocation={requestLocation}
-          showLocationBanner={showLocationBanner}
-          onDismissLocationBanner={dismissBanner}
-          onQuickAction={(prompt) => {
-            if (prompt === 'Vivo en ' || prompt.startsWith('Vivo en')) {
-              setPrefilledPrompt(prompt);
-            } else {
-              handleSendMessage(prompt);
-            }
-          }}
-        />
-      </div>
-
-      {/* Error alert */}
-      {errorMessage && (
-        <div className="mx-4 sm:mx-8 mt-3 p-3.5 rounded-2xl bg-rose-50/90 backdrop-blur-md border border-rose-200 text-rose-800 text-xs flex items-center justify-between gap-3 animate-fade-in flex-shrink-0 shadow-xs relative z-10">
-          <div className="flex items-center gap-2 min-w-0">
-            <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-600" />
-            <span className="truncate">{errorMessage}</span>
+      {/* Top Header Bar: Real Sync Status & Actions (No Fake Telemetry) */}
+      <header className="border-b border-stone-200/80 bg-white/75 backdrop-blur-xl px-4 sm:px-6 py-2.5 flex items-center justify-between gap-3 relative z-30 flex-shrink-0">
+        <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex items-center gap-2">
+            <span className="font-display font-bold text-sm text-stone-900 tracking-tight">
+              Fokus Copilot
+            </span>
+            <span className="text-[11px] font-mono px-2 py-0.5 rounded-lg bg-teal-50 border border-teal-200/80 text-[#1c6662] font-medium">
+              v2.0
+            </span>
           </div>
+
+          <div className="hidden sm:flex items-center gap-2">
+            {/* Real Google Calendar status badge */}
+            <div
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xl font-mono text-[11px] border ${
+                hasCalendarConnected
+                  ? 'bg-emerald-50/90 border-emerald-200/80 text-emerald-800'
+                  : 'bg-amber-50/90 border-amber-200/80 text-amber-900'
+              }`}
+            >
+              <span
+                className={`w-1.5 h-1.5 rounded-full ${
+                  hasCalendarConnected ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'
+                }`}
+              />
+              <Calendar className="w-3 h-3 opacity-80" />
+              <span>{hasCalendarConnected ? 'Google Calendar Sincronizado' : 'Google Calendar Desconectado'}</span>
+            </div>
+
+            {/* Real Tasks count badge */}
+            <Link
+              href="/projects"
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-stone-100/80 hover:bg-stone-100 border border-stone-200/80 text-stone-700 hover:text-stone-900 font-mono text-[11px] transition-colors"
+              title="Ver compromisos y metas"
+            >
+              <Briefcase className="w-3 h-3 text-stone-500" />
+              <span>{tasksCount} compromisos</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2">
           <button
-            onClick={() => setErrorMessage(null)}
-            className="text-[11px] font-medium text-rose-700 hover:text-rose-900 px-2 py-0.5 rounded-lg hover:bg-rose-100 transition-colors cursor-pointer"
+            type="button"
+            onClick={handleNewSession}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-stone-50 border border-stone-200/80 text-stone-700 hover:text-[#1c6662] font-mono text-[11px] transition-all cursor-pointer shadow-2xs"
+            title="Iniciar nueva sesión limpia"
           >
-            Cerrar
+            <Plus className="w-3 h-3 stroke-[2.5]" />
+            <span>Nueva Sesión</span>
           </button>
         </div>
-      )}
+      </header>
 
-      {/* Main chat messages area */}
-      <div className="flex-1 flex flex-col min-h-0 relative z-10 overflow-hidden">
-        {loadingHistory ? (
-          <div className="flex-1 flex flex-col items-center justify-center gap-3 text-slate-500 font-mono text-xs">
-            <Loader2 className="w-6 h-6 animate-spin text-[#1c6662]" />
-            <span>Cargando mensajes...</span>
+      {/* Main Workspace Body with Productive Rail (Option 5) */}
+      <div className="flex-1 flex flex-row min-h-0 overflow-hidden relative z-10">
+        {/* Productive Rail on the left (Desktop) */}
+        <ProductiveRail
+          onSelectPrompt={(prompt) => handleSendMessage(prompt)}
+          hasCalendarConnected={hasCalendarConnected}
+          tasksCount={tasksCount}
+        />
+
+        {/* Center / Main Conversational Stream */}
+        <div className="flex-1 flex flex-col min-h-0 overflow-hidden relative">
+          {/* Daily Executive Briefing Collapsible Bar */}
+          <div className="relative z-10 flex-shrink-0">
+            <DailyBriefingCard
+              location={location}
+              onRequestLocation={requestLocation}
+              showLocationBanner={showLocationBanner}
+              onDismissLocationBanner={dismissBanner}
+              onQuickAction={(prompt) => {
+                if (prompt === 'Vivo en ' || prompt.startsWith('Vivo en')) {
+                  setPrefilledPrompt(prompt);
+                } else {
+                  handleSendMessage(prompt);
+                }
+              }}
+            />
           </div>
-        ) : (
-          <ChatWindow
-            messages={messages}
-            userName={userName}
-            isLoading={isLoading}
-            isColdStart={isColdStart}
-            agentState={agentState}
-            toolName={activeToolName}
-            onSelectSuggestion={(text) => handleSendMessage(text)}
-            onSelectSlot={(slot) => {
-              const startStr = slot.start.includes('T') ? slot.start.split('T')[1].slice(0, 5) : slot.start;
-              const endStr = slot.end.includes('T') ? slot.end.split('T')[1].slice(0, 5) : slot.end;
-              handleSendMessage(`Bloquea en Google Calendar el bloque de Deep Work de ${startStr} a ${endStr}.`);
-            }}
-            isBookingSlot={isLoading}
-          />
-        )}
-      </div>
 
-      {/* Floating Chat input area */}
-      <div className="relative z-20 flex-shrink-0 pointer-events-none pb-2 pt-0">
-        <div className="pointer-events-auto">
-          <ChatInput
-            onSendMessage={(msg) => {
-              setPrefilledPrompt('');
-              handleSendMessage(msg);
-            }}
-            onStop={handleStop}
-            disabled={isLoading || loadingHistory}
-            isLoading={isLoading}
-            agentState={agentState}
-            toolName={activeToolName}
-            userName={userName}
-            prefilledPrompt={prefilledPrompt}
-          />
+          {/* Error alert */}
+          {errorMessage && (
+            <div className="mx-4 sm:mx-8 mt-3 p-3.5 rounded-2xl bg-rose-50/90 backdrop-blur-md border border-rose-200 text-rose-800 text-xs flex items-center justify-between gap-3 animate-fade-in flex-shrink-0 shadow-xs relative z-10">
+              <div className="flex items-center gap-2 min-w-0">
+                <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-600" />
+                <span className="truncate">{errorMessage}</span>
+              </div>
+              <button
+                onClick={() => setErrorMessage(null)}
+                className="text-[11px] font-medium text-rose-700 hover:text-rose-900 px-2 py-0.5 rounded-lg hover:bg-rose-100 transition-colors cursor-pointer"
+              >
+                Cerrar
+              </button>
+            </div>
+          )}
+
+          {/* Main chat messages area */}
+          <div className="flex-1 flex flex-col min-h-0 relative z-10 overflow-hidden">
+            {loadingHistory ? (
+              <div className="flex-1 flex flex-col items-center justify-center gap-3 text-slate-500 font-mono text-xs">
+                <Loader2 className="w-6 h-6 animate-spin text-[#1c6662]" />
+                <span>Cargando mensajes...</span>
+              </div>
+            ) : (
+              <ChatWindow
+                messages={messages}
+                userName={userName}
+                isLoading={isLoading}
+                isColdStart={isColdStart}
+                agentState={agentState}
+                toolName={activeToolName}
+                onSelectSuggestion={(text) => handleSendMessage(text)}
+                onSelectSlot={(slot) => {
+                  const startStr = slot.start.includes('T') ? slot.start.split('T')[1].slice(0, 5) : slot.start;
+                  const endStr = slot.end.includes('T') ? slot.end.split('T')[1].slice(0, 5) : slot.end;
+                  handleSendMessage(`Bloquea en Google Calendar el bloque de Deep Work de ${startStr} a ${endStr}.`);
+                }}
+                isBookingSlot={isLoading}
+              />
+            )}
+          </div>
+
+          {/* Floating Chat input area */}
+          <div className="relative z-20 flex-shrink-0 pointer-events-none pb-2 pt-0">
+            <div className="pointer-events-auto">
+              <ChatInput
+                onSendMessage={(msg) => {
+                  setPrefilledPrompt('');
+                  handleSendMessage(msg);
+                }}
+                onStop={handleStop}
+                disabled={isLoading || loadingHistory}
+                isLoading={isLoading}
+                agentState={agentState}
+                toolName={activeToolName}
+                userName={userName}
+                prefilledPrompt={prefilledPrompt}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
